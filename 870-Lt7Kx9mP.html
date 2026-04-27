@@ -212,15 +212,16 @@ footer.st-footer{background:var(--st-navy);color:var(--st-white);padding:2rem 1.
 .mini-contact-card a:hover{color:var(--st-gold)}
 @media(max-width:720px){
   .st-hamburger{display:block}
-  .st-nav{position:fixed;top:60px;right:0;bottom:0;width:280px;background:var(--st-navy);flex-direction:column;padding:1rem;transform:translateX(100%);transition:transform .3s;box-shadow:-4px 0 20px rgba(0,0,0,.2);z-index:200}
-  .st-nav.open{transform:translateX(0)}
-  .st-nav button{width:100%;text-align:left;padding:.85rem 1rem}
+  .st-nav{position:fixed;top:0;left:0;right:0;bottom:0;width:100%;background:rgba(17,24,39,.97);flex-direction:column;justify-content:center;align-items:center;gap:.25rem;padding:1.5rem;transform:translateY(-100%);transition:transform .3s ease;z-index:300;overflow-x:visible;overflow-y:auto}
+  .st-nav.open{transform:translateY(0)}
+  .st-nav button{width:100%;max-width:320px;text-align:center;padding:1rem;font-size:1rem;border-radius:8px;touch-action:manipulation}
   .st-hero{min-height:280px}
   .st-hero-content{padding:1.5rem}
   .st-hero-content h1{font-size:1.75rem}
   .st-subnav{gap:.35rem}
-  .st-subnav button{font-size:.8rem;padding:.4rem .75rem}
+  .st-subnav button{font-size:.8rem;padding:.4rem .75rem;touch-action:manipulation}
 }
+button,.cfg-flight-opt,.cfg-pkg,.decide-card,.st-subnav button{touch-action:manipulation}
 </style>
 </head>
 <body>
@@ -228,7 +229,7 @@ footer.st-footer{background:var(--st-navy);color:var(--st-white);padding:2rem 1.
 <header class="st-header">
   <div class="st-nav-wrap">
     <div class="st-brand"><img src="https://safetour.es/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fn8n-01sft%2Fimage%2Fupload%2Fv1772971640%2Fsafe_tour_logo_transparente_epuwlg.png&w=384&q=75" alt="SAFE TOUR"><div>Magazine<small>Propuesta Nº 870 · Para <span class="st-personal">Laura Talavera</span></small></div></div>
-    <button class="st-hamburger" aria-label="Menu" onclick="document.querySelector('.st-nav').classList.toggle('open')">&#9776;</button>
+    <button class="st-hamburger" aria-label="Menu" onclick="document.querySelector('.st-nav').classList.toggle('open')">☰</button>
     <nav class="st-nav" id="stNav">
       <button class="active" data-target="portada">Portada</button>
       <button data-target="tu-viaje">Tu viaje</button>
@@ -274,7 +275,7 @@ footer.st-footer{background:var(--st-navy);color:var(--st-white);padding:2rem 1.
     <div class="st-card"><div class="st-card-title">🌡️ Clima llevadero</div><p style="margin:0">Temperaturas típicas de 4-10 °C, lluvia intermitente, días cortos. Se disfruta con abrigo, bufanda y paraguas ligero.</p></div>
     <div class="st-card"><div class="st-card-title">✨ Luces de Navidad</div><p style="margin:0">Oxford Street, Regent Street, Covent Garden y Carnaby ya están iluminadas a principios de noviembre.</p></div>
     <div class="st-card"><div class="st-card-title">🎄 Mercados de invierno</div><p style="margin:0">Hyde Park Winter Wonderland y Southbank Centre Winter Market junto al Támesis.</p></div>
-    <div class="st-card"><div class="st-card-title">🏙️ Museos gratuitos</div><p style="margin:0">British Museum, National Gallery, Natural History Museum, Science Museum.</p></div>
+    <div class="st-card"><div class="st-card-title">🏛️ Museos gratuitos</div><p style="margin:0">British Museum, National Gallery, Natural History Museum, Science Museum.</p></div>
     <div class="st-card"><div class="st-card-title">📉 Temporada baja</div><p style="margin:0">Menos colas en Torre de Londres, London Eye o Westminster Abbey. Hoteles más asequibles que en diciembre.</p></div>
     <div class="st-card"><div class="st-card-title">🎭 Musicales del West End</div><p style="margin:0">El Rey León, Frozen, Matilda, Mamma Mia!, Harry Potter.</p></div>
   </div>
@@ -296,7 +297,7 @@ footer.st-footer{background:var(--st-navy);color:var(--st-white);padding:2rem 1.
     <button class="active" data-subtarget="vuelos">✈️ Vuelos</button>
     <button data-subtarget="traslados">🚘 Traslados</button>
     <button data-subtarget="alojamiento">🏩 Alojamiento</button>
-    <button data-subtarget="asistencia">🛒️ Asistencia</button>
+    <button data-subtarget="asistencia">🛎️ Asistencia</button>
   </div>
   <div class="st-subtab active" data-subtab="vuelos">
     <h3>✈️ Vuelos · Ryanair · Málaga ↔ Londres Stansted</h3>
@@ -326,7 +327,7 @@ footer.st-footer{background:var(--st-navy);color:var(--st-white);padding:2rem 1.
     <p style="font-size:.85rem;color:var(--st-muted);font-style:italic">Hoteles descartados: Crestfield (no dispone de tarifa con desayuno), Days Inn Hyde Park (no dispone de tarifa con desayuno), y otros sin disponibilidad para la distribución 7+2 del grupo.</p>
   </div>
   <div class="st-subtab" data-subtab="asistencia">
-    <h3>🛒️ Asistencia SAFE TOUR</h3>
+    <h3>🛎️ Asistencia SAFE TOUR</h3>
     <div class="st-grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
       <div class="st-card"><div class="st-card-title">🎯 Asesoramiento</div><p style="margin:0">Asesoramiento personalizado para la preparación del viaje.</p></div>
       <div class="st-card"><div class="st-card-title">📋 Gestión completa</div><p style="margin:0">Gestión de reserva de todos los servicios propuestos.</p></div>
@@ -340,8 +341,8 @@ footer.st-footer{background:var(--st-navy);color:var(--st-white);padding:2rem 1.
   <h2>💬 Lo que os recomendamos</h2>
   <p><span class="st-personal">Laura</span>, para tu grupo nuestra primera recomendación es <strong>Yotel London City</strong>: el mejor equilibrio precio-ubicación-comodidad para 17 personas que necesitan estar todas en el mismo hotel, con la línea Elizabeth a 2 minutos andando. Aun así, te dejamos las 3 opciones con desayuno con sus pros y contras para que decidas con todo a la vista:</p>
   <div class="st-callout info"><p style="margin:0"><strong>ℹ️ Importante sobre la cancelación:</strong> las fechas de cancelación flexible que indicamos abajo se refieren <strong>solo a la parte hotelera</strong>. Los <strong>vuelos, maletas, asientos y seguros no son reembolsables desde el momento de la confirmación de la reserva</strong>. Detalle completo en <em>Condiciones</em>.</p></div>
-  <div class="st-opinion best"><h4>⭐ Opción A — Yotel London City (AD)</h4><div class="price">641 €/persona · 10.896 € el grupo</div><p style="margin-top:.75rem">La mejor relación calidad-precio del trío. 4 estrellas, desayuno incluido, ubicación cómoda en Farringdon. <strong>Ojo al plazo corto de cancelación</strong> (hasta 08/11/2026): si os dec idís por esta, hay que confirmar antes.</p></div>
-  <div class="st-opinion mid"><h4>✨ Opción B — Grange Buckingham (AD)</h4><div class="price">843 €/persona · 14.330 € el grupo</div><p style="margin-top:.75rem">Habitaciones más amplias (raro en Londres), Studio Superior con cocina pequeña, ambiente tranquilo con jardín. Ubicación premium en Holborn — a pie del British Museum y del West End. La opción más “familiar” del trío para un grupo grande.</p></div>
+  <div class="st-opinion best"><h4>⭐ Opción A — Yotel London City (AD)</h4><div class="price">641 €/persona · 10.896 € el grupo</div><p style="margin-top:.75rem">La mejor relación calidad-precio del trío. 4 estrellas, desayuno incluido, ubicación cómoda en Farringdon. <strong>Ojo al plazo corto de cancelación</strong> (hasta 08/11/2026): si os decidís por esta, hay que confirmar antes.</p></div>
+  <div class="st-opinion mid"><h4>✨ Opción B — Grange Buckingham (AD)</h4><div class="price">843 €/persona · 14.330 € el grupo</div><p style="margin-top:.75rem">Habitaciones más amplias (raro en Londres), Studio Superior con cocina pequeña, ambiente tranquilo con jardín. Ubicación premium en Holborn — a pie del British Museum y del West End. La opción más "familiar" del trío para un grupo grande.</p></div>
   <div class="st-opinion premium"><h4>👑 Opción C — DoubleTree Hilton Angel (AD)</h4><div class="price">858 €/persona · 14.585 € el grupo</div><p style="margin-top:.75rem">El plus de servicio de cadena premium: 2 restaurantes, gimnasio 24h, desayuno buffet completo y la galleta DoubleTree de bienvenida. Plazo de cancelación amplio (26/11) — la opción más relajada en cuanto a flexibilidad.</p></div>
   <h3 style="margin-top:2rem">Por qué confiar en SAFE TOUR</h3>
   <div class="st-why-grid">
@@ -400,13 +401,13 @@ footer.st-footer{background:var(--st-navy);color:var(--st-white);padding:2rem 1.
     </div>
     <p>Trámite <strong>personal e intransferible</strong> — cada viajero solicita el suyo. Os orientamos, pero no podemos hacerlo en vuestro nombre. Coste estimado del grupo: <strong>≈ 442 €</strong> (a pagar individualmente).</p>
   </div></details>
-  <details class="st-accordion"><summary>🎫 Excursiones · Civitatis — actividades pensadas para una reunión familiar</summary><div class="st-acc-body">
+  <details class="st-accordion"><summary>🎟️ Excursiones · Civitatis — actividades pensadas para una reunión familiar</summary><div class="st-acc-body">
     <p>Somos <strong>Agencia Oficial Civitatis</strong>. Reservando desde nuestros enlaces, SAFE TOUR recibe la comisión de afiliado sin coste adicional para vosotros — y nosotros os ayudamos con cualquier incidencia.</p>
     <p style="text-align:center;margin:1.25rem 0"><a class="decide-btn" style="display:inline-block;background:var(--st-gold);color:var(--st-navy);padding:.6rem 1.5rem;border-radius:6px;font-weight:600;text-decoration:none" href="https://www.civitatis.com/es/londres/?ag_aid=335" target="_blank">Ver TODAS las actividades de Londres en Civitatis</a></p>
     <h4>👨‍👩‍👧‍👦 Top 5 actividades para vuestro grupo</h4>
-    <div class="st-table-wrap"><table class="st-table"><tr><th>Actividad</th><th>Por qué encaja</th><th>Duración</th></tr><tr class="highlight"><td>🎬 <a href="https://www.civitatis.com/es/londres/excursion-estudios-harry-potter/?ag_aid=335" target="_blank"><strong>Estudios Harry Potter (con transporte)</strong></a></td><td>Plan estrella en una reunión familiar. Transporte ida/vuelta incluido — clave con un grupo grande.</td><td>≈7 h</td></tr><tr><td>🚥 <a href="https://www.civitatis.com/es/londres/crucero-tamesis/?ag_aid=335" target="_blank"><strong>Crucero por el Támesis</strong></a></td><td>Plan común para los 17 sin andar. Vistas del Parlamento, Tower Bridge y la City iluminados.</td><td>≈1-1,5 h</td></tr><tr><td>🏰 <a href="https://www.civitatis.com/es/londres/visita-torre-londres/?ag_aid=335" target="_blank"><strong>Torre de Londres + Joyas</strong></a></td><td>Fortaleza, cuervos, armaduras, joyas reales. Beefeaters en directo. Mil años de historia.</td><td>≈3 h</td></tr><tr><td>🎄 <a href="https://www.civitatis.com/es/londres/tour-luces-navidad-londres/?ag_aid=335" target="_blank"><strong>Tour de las luces de Navidad</strong></a></td><td>Paseo guiado al anochecer por Oxford, Regent y Carnaby. Plan navideño puro.</td><td>≈2 h</td></tr><tr><td>🎡 <a href="https://www.civitatis.com/es/londres/london-eye/?ag_aid=335" target="_blank"><strong>London Eye Fast Track</strong></a></td><td>Icónica, breve (30 min), apta para todas las edades. El Fast Track evita la cola.</td><td>≈1 h</td></tr></table></div>
+    <div class="st-table-wrap"><table class="st-table"><tr><th>Actividad</th><th>Por qué encaja</th><th>Duración</th></tr><tr class="highlight"><td>🎬 <a href="https://www.civitatis.com/es/londres/excursion-estudios-harry-potter/?ag_aid=335" target="_blank"><strong>Estudios Harry Potter (con transporte)</strong></a></td><td>Plan estrella en una reunión familiar. Transporte ida/vuelta incluido — clave con un grupo grande.</td><td>≈7 h</td></tr><tr><td>🛥️ <a href="https://www.civitatis.com/es/londres/crucero-tamesis/?ag_aid=335" target="_blank"><strong>Crucero por el Támesis</strong></a></td><td>Plan común para los 17 sin andar. Vistas del Parlamento, Tower Bridge y la City iluminados.</td><td>≈1-1,5 h</td></tr><tr><td>🏰 <a href="https://www.civitatis.com/es/londres/visita-torre-londres/?ag_aid=335" target="_blank"><strong>Torre de Londres + Joyas de la Corona</strong></a></td><td>Fortaleza, cuervos, armaduras, joyas reales. Beefeaters en directo. Mil años de historia.</td><td>≈3 h</td></tr><tr><td>🎄 <a href="https://www.civitatis.com/es/londres/tour-luces-navidad-londres/?ag_aid=335" target="_blank"><strong>Tour de las luces de Navidad</strong></a></td><td>Paseo guiado al anochecer por Oxford, Regent y Carnaby. Plan navideño puro.</td><td>≈2 h</td></tr><tr><td>🎡 <a href="https://www.civitatis.com/es/londres/london-eye/?ag_aid=335" target="_blank"><strong>London Eye Fast Track</strong></a></td><td>Icónica, breve (30 min), apta para todas las edades. El Fast Track evita la cola.</td><td>≈1 h</td></tr></table></div>
     <h4 style="margin-top:1.5rem">👍 Otras buenas opciones</h4>
-    <ul><li>🏙️ <a href="https://www.civitatis.com/es/londres/free-tour-londres/?ag_aid=335" target="_blank"><strong>Free tour por Londres</strong></a> — primer día, para orientarse antes de soltarse solo. Pago a voluntad.</li><li>👑 <a href="https://www.civitatis.com/es/londres/tour-westminster-buckingham/?ag_aid=335" target="_blank"><strong>Tour Westminster + Buckingham</strong></a> — clásico monumental para los más “de monumentos” del grupo.</li><li>🏃 <a href="https://www.civitatis.com/es/londres/visita-castillo-windsor/?ag_aid=335" target="_blank"><strong>Excursión al Castillo de Windsor</strong></a> — escapada de medio día.</li><li>🗿 <a href="https://www.civitatis.com/es/londres/excursion-stonehenge-bath/?ag_aid=335" target="_blank"><strong>Excursión a Stonehenge y Bath</strong></a> — día completo si quedaba pendiente la “otra Inglaterra”.</li><li>🎓 <a href="https://www.civitatis.com/es/londres/excursion-oxford-cambridge/?ag_aid=335" target="_blank"><strong>Excursión a Oxford y Cambridge</strong></a> — universidades, college y cinematografía Harry Potter.</li><li>🎢 <strong>Hyde Park Winter Wonderland</strong> (entrada gratuita, atracciones de pago) — pista de hielo, noria, puestos de comida.</li><li>🎭 <strong>Musicales del West End</strong> — El Rey León, Frozen, Matilda, Mamma Mia!. Función matinée del sábado.</li></ul>
+    <ul><li>🏛️ <a href="https://www.civitatis.com/es/londres/free-tour-londres/?ag_aid=335" target="_blank"><strong>Free tour por Londres</strong></a> — primer día, para orientarse antes de soltarse solo. Pago a voluntad.</li><li>👑 <a href="https://www.civitatis.com/es/londres/tour-westminster-buckingham/?ag_aid=335" target="_blank"><strong>Tour Westminster + Buckingham</strong></a> — clásico monumental para los más "de monumentos" del grupo.</li><li>🏯 <a href="https://www.civitatis.com/es/londres/visita-castillo-windsor/?ag_aid=335" target="_blank"><strong>Excursión al Castillo de Windsor</strong></a> — escapada de medio día.</li><li>🗿 <a href="https://www.civitatis.com/es/londres/excursion-stonehenge-bath/?ag_aid=335" target="_blank"><strong>Excursión a Stonehenge y Bath</strong></a> — día completo si quedaba pendiente la "otra Inglaterra".</li><li>🎓 <a href="https://www.civitatis.com/es/londres/excursion-oxford-cambridge/?ag_aid=335" target="_blank"><strong>Excursión a Oxford y Cambridge</strong></a> — universidades, college y cinematografía Harry Potter.</li><li>🎢 <strong>Hyde Park Winter Wonderland</strong> (entrada gratuita, atracciones de pago) — pista de hielo, noria, puestos de comida.</li><li>🎭 <strong>Musicales del West End</strong> — El Rey León, Frozen, Matilda, Mamma Mia!. Función matinée del sábado.</li></ul>
     <p style="font-size:.9rem;color:var(--st-muted);margin-top:1rem">Si queréis cerrar alguna como <strong>reserva cerrada del grupo</strong>, os la gestionamos directamente para coordinar horarios, punto de encuentro y pago único.</p>
   </div></details>
 </section>
@@ -506,7 +507,7 @@ footer.st-footer{background:var(--st-navy);color:var(--st-white);padding:2rem 1.
 
       <div class="cfg-section">
         <h3><span class="cfg-step">3</span> Añade opcionales</h3>
-        <p style="font-size:.9rem;color:var(--st-muted);margin-bottom:1.25rem">Cada servicio tiene su propio contador. Puedes combinar libremente.</p>
+        <p style="font-size:.9rem;color:var(--st-muted);margin-bottom:1.25rem">Cada servicio tiene su propio contador. Puedes combinar libremente: por ejemplo, 5 maletas de 10 kg y 4 de 20 kg.</p>
 
         <h4 style="margin:1.5rem 0 .75rem;color:var(--st-white)">🛡️ Seguro de viaje <span style="font-size:.8rem;color:var(--st-muted);font-weight:400">· I4T Base · Europa · 5 días</span></h4>
         <div class="cfg-optionals" id="cfgSeguros">
@@ -583,8 +584,8 @@ footer.st-footer{background:var(--st-navy);color:var(--st-white);padding:2rem 1.
           </div>
         </div>
 
-        <h4 style="margin:2rem 0 .75rem;color:var(--st-white)">🎫 Excursiones <span style="font-size:.8rem;color:var(--st-muted);font-weight:400">· Agencia oficial Civitatis</span></h4>
-        <p style="font-size:.85rem;color:var(--st-muted);margin-bottom:.75rem">Selecciona cuántas plazas queréis para cada excursión.</p>
+        <h4 style="margin:2rem 0 .75rem;color:var(--st-white)">🎟️ Excursiones <span style="font-size:.8rem;color:var(--st-muted);font-weight:400">· Agencia oficial Civitatis</span></h4>
+        <p style="font-size:.85rem;color:var(--st-muted);margin-bottom:.75rem">Selecciona cuántas plazas queréis para cada excursión. Reserva flexible.</p>
         <div class="cfg-optionals" id="cfgExcursiones">
           <div class="cfg-qty-card" data-opt-id="exc_harry_potter" data-opt-unitprice="95" data-opt-tipo="por_unidad">
             <div class="cfg-qty-info">
@@ -601,7 +602,7 @@ footer.st-footer{background:var(--st-navy);color:var(--st-white);padding:2rem 1.
           </div>
           <div class="cfg-qty-card" data-opt-id="exc_crucero_tamesis" data-opt-unitprice="19" data-opt-tipo="por_unidad">
             <div class="cfg-qty-info">
-              <div class="cfg-qty-name">🚥 Crucero por el Támesis</div>
+              <div class="cfg-qty-name">🛥️ Crucero por el Támesis</div>
               <div class="cfg-qty-desc">≈1,5 h · <a href="https://www.civitatis.com/es/londres/crucero-tamesis/?ag_aid=335" target="_blank" style="color:var(--st-blue)">Ver detalles</a></div>
               <div class="cfg-qty-price">≈19 €/persona</div>
             </div>
@@ -653,11 +654,12 @@ footer.st-footer{background:var(--st-navy);color:var(--st-white);padding:2rem 1.
           </div>
         </div>
         <p style="font-size:.8rem;color:var(--st-muted);margin-top:.75rem">Precios orientativos de Civitatis — se confirmarán al cerrar la reserva del grupo.</p>
+
       </div>
 
       <div class="cfg-section" id="decideActions">
         <h3 style="margin-top:2.5rem">¿Cómo seguimos, Laura?</h3>
-        <p style="color:var(--st-muted);font-size:.9rem;margin-bottom:0">Configura tu paquete arriba y elige cómo prefieres responder.</p>
+        <p style="color:var(--st-muted);font-size:.9rem;margin-bottom:0">Configura tu paquete arriba y elige cómo prefieres responder. Las tres primeras opciones se activan al elegir paquete.</p>
         <div class="decide-cards">
           <div class="decide-card confirm disabled" id="cardConfirm">
             <div class="icon">📩</div>
@@ -765,4 +767,312 @@ footer.st-footer{background:var(--st-navy);color:var(--st-white);padding:2rem 1.
       <p>La Experiencia de Viajar desde 2008</p>
       <p>Calle Ibáñez Marín 11<br>23740 Andújar, Jaén</p>
     </div>
-    <div><h4>Contacto</h4><p>📞 <a href="tel:+34953890650">953 890 650</a></p><p>💬 <a href="https://wa.me/34717717266">717 717
+    <div><h4>Contacto</h4><p>📞 <a href="tel:+34953890650">953 890 650</a></p><p>💬 <a href="https://wa.me/34717717266">717 717 266</a></p><p>✉️ <a href="mailto:info@safetour.es">info@safetour.es</a></p></div>
+    <div><h4>Síguenos</h4><p><a href="https://instagram.com/safetour" target="_blank">Instagram</a> · <a href="https://facebook.com/safetour" target="_blank">Facebook</a></p><p><a href="https://linkedin.com/company/safetour" target="_blank">LinkedIn</a> · <a href="https://t.me/safetour" target="_blank">Telegram</a></p></div>
+  </div>
+  <div class="st-legal">CIF B23619679 · CIAN 231774-2 AV/JA/000186 · © SAFE TOUR · Propuesta Nº 870 · Token Lt7Kx9mP</div>
+</footer>
+
+<script>
+document.querySelector('.st-nav').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open')});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelector('.st-nav').classList.remove('open')});
+
+const CONFIG = {
+  propuesta: 870,
+  token: 'Lt7Kx9mP',
+  cliente: 'Laura Talavera',
+  clientePrimerNombre: 'Laura',
+  destino: 'Londres',
+  fechas: '27-30 nov 2026',
+  viajeros: 17,
+  maxQty: 17,
+  whatsapp: '34717717266',
+  webhookConfirmar: 'https://n8n-n8n.vm5ncf.easypanel.host/webhook/9c295662-a9dc-4901-906f-e92732316328',
+  webhookPensar: 'https://n8n-n8n.vm5ncf.easypanel.host/webhook/72e1acc0-46ac-4b43-8aed-1710582f346e',
+  webhookNoInteresa: 'https://n8n-n8n.vm5ncf.easypanel.host/webhook/fa4f4e53-8a40-48d6-bed8-bc7dd92e52fd',
+  emailFallback: 'info@safetour.es'
+};
+
+const PACKAGES = {
+  'A': { name:'A · Yotel ⭐⭐⭐⭐ · AD (Farringdon)', price:641 },
+  'B': { name:'B · Grange Buckingham ⭐⭐⭐⭐ · AD (Russell Sq.)', price:843 },
+  'C': { name:'C · DoubleTree Hilton ⭐⭐⭐⭐ · AD (Angel)', price:858 }
+};
+
+let state = {
+  pkg: null, pkgPrice: 0,
+  idaId: '1140', idaDiff: 0,
+  vueltaId: '1650', vueltaDiff: 0,
+  optQty: {}
+};
+
+const OPT_INFO = {};
+document.querySelectorAll('.cfg-qty-card').forEach(card => {
+  const id = card.dataset.optId;
+  OPT_INFO[id] = {
+    unitPrice: parseFloat(card.dataset.optUnitprice),
+    tipo: card.dataset.optTipo,
+    name: card.querySelector('.cfg-qty-name').textContent.trim().replace(/\s+RECOMENDADO\s*$/,'').replace(/\s+POPULAR\s*$/,''),
+    card: card
+  };
+  state.optQty[id] = 0;
+});
+
+function fmt(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:2})+' €'; }
+
+document.querySelectorAll('.st-nav button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const target=btn.dataset.target;
+    document.querySelectorAll('.st-nav button').forEach(b=>b.classList.toggle('active',b===btn));
+    document.querySelectorAll('section[data-tab]').forEach(s=>s.classList.toggle('active',s.dataset.tab===target));
+    document.querySelector('.st-nav').classList.remove('open');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+document.querySelectorAll('.st-subnav button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const target=btn.dataset.subtarget;
+    document.querySelectorAll('.st-subnav button').forEach(b=>b.classList.toggle('active',b===btn));
+    document.querySelectorAll('.st-subtab').forEach(s=>s.classList.toggle('active',s.dataset.subtab===target));
+  });
+});
+
+document.querySelectorAll('.cfg-pkg').forEach(card=>{
+  card.addEventListener('click',()=>{
+    document.querySelectorAll('.cfg-pkg').forEach(c=>c.classList.remove('selected'));
+    card.classList.add('selected');
+    state.pkg = card.dataset.pkg;
+    state.pkgPrice = parseFloat(card.dataset.price);
+    unlockDecideCards();
+    updateSummary();
+  });
+});
+
+document.querySelectorAll('.cfg-flight-opt').forEach(opt=>{
+  opt.addEventListener('click',()=>{
+    const dir = opt.dataset.flightDir;
+    document.querySelectorAll('.cfg-flight-opt[data-flight-dir="'+dir+'"]').forEach(o=>o.classList.remove('selected'));
+    opt.classList.add('selected');
+    if(dir==='ida'){ state.idaId = opt.dataset.flightId; state.idaDiff = parseFloat(opt.dataset.flightDiff); }
+    else { state.vueltaId = opt.dataset.flightId; state.vueltaDiff = parseFloat(opt.dataset.flightDiff); }
+    updateSummary();
+  });
+});
+
+document.querySelectorAll('.cfg-qty-card').forEach(card => {
+  const id = card.dataset.optId;
+  const display = card.querySelector('.cfg-qty-display');
+  const subtotalEl = card.querySelector('.cfg-qty-subtotal');
+  const minusBtn = card.querySelector('.cfg-qty-btn.minus');
+  const plusBtn = card.querySelector('.cfg-qty-btn.plus');
+  function refreshCard(){
+    const qty = state.optQty[id];
+    display.textContent = qty;
+    card.classList.toggle('has-qty', qty > 0);
+    const sub = OPT_INFO[id].unitPrice * qty;
+    subtotalEl.textContent = qty > 0 ? '= '+fmt(sub) : '';
+  }
+  minusBtn.addEventListener('click', () => { if(state.optQty[id]>0){ state.optQty[id]--; refreshCard(); updateSummary(); }});
+  plusBtn.addEventListener('click', () => { if(state.optQty[id]<CONFIG.maxQty){ state.optQty[id]++; refreshCard(); updateSummary(); }});
+});
+
+function getOptTotalsByCategory(){
+  const result = { seguros:0, equipaje:0, excursiones:0, seguroLines:[], equipajeLines:[], excursionLines:[] };
+  for(const id in state.optQty){
+    const qty = state.optQty[id]; if(qty === 0) continue;
+    const info = OPT_INFO[id];
+    const sub = info.unitPrice * qty;
+    const line = qty + 'x ' + info.name + ' = ' + fmt(sub);
+    if(id.indexOf('seguro_') === 0){ result.seguros += sub; result.seguroLines.push(line); }
+    else if(id.indexOf('equipaje_') === 0){ result.equipaje += sub; result.equipajeLines.push(line); }
+    else if(id.indexOf('exc_') === 0){ result.excursiones += sub; result.excursionLines.push(line); }
+  }
+  return result;
+}
+
+function updateSummary(){
+  const $ = id => document.getElementById(id);
+  const cats = getOptTotalsByCategory();
+  if(state.pkg){
+    $('sumPkgVal').textContent = PACKAGES[state.pkg].name+' — '+fmt(state.pkgPrice)+'/pers.';
+    $('sumPkgVal').classList.remove('empty');
+  } else {
+    $('sumPkgVal').textContent = 'Sin seleccionar';
+    $('sumPkgVal').classList.add('empty');
+  }
+  const flightDiff = state.idaDiff + state.vueltaDiff;
+  $('sumFlightVal').textContent = (flightDiff>=0?'+':'')+fmt(flightDiff)+'/pers.';
+  $('sumFlightVal').style.color = flightDiff>0?'var(--st-danger)':flightDiff<0?'var(--st-success)':'var(--st-ink)';
+  if(cats.seguroLines.length > 0){ $('sumSeguroVal').textContent = cats.seguroLines.join(' + '); $('sumSeguroVal').classList.remove('empty'); }
+  else { $('sumSeguroVal').textContent = '—'; $('sumSeguroVal').classList.add('empty'); }
+  if(cats.equipajeLines.length > 0){ $('sumEquipajeVal').textContent = cats.equipajeLines.join(' + '); $('sumEquipajeVal').classList.remove('empty'); }
+  else { $('sumEquipajeVal').textContent = '—'; $('sumEquipajeVal').classList.add('empty'); }
+  let excLine = document.getElementById('sumExcursiones');
+  if(cats.excursionLines.length > 0){
+    if(!excLine){
+      excLine = document.createElement('div');
+      excLine.className = 'cfg-sum-line';
+      excLine.id = 'sumExcursiones';
+      excLine.innerHTML = '<span class="sum-label">Excursiones</span><span class="sum-value" id="sumExcVal"></span>';
+      document.querySelector('.cfg-summary-lines').appendChild(excLine);
+    }
+    document.getElementById('sumExcVal').textContent = cats.excursionLines.join(' + ');
+  } else if(excLine){ excLine.remove(); }
+  if(state.pkg){
+    const optTotal = cats.seguros + cats.equipaje + cats.excursiones;
+    const basePP = state.pkgPrice + flightDiff;
+    const totalGrp = basePP * CONFIG.viajeros + optTotal;
+    const ppAprox = totalGrp / CONFIG.viajeros;
+    $('sumTotalPP').textContent = '≈ '+fmt(ppAprox);
+    $('sumTotalGrp').textContent = fmt(totalGrp);
+  } else {
+    $('sumTotalPP').textContent = '— €';
+    $('sumTotalGrp').textContent = '— €';
+  }
+}
+
+function unlockDecideCards(){
+  ['cardConfirm','cardWA','cardThink'].forEach(id => {
+    const card = document.getElementById(id);
+    card.classList.remove('disabled');
+    const btn = card.querySelector('button.decide-btn');
+    if(btn) btn.disabled = false;
+  });
+}
+
+const IDA_MAP = {'1140':'11:40','1555':'15:55','1950':'19:50'};
+const VUELTA_MAP = {'0815':'08:15','1650':'16:50'};
+
+function buildSelectionJSON(accion){
+  const flightDiff = state.idaDiff + state.vueltaDiff;
+  const cats = getOptTotalsByCategory();
+  const optTotal = cats.seguros + cats.equipaje + cats.excursiones;
+  const totalGrp = state.pkg ? (state.pkgPrice + flightDiff) * CONFIG.viajeros + optTotal : 0;
+  const opcionales = [];
+  for(const id in state.optQty){
+    const qty = state.optQty[id]; if(qty===0) continue;
+    const info = OPT_INFO[id];
+    opcionales.push({ id:id, nombre:info.name, tipo:info.tipo, precioUnidad:info.unitPrice, cantidad:qty, subtotal:info.unitPrice*qty });
+  }
+  return {
+    propuesta: CONFIG.propuesta,
+    token: CONFIG.token,
+    accion: accion,
+    cliente: CONFIG.cliente,
+    destino: CONFIG.destino,
+    fechas: CONFIG.fechas,
+    viajeros: CONFIG.viajeros,
+    paquete: state.pkg ? { id: state.pkg, nombre: PACKAGES[state.pkg].name, precioPP: state.pkgPrice } : null,
+    vuelos: { ida: IDA_MAP[state.idaId], vuelta: VUELTA_MAP[state.vueltaId], suplementoPP: flightDiff },
+    opcionales: opcionales,
+    totales: { seguros: cats.seguros, equipaje: cats.equipaje, excursiones: cats.excursiones, totalGrupo: totalGrp, totalPPaprox: state.pkg ? totalGrp/CONFIG.viajeros : 0 },
+    notaETA: 'No incluida — tramite personal obligatorio (~26 EUR/persona)',
+    timestamp: new Date().toISOString()
+  };
+}
+
+function buildSelectionText(){
+  const j = buildSelectionJSON('confirmar');
+  let lines = [];
+  lines.push('Propuesta N '+j.propuesta+' — '+j.destino+' ('+j.fechas+')');
+  lines.push('Cliente: '+j.cliente+' — Token: '+j.token);
+  lines.push('Viajeros: '+j.viajeros+' personas');
+  lines.push('');
+  if(j.paquete){
+    lines.push('Paquete: '+j.paquete.nombre+' — '+fmt(j.paquete.precioPP)+'/pers.');
+    lines.push('Vuelos: Ida '+j.vuelos.ida+' + Vuelta '+j.vuelos.vuelta+(j.vuelos.suplementoPP!==0?' ('+(j.vuelos.suplementoPP>0?'+':'')+fmt(j.vuelos.suplementoPP)+'/pers.)':''));
+  }
+  if(j.totales.seguros>0) lines.push('Seguros: '+fmt(j.totales.seguros));
+  if(j.totales.equipaje>0) lines.push('Equipaje: '+fmt(j.totales.equipaje));
+  if(j.totales.excursiones>0) lines.push('Excursiones: '+fmt(j.totales.excursiones));
+  if(j.paquete){
+    lines.push('');
+    lines.push('TOTAL GRUPO: '+fmt(j.totales.totalGrupo)+' ('+j.viajeros+' pax)');
+    lines.push('(≈ '+fmt(j.totales.totalPPaprox)+'/persona)');
+  }
+  return lines.join('\n');
+}
+
+async function postWebhook(url, payload, btn){
+  const originalText = btn ? btn.textContent : '';
+  if(btn){ btn.disabled = true; btn.textContent = '⏳ Enviando...'; }
+  try {
+    const resp = await fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    if(!resp.ok) throw new Error('HTTP '+resp.status);
+    return true;
+  } catch(e){
+    console.warn('Webhook failed', e);
+    if(btn){ btn.disabled = false; btn.textContent = originalText; }
+    alert('Hubo un problema enviando. Por favor contacta por WhatsApp: '+CONFIG.whatsapp);
+    return false;
+  }
+}
+
+function showSuccess(msg){
+  document.querySelectorAll('.decide-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.decide-card').forEach(c=>c.style.display='none');
+  const success = document.getElementById('decideSuccess');
+  if(msg) document.getElementById('successMsg').textContent = msg;
+  success.classList.add('active');
+  success.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+document.getElementById('btnConfirm').addEventListener('click', async () => {
+  if(!state.pkg) return;
+  const payload = buildSelectionJSON('confirmar');
+  const btn = document.getElementById('btnConfirm');
+  const ok = await postWebhook(CONFIG.webhookConfirmar, payload, btn);
+  if(ok) showSuccess('¡Gracias, '+CONFIG.clientePrimerNombre+'! Tu seleccion esta con Fernando. Te contactamos en menos de 24 horas para confirmar todos los detalles.');
+});
+
+document.getElementById('btnWA').addEventListener('click', () => {
+  if(!state.pkg) return;
+  const text = 'Hola, soy '+CONFIG.clientePrimerNombre+', sobre la propuesta N '+CONFIG.propuesta+'.\n\n'+buildSelectionText();
+  window.open('https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(text), '_blank');
+});
+
+document.getElementById('btnThink').addEventListener('click', () => {
+  if(!state.pkg) return;
+  document.getElementById('panelReject').classList.remove('active');
+  document.getElementById('panelThink').classList.add('active');
+  document.getElementById('panelThink').scrollIntoView({behavior:'smooth', block:'center'});
+});
+
+document.getElementById('btnReject').addEventListener('click', () => {
+  document.getElementById('panelThink').classList.remove('active');
+  document.getElementById('panelReject').classList.add('active');
+  document.getElementById('panelReject').scrollIntoView({behavior:'smooth', block:'center'});
+});
+
+document.querySelectorAll('[data-cancel]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.cancel;
+    document.getElementById('panel'+target.charAt(0).toUpperCase()+target.slice(1)).classList.remove('active');
+  });
+});
+
+document.getElementById('sendThink').addEventListener('click', async () => {
+  const date = document.getElementById('thinkDate').value;
+  const comment = document.getElementById('thinkComment').value;
+  const payload = Object.assign({}, buildSelectionJSON('pensar'), { fechaContacto: date || null, comentario: comment || null });
+  const ok = await postWebhook(CONFIG.webhookPensar, payload, document.getElementById('sendThink'));
+  if(ok) showSuccess('¡Gracias, '+CONFIG.clientePrimerNombre+'! Te volvemos a contactar'+(date?' el '+date:' pronto')+'.');
+});
+
+document.getElementById('sendReject').addEventListener('click', async () => {
+  const reason = document.getElementById('rejectReason').value;
+  const comment = document.getElementById('rejectComment').value;
+  const payload = Object.assign({}, buildSelectionJSON('no_interesa'), { motivo: reason || 'no_especificado', comentario: comment || null });
+  const ok = await postWebhook(CONFIG.webhookNoInteresa, payload, document.getElementById('sendReject'));
+  if(ok) showSuccess('Gracias por tu sinceridad, '+CONFIG.clientePrimerNombre+'. Tomamos nota.');
+});
+
+const cfgToggle = document.getElementById('cfgToggle');
+const cfgSummary = document.getElementById('cfgSummary');
+if(cfgToggle){ cfgToggle.addEventListener('click',()=>cfgSummary.classList.toggle('collapsed')); }
+
+updateSummary();
+</script>
+</body>
+</html>

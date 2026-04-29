@@ -1,545 +1,584 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Semana de la IA Traveltool — Sesión 1</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Traveltool · Sesión 1 · IA en tu agencia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link rel="preconnect" href="https://travelagentia.com">
+<link rel="preconnect" href="https://intranet.traveltool.es">
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--g:#2DBEA0;--t:#005A6E;--td:#003E4D;--s:#F5F1EA;--ink:#0F2A33;--m:#6B8088;--sh:0 25px 60px -20px rgba(0,90,110,.4)}
+:root{
+	--g:#2DBEA0;
+	--g2:#19D2AF;
+	--t:#005A6E;
+	--td:#003E4D;
+	--sand:#F5F1EA;
+	--ink:#0F2A33;
+	--muted:#6B8088;
+	--white:#ffffff;
+	--amber:#FFCA6B;
+	--shadow:0 34px 90px -30px rgba(0,28,36,.65);
+}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden;background:#081418}
-body{font-family:'Nunito Sans',system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+html,body{height:100%;overflow:hidden;background:#061317}
+body{font-family:"Nunito Sans",system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
 
-.topbar{position:fixed;top:0;left:0;right:0;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:30;background:linear-gradient(90deg,rgba(0,90,110,.95),rgba(45,190,160,.9));color:#fff;font-size:13px}
-.brand{display:flex;align-items:center;gap:8px;font-weight:800;letter-spacing:.3px}
-.brand .logo{width:28px;height:28px;border-radius:7px;background:#fff;color:var(--t);display:grid;place-items:center;font-weight:900;font-size:15px}
-.brand small{opacity:.85;font-weight:500}
-.topbar .meta{display:flex;gap:10px;align-items:center;font-size:12px}
-.topbar button{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:6px;padding:5px 10px;cursor:pointer;font-weight:600;font-family:inherit;font-size:12px;transition:.2s}
-.topbar button:hover{background:rgba(255,255,255,.28)}
+.topbar{
+	position:fixed;top:0;left:0;right:0;height:44px;z-index:50;
+	display:flex;align-items:center;justify-content:space-between;
+	padding:0 18px;color:#fff;
+	background:linear-gradient(90deg,rgba(0,90,110,.97),rgba(45,190,160,.92));
+	box-shadow:0 8px 24px rgba(0,0,0,.18);
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.4px}
+.brand-mark{
+	width:30px;height:30px;border-radius:9px;background:#fff;color:var(--t);
+	display:grid;place-items:center;font-weight:900;font-size:16px;
+	box-shadow:0 6px 18px rgba(0,0,0,.18);
+}
+.brand small{font-weight:600;opacity:.86}
+.brand-logo-img{
+	height:30px;width:auto;display:block;background:#fff;border-radius:9px;padding:5px 9px;
+	box-shadow:0 6px 18px rgba(0,0,0,.18);
+}
+.top-actions{display:flex;align-items:center;gap:10px;font-size:12px}
+.top-actions button{
+	border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.14);
+	color:#fff;border-radius:8px;padding:6px 10px;font-family:inherit;font-weight:800;cursor:pointer;
+}
+.top-actions button:hover{background:rgba(255,255,255,.26)}
+.progress{position:fixed;top:44px;left:0;right:0;height:3px;background:rgba(255,255,255,.18);z-index:49}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--amber),#fff,var(--g2));transition:width .35s ease}
 
-.progress{position:fixed;top:44px;left:0;right:0;height:3px;background:rgba(0,90,110,.15);z-index:29}
-.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--g),var(--t));transition:width .4s ease}
+.stage{
+	position:fixed;top:47px;bottom:52px;left:0;right:0;
+	display:grid;place-items:center;background:#0B222A;overflow:hidden;
+}
+.ambient{
+	position:absolute;inset:-150px;background-size:cover;background-position:center;
+	filter:blur(46px) brightness(.72) saturate(1.35);
+	transform:scale(1.16);z-index:0;transition:background-image .65s ease;
+	animation:float 18s ease-in-out infinite alternate;
+}
+.ambient:after{
+	content:"";position:absolute;inset:0;
+	background:radial-gradient(circle at center,rgba(0,90,110,.1),rgba(0,0,0,.58));
+}
+@keyframes float{from{transform:scale(1.16) translate(-1%,1%)}to{transform:scale(1.23) translate(1.5%,-1%)}}
 
-/* STAGE canvas 1280x720 escalado */
-.stage{position:fixed;top:47px;bottom:50px;left:0;right:0;display:grid;place-items:center;background:#0F2A33;overflow:hidden}
-.stage-ambient{position:absolute;inset:-140px;background-size:cover;background-position:center;filter:blur(42px) brightness(.85) saturate(1.4);transition:background-image .8s ease,opacity .5s;z-index:0;pointer-events:none;transform:scale(1.15);animation:ambientFloat 18s ease-in-out infinite alternate}
-.stage-ambient::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.35) 100%)}
-@keyframes ambientFloat{0%{transform:scale(1.15) translate(0,0)}50%{transform:scale(1.2) translate(-1.5%,1%)}100%{transform:scale(1.18) translate(1.5%,-1%)}}
-.frame{width:1280px;height:720px;position:relative;z-index:2;transform-origin:center center;flex-shrink:0;border-radius:20px;box-shadow:0 40px 120px -20px rgba(0,0,0,.85),0 0 0 1px rgba(45,190,160,.22);perspective:2200px;perspective-origin:50% 50%}
-.slide{position:absolute;inset:0;opacity:0;transform:translate3d(calc(var(--dir,1) * 140px),0,-260px) scale(.9) rotateY(calc(var(--dir,1) * -9deg));transform-style:preserve-3d;pointer-events:none;transition:opacity .55s ease, transform .85s cubic-bezier(.22,.61,.36,1), filter .65s ease;border-radius:18px;overflow:hidden;background:#f5f1ea;filter:blur(14px) saturate(.75) brightness(.88);will-change:transform,opacity,filter;z-index:0}
-.slide.active{opacity:1;transform:translate3d(0,0,0) scale(1) rotateY(0);filter:none;pointer-events:auto;z-index:2}
-.slide.leaving{opacity:0;transform:translate3d(calc(var(--dir,1) * -140px),0,-260px) scale(.9) rotateY(calc(var(--dir,1) * 9deg));filter:blur(14px) saturate(.75) brightness(.88);z-index:1}
-.slide.active .card>*{animation:contentRise .7s cubic-bezier(.2,.7,.3,1) backwards}
-.slide.active .card>*:nth-child(1){animation-delay:.15s}
-.slide.active .card>*:nth-child(2){animation-delay:.22s}
-.slide.active .card>*:nth-child(3){animation-delay:.29s}
-.slide.active .card>*:nth-child(4){animation-delay:.36s}
-.slide.active .card>*:nth-child(5){animation-delay:.43s}
-.slide.active .card>*:nth-child(6){animation-delay:.5s}
-.slide.active .card>*:nth-child(7){animation-delay:.57s}
-@keyframes contentRise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.frame{
+	width:1280px;height:720px;position:absolute;left:50%;top:50%;z-index:2;transform-origin:center center;
+	transform:translate(-50%,-50%) scale(var(--deck-scale,1));will-change:transform;
+	border-radius:22px;box-shadow:0 50px 150px -35px rgba(0,0,0,.86),0 0 0 1px rgba(45,190,160,.22);
+	perspective:2200px;perspective-origin:50% 50%;overflow:hidden;
+}
+.slide{
+	position:absolute;inset:0;opacity:0;pointer-events:none;overflow:hidden;border-radius:20px;
+	background:#fff;transform-style:preserve-3d;
+	transform:translate3d(calc(var(--dir,1)*150px),0,-270px) scale(.9) rotateY(calc(var(--dir,1)*-10deg));
+	filter:blur(14px) brightness(.88) saturate(.8);
+	transition:opacity .56s ease,transform .82s cubic-bezier(.22,.61,.36,1),filter .64s ease;
+}
+.slide.active{opacity:1;pointer-events:auto;transform:translate3d(0,0,0) scale(1) rotateY(0);filter:none;z-index:3}
+.slide.leaving{opacity:0;transform:translate3d(calc(var(--dir,1)*-150px),0,-270px) scale(.9) rotateY(calc(var(--dir,1)*10deg));filter:blur(14px) brightness(.88) saturate(.8);z-index:2}
 
-/* Fondo fotográfico con overlay degradado Traveltool */
-.slide .bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(1.05)}
-.slide .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,62,77,.85),rgba(0,90,110,.65) 40%,rgba(45,190,160,.55));mix-blend-mode:multiply}
-.slide .bg.soft::after{background:linear-gradient(180deg,rgba(255,255,255,.82),rgba(245,241,234,.9))}
-.slide .bg.side::after{background:linear-gradient(90deg,rgba(255,255,255,.96) 40%,rgba(255,255,255,.6) 60%,rgba(255,255,255,0))}
+.bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+.bg:after{
+	content:"";position:absolute;inset:0;
+	background:linear-gradient(135deg,rgba(0,62,77,.88),rgba(0,90,110,.68) 45%,rgba(45,190,160,.55));
+	mix-blend-mode:multiply;
+}
+.bg.light:after{background:linear-gradient(135deg,rgba(255,255,255,.91),rgba(245,241,234,.84),rgba(210,247,239,.72));mix-blend-mode:normal}
+.bg.splitfade:after{background:linear-gradient(90deg,rgba(255,255,255,.98) 0%,rgba(255,255,255,.93) 48%,rgba(255,255,255,.35) 70%,rgba(255,255,255,0) 100%);mix-blend-mode:normal}
 
-.card{position:relative;z-index:2;width:100%;height:100%;padding:44px 58px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.card.box{background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-radius:20px;margin:28px;width:calc(100% - 56px);height:calc(100% - 56px);padding:36px 48px;box-shadow:var(--sh);border:1px solid rgba(0,90,110,.08)}
-.badge{position:absolute;top:18px;right:24px;font-size:11px;font-weight:800;letter-spacing:1.8px;color:var(--t);text-transform:uppercase;opacity:.7;z-index:3}
-.badge.on-img{color:#fff;background:rgba(0,90,110,.55);padding:5px 10px;border-radius:999px;opacity:1;backdrop-filter:blur(4px)}
+.card{
+	position:relative;z-index:2;width:100%;height:100%;padding:48px 62px;
+	display:flex;flex-direction:column;justify-content:center;
+}
+.card > *{animation:rise .72s cubic-bezier(.2,.7,.3,1) both}
+.slide.active .card > *:nth-child(1){animation-delay:.10s}
+.slide.active .card > *:nth-child(2){animation-delay:.18s}
+.slide.active .card > *:nth-child(3){animation-delay:.26s}
+.slide.active .card > *:nth-child(4){animation-delay:.34s}
+.slide.active .card > *:nth-child(5){animation-delay:.42s}
+.slide.active .card > *:nth-child(6){animation-delay:.50s}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
-h1.s{font-size:44px;line-height:1.05;color:var(--t);font-weight:900;margin-bottom:10px}
-h1.s.light{color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.4)}
-h3.s{font-size:16px;color:var(--g);font-weight:800;letter-spacing:.6px;text-transform:uppercase;margin-bottom:8px}
-h3.s.light{color:#9BF0D7}
-p.s{font-size:17px;line-height:1.5;color:#253b43}
-p.s.light{color:rgba(255,255,255,.95);text-shadow:0 1px 14px rgba(0,0,0,.3)}
-em{color:var(--m);font-style:italic}
+.panel{
+	background:rgba(255,255,255,.94);backdrop-filter:blur(10px);
+	border:1px solid rgba(0,90,110,.11);border-radius:26px;box-shadow:var(--shadow);
+	padding:38px 46px;
+}
+.eyebrow{
+	display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+	padding:7px 14px;border-radius:999px;background:rgba(45,190,160,.15);
+	color:var(--t);font-size:12px;font-weight:900;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:14px;
+}
+.eyebrow.dark{background:rgba(255,255,255,.17);color:#fff;border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(8px)}
+h1{font-size:58px;line-height:1.02;color:var(--t);font-weight:900;letter-spacing:-1.4px}
+h1.hero{font-size:74px;color:#fff;text-shadow:0 8px 44px rgba(0,0,0,.42);max-width:1050px}
+h2{font-size:38px;line-height:1.08;color:var(--td);font-weight:900;letter-spacing:-.5px}
+p{font-size:21px;line-height:1.42;color:#25404A}
+.lead{font-size:27px;line-height:1.26;font-weight:800;color:var(--td);max-width:980px}
+.lightTxt{color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.35)}
+.subhero{font-size:28px;color:#E9FFF8;font-weight:800;text-shadow:0 4px 22px rgba(0,0,0,.4);margin-top:16px}
+.metaLine{font-size:18px;color:rgba(255,255,255,.92);font-weight:700;margin-top:18px}
 
-ul.bul{list-style:none;padding:0;margin-top:8px}
-ul.bul li{position:relative;padding-left:24px;margin:7px 0;font-size:16px;line-height:1.45;color:#253b43}
-ul.bul li::before{content:"";position:absolute;left:0;top:.5em;width:12px;height:12px;border-radius:3px;background:linear-gradient(135deg,var(--g),var(--t))}
-ul.bul.light li{color:#fff}
-ul.bul.light li::before{background:#fff}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tile{
+	background:linear-gradient(180deg,#fff,#F0FBF8);
+	border:1px solid rgba(45,190,160,.28);border-radius:18px;padding:18px;
+	box-shadow:0 16px 30px -24px rgba(0,90,110,.45);
+}
+.tile .ico{font-size:31px;margin-bottom:8px}
+.tile strong{display:block;color:var(--t);font-size:18px;font-weight:900;line-height:1.15}
+.tile span{display:block;margin-top:6px;color:#405A64;font-size:14px;line-height:1.35}
+.quote{
+	margin-top:24px;padding:18px 22px;border-left:6px solid var(--g);
+	background:linear-gradient(90deg,rgba(45,190,160,.14),rgba(255,255,255,.65));
+	border-radius:14px;color:var(--td);font-size:22px;font-weight:900;line-height:1.22;
+}
+.pillrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.pill{padding:9px 14px;border-radius:999px;background:var(--sand);color:var(--td);font-size:15px;font-weight:900;border:1px solid rgba(0,90,110,.1)}
+.warn{
+	display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:14px 18px;border-radius:16px;
+	background:rgba(255,202,107,.22);color:#6b4300;border:1px solid rgba(255,202,107,.45);
+	font-size:18px;font-weight:900;
+}
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;height:100%}
+.photo{
+	height:520px;border-radius:26px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,90,110,.05),rgba(0,62,77,.42))}
+.photo .num{
+	position:absolute;right:24px;bottom:-32px;color:#fff;font-size:190px;font-weight:900;opacity:.22;line-height:1;z-index:2;
+}
+.stairs{display:flex;align-items:flex-end;gap:10px;margin-top:26px}
+.step{
+	flex:1;border-radius:18px 18px 8px 8px;padding:16px 10px 18px;text-align:center;color:#fff;
+	background:linear-gradient(180deg,var(--g2),var(--t));position:relative;overflow:hidden;box-shadow:0 18px 35px -22px rgba(0,90,110,.8);
+}
+.step:before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;opacity:.21;mix-blend-mode:overlay}
+.step:nth-child(1){height:150px}.step:nth-child(1):before{background-image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&q=70&auto=format&fit=crop')}
+.step:nth-child(2){height:180px}.step:nth-child(2):before{background-image:url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&q=70&auto=format&fit=crop')}
+.step:nth-child(3){height:215px}.step:nth-child(3):before{background-image:url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=500&q=70&auto=format&fit=crop')}
+.step:nth-child(4){height:250px}.step:nth-child(4):before{background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=70&auto=format&fit=crop')}
+.step:nth-child(5){height:285px;background:linear-gradient(180deg,var(--amber),var(--t))}.step:nth-child(5):before{background-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&q=70&auto=format&fit=crop')}
+.step *{position:relative;z-index:1}
+.step .bigico{font-size:30px}
+.step strong{display:block;margin-top:7px;font-size:15px;line-height:1.1}
+.step span{display:block;margin-top:5px;font-size:12px;opacity:.9;line-height:1.15}
 
-/* HERO (portada / cierre) */
-.hero .card{text-align:center;align-items:center;color:#fff}
-.hero .eyebrow{display:inline-block;padding:7px 16px;border-radius:999px;background:var(--g);color:#fff;font-weight:800;letter-spacing:1.8px;font-size:12px;text-transform:uppercase;margin-bottom:18px;box-shadow:0 10px 30px -10px rgba(45,190,160,.6)}
-.hero h1.big{font-size:70px;color:#fff;margin-bottom:14px;line-height:1.05;font-weight:900;text-shadow:0 4px 40px rgba(0,0,0,.45)}
-.hero .sub{font-size:22px;color:#E8FBF5;font-weight:600;margin-bottom:8px;text-shadow:0 2px 20px rgba(0,0,0,.35)}
-.hero .when{font-size:17px;color:rgba(255,255,255,.9);margin-bottom:20px}
-.hero .author{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:9px 18px;border-radius:999px;font-weight:700;color:#fff;margin:4px;font-size:15px;backdrop-filter:blur(8px)}
+.processLine{
+	display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:24px;
+}
+.processLine .node{
+	background:#fff;border-radius:18px;border:1px solid rgba(0,90,110,.12);padding:17px 12px;text-align:center;position:relative;
+}
+.processLine .node:not(:last-child):after{
+	content:"→";position:absolute;right:-14px;top:42%;font-size:24px;color:var(--g);font-weight:900;z-index:5;
+}
+.node .ico{font-size:28px}.node strong{display:block;color:var(--t);font-weight:900;margin-top:8px;font-size:15px}.node span{font-size:12px;color:var(--muted);display:block;margin-top:3px}
 
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.bigNumber{font-size:128px;line-height:.9;color:var(--g);font-weight:900;letter-spacing:-6px}
+.cta{
+	display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--g),var(--t));color:#fff;
+	border-radius:999px;padding:14px 24px;font-size:17px;font-weight:900;text-decoration:none;box-shadow:0 18px 34px -18px rgba(0,90,110,.8);margin-top:20px;
+}
+.footerNote{position:absolute;left:34px;bottom:24px;color:rgba(255,255,255,.78);font-size:13px;font-weight:700;z-index:4}
+.footerNote.dark{color:var(--muted)}
 
-.tile{background:linear-gradient(180deg,#fff,#f2faf7);border:1px solid rgba(45,190,160,.28);border-radius:14px;padding:14px 16px;position:relative;overflow:hidden;transition:.25s}
-.tile:hover{transform:translateY(-2px);box-shadow:0 16px 30px -20px rgba(45,190,160,.6)}
-.tile .ico{font-size:26px;margin-bottom:4px}
-.tile h4{color:var(--t);font-size:16px;margin-bottom:4px;font-weight:800}
-.tile p{font-size:13px;line-height:1.4;color:#3a4f56}
-
-.stairs{display:flex;gap:8px;margin-top:16px;align-items:flex-end;justify-content:center}
-.stair{flex:1;border-radius:12px 12px 4px 4px;padding:12px 8px;color:#fff;text-align:center;background:linear-gradient(180deg,var(--g),var(--t));box-shadow:0 12px 22px -12px rgba(0,90,110,.45);position:relative;overflow:hidden}
-.stair::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;opacity:.25;mix-blend-mode:overlay}
-.stair:nth-child(1){min-height:120px}
-.stair:nth-child(1)::before{background-image:url('https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=400&q=60')}
-.stair:nth-child(2){min-height:145px}
-.stair:nth-child(2)::before{background-image:url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&q=60')}
-.stair:nth-child(3){min-height:175px}
-.stair:nth-child(3)::before{background-image:url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=400&q=60')}
-.stair:nth-child(4){min-height:205px}
-.stair:nth-child(4)::before{background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=60')}
-.stair:nth-child(5){min-height:235px;background:linear-gradient(180deg,#FFCA6B,var(--t))}
-.stair:nth-child(5)::before{background-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&q=60')}
-.stair .ico,.stair strong,.stair span{position:relative;z-index:1}
-.stair .ico{font-size:24px}
-.stair strong{display:block;margin-top:5px;font-size:13px}
-.stair span{font-size:11px;opacity:.95;display:block;margin-top:2px}
-
-/* PELDAÑO — visual con imagen real */
-.peldano{display:grid!important;grid-template-columns:1.1fr 1fr;gap:26px;align-items:center;flex-direction:initial!important;justify-content:initial!important}
-.visual{border-radius:18px;height:100%;min-height:440px;display:grid;place-items:center;color:#fff;font-size:100px;box-shadow:var(--sh);position:relative;overflow:hidden;background-size:cover;background-position:center}
-.visual::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,62,77,.55),rgba(45,190,160,.55))}
-.visual::after{content:attr(data-num);position:absolute;right:18px;bottom:-16px;font-size:180px;font-weight:900;opacity:.22;line-height:1;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,.3);z-index:2}
-.visual .ic{position:relative;z-index:2;filter:drop-shadow(0 4px 20px rgba(0,0,0,.4))}
-.tools{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
-.tools span{background:var(--s);color:var(--td);padding:6px 12px;border-radius:999px;font-size:13px;font-weight:700;border:1px solid rgba(0,90,110,.08)}
-.result{margin-top:14px;padding:12px 16px;background:linear-gradient(90deg,rgba(45,190,160,.14),rgba(0,90,110,.08));border-left:4px solid var(--g);border-radius:8px;font-weight:700;color:var(--td);font-size:15px}
-
-.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
-.kpi .box{background:#fff;border:1px solid rgba(0,90,110,.12);border-radius:16px;padding:18px;text-align:center;box-shadow:0 10px 25px -18px rgba(0,90,110,.5);position:relative;overflow:hidden}
-.kpi .box::before{content:"";position:absolute;top:-30px;right:-30px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(45,190,160,.15),transparent 70%)}
-.kpi .num{font-size:40px;font-weight:900;color:var(--g);line-height:1;position:relative}
-.kpi .lbl{color:var(--td);font-weight:700;margin-top:6px;font-size:13px;position:relative}
-
-.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:16px}
-.timeline .t{background:#fff;border-radius:14px;padding:14px 10px;border:2px dashed rgba(45,190,160,.4);text-align:center}
-.timeline .t .d{font-weight:900;color:var(--t);font-size:18px}
-.timeline .t strong{font-size:13px;display:block;margin-top:4px;color:var(--td)}
-.timeline .t p{font-size:12px;margin-top:4px;color:#3a4f56}
-
-.qa{text-align:center;justify-content:center!important;align-items:center}
-.qa .big{font-size:120px;line-height:1;margin-bottom:6px;filter:drop-shadow(0 6px 20px rgba(0,0,0,.3))}
-
-.cta{display:inline-block;padding:13px 26px;border-radius:999px;background:linear-gradient(135deg,var(--g),var(--t));color:#fff;font-weight:800;margin-top:12px;box-shadow:0 12px 26px -10px rgba(45,190,160,.7);font-size:15px}
-
-/* Imagen lateral decorativa */
-.split{display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:stretch;height:100%}
-.split .pic{border-radius:16px;background-size:cover;background-position:center;box-shadow:var(--sh);min-height:100%;position:relative;overflow:hidden}
-.split .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,62,77,.5))}
-
-.navbar{position:fixed;left:0;right:0;bottom:0;height:50px;z-index:30;display:flex;align-items:center;justify-content:center;gap:12px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-top:1px solid rgba(0,90,110,.12)}
-.navbar button{background:var(--t);color:#fff;border:none;border-radius:10px;padding:8px 18px;font-weight:800;cursor:pointer;font-family:inherit;font-size:13px;transition:.2s}
-.navbar button:hover{background:var(--g)}
-.navbar .count{font-weight:800;color:var(--td);min-width:80px;text-align:center;font-size:13px}
-
-.menu{position:fixed;top:47px;bottom:50px;right:-340px;width:320px;z-index:40;background:#fff;box-shadow:-20px 0 40px -20px rgba(0,0,0,.3);transition:right .35s;overflow-y:auto;padding:14px}
+.nav{
+	position:fixed;bottom:0;left:0;right:0;height:52px;z-index:50;
+	display:flex;align-items:center;justify-content:center;gap:14px;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);
+	border-top:1px solid rgba(0,90,110,.12);
+}
+.nav button{border:none;background:var(--t);color:#fff;border-radius:12px;padding:9px 18px;font-family:inherit;font-weight:900;cursor:pointer}
+.nav button:hover{background:var(--g)}
+.counter{font-size:14px;color:var(--td);font-weight:900;min-width:86px;text-align:center}
+.menu{
+	position:fixed;top:47px;bottom:52px;right:-360px;width:340px;background:#fff;z-index:80;
+	box-shadow:-25px 0 45px -28px rgba(0,0,0,.45);transition:right .32s ease;padding:18px;overflow:auto;
+}
 .menu.open{right:0}
-.menu h4{color:var(--t);margin-bottom:10px;font-size:13px;text-transform:uppercase;letter-spacing:1.2px}
-.menu ol{list-style:none;counter-reset:s}
-.menu ol li{counter-increment:s;padding:8px 10px;border-radius:8px;cursor:pointer;display:flex;gap:8px;align-items:center;font-weight:600;color:#2a3e47;font-size:13px}
-.menu ol li::before{content:counter(s,decimal-leading-zero);background:var(--s);color:var(--t);padding:3px 7px;border-radius:5px;font-weight:800;font-size:11px}
-.menu ol li:hover{background:var(--s)}
-.menu ol li.active{background:linear-gradient(90deg,rgba(45,190,160,.2),transparent);color:var(--t)}
+.menu h3{font-size:14px;color:var(--t);text-transform:uppercase;letter-spacing:1.4px;margin-bottom:14px}
+.menu ol{list-style:none;counter-reset:item}
+.menu li{
+	counter-increment:item;display:flex;gap:9px;align-items:center;padding:9px 10px;border-radius:10px;
+	cursor:pointer;color:#273f48;font-size:13px;font-weight:800;line-height:1.25;
+}
+.menu li:before{content:counter(item,decimal-leading-zero);background:var(--sand);color:var(--t);padding:4px 7px;border-radius:7px;font-size:11px;font-weight:900}
+.menu li:hover,.menu li.active{background:linear-gradient(90deg,rgba(45,190,160,.2),rgba(255,255,255,0));color:var(--t)}
 
-@media print{.topbar,.navbar,.progress,.menu{display:none}.stage{position:static;height:auto;background:#fff}.frame{transform:none!important}.slide{position:relative;opacity:1;transform:none;page-break-after:always;inset:auto}}
+@media (max-width:700px){
+	.topbar{height:40px;padding:0 10px}
+	.brand{font-size:13px;gap:7px}
+	.brand-mark{width:26px;height:26px;border-radius:8px;font-size:14px}
+	.brand small,#slideName{display:none}
+	.top-actions{gap:6px}
+	.top-actions button{padding:5px 8px;font-size:11px}
+	.progress{top:40px}
+	.stage{top:43px;bottom:46px}
+	.nav{height:46px;gap:8px}
+	.nav button{padding:8px 12px;font-size:12px}
+	.counter{min-width:62px;font-size:12px}
+	.menu{top:43px;bottom:46px;width:min(320px,92vw)}
+}
+
+@media print{
+	.topbar,.progress,.nav,.menu{display:none}
+	.stage{position:static;height:auto;background:#fff}
+	.frame{transform:none!important;box-shadow:none}
+	.slide{position:relative;opacity:1;filter:none;transform:none;page-break-after:always}
+}
 </style>
 </head>
 <body>
 
 <div class="topbar">
-	<div class="brand"><div class="logo">T</div> TRAVELTOOL <small>· Departamento de IA</small></div>
-	<div class="meta">
-		<span id="slideTitle">Portada</span>
-		<button id="btnMenu">☰ Índice</button>
-		<button id="btnFull">⛶ Pantalla completa</button>
+	<div class="brand"><img class="brand-logo-img" src="https://intranet.traveltool.es/static/intranet/front/img/logo-traveltool-new.png" alt="Traveltool"> <small>· Departamento de IA</small></div>
+	<div class="top-actions">
+		<span id="slideName">Portada</span>
+		<button id="menuBtn">☰ Índice</button>
+		<button id="fullBtn">⛶ Pantalla completa</button>
 	</div>
 </div>
-<div class="progress"><span id="bar"></span></div>
+<div class="progress"><span id="progress"></span></div>
 
 <div class="stage" id="stage">
-	<div class="stage-ambient" id="ambient"></div>
+	<div class="ambient" id="ambient"></div>
 	<div class="frame" id="frame">
 
-		<!-- 1 PORTADA -->
-		<section class="slide hero" data-title="Portada">
+		<section class="slide active" data-title="Portada">
 			<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card" style="align-items:center;text-align:center">
+				<div class="eyebrow dark">Semana de la IA Traveltool</div>
+				<h1 class="hero">IA en tu agencia:<br>no es magia, es método</h1>
+				<div class="subhero">Por dónde empezar, cómo avanzar y cómo dar mejor servicio al cliente</div>
+				<div class="metaLine">Lunes 5 de mayo · 17:00h · Con Fernando Córdoba</div>
+				<div class="footerNote">Traveltool E-Services · Departamento de IA</div>
+			</div>
+		</section>
+
+		<section class="slide" data-title="La idea central">
+			<div class="bg splitfade" style="background-image:url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1600&q=80&auto=format&fit=crop')"></div>
 			<div class="card">
-				<div class="eyebrow">Semana de la IA Traveltool</div>
-				<h1 class="big">Sesión 1<br/>Visión — La IA en la agencia de viajes</h1>
-				<div class="sub">La IA al servicio de tu agencia, de tus clientes y de tu tiempo</div>
-				<div class="when">📅 Lunes 5 de mayo · 🕔 17:00 h · 🎥 Online en directo</div>
-				<div><span class="author">🎙️ Impartido por <strong style="margin-left:4px">Fernando Córdoba</strong></span></div>
-			</div>
-		</section>
-
-		<!-- 2 AGENDA -->
-		<section class="slide" data-title="Agenda">
-			<div class="bg soft" style="background-image:url('https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?w=1600&q=80&auto=format&fit=crop')"></div>
-			<div class="card box">
-				<div class="badge">Sesión 1 · 60 min</div>
-				<h3 class="s">Agenda</h3>
-				<h1 class="s">¿Qué vamos a ver hoy?</h1>
-				<div class="g3" style="margin-top:18px">
-					<div class="tile"><div class="ico">✈️</div><h4>El Departamento</h4><p>Qué es el Departamento de IA de Traveltool</p></div>
-					<div class="tile"><div class="ico">🪜</div><h4>La Escalera IA</h4><p>5 peldaños para integrar la IA en tu agencia</p></div>
-					<div class="tile"><div class="ico">💻</div><h4>Demo en vivo</h4><p>Un ejemplo real por peldaño</p></div>
-					<div class="tile"><div class="ico">✏️</div><h4>Ejercicio</h4><p>Identifica tu peldaño actual</p></div>
-					<div class="tile"><div class="ico">🤝</div><h4>Comunidad</h4><p>Tu comunidad IA + próximos pasos</p></div>
-					<div class="tile"><div class="ico">🎁</div><h4>Recurso</h4><p>Plantilla descargable para tu agencia</p></div>
+				<div class="panel" style="max-width:720px">
+					<div class="eyebrow">Antes de empezar</div>
+					<h1>La IA no trabaja sola en 5 minutos</h1>
+					<p style="margin-top:18px">Puede llegar a quitar mucho trabajo, automatizar tareas y ordenar procesos. Pero no empieza ahí.</p>
+					<div class="quote">Primero entendemos dónde usarla, para qué y cómo ayuda a mejorar el servicio al cliente.</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- 3 DEPARTAMENTO -->
-		<section class="slide" data-title="El Departamento">
-			<div class="card" style="padding:36px">
+		<section class="slide" data-title="Quién soy">
+			<div class="bg light" style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card">
 				<div class="split">
-					<div style="display:flex;flex-direction:column;justify-content:center">
-						<div class="badge" style="position:static;margin-bottom:8px">Contexto</div>
-						<h3 class="s">El Departamento de IA</h3>
-						<h1 class="s">Esto no es un curso.<br/>Es vuestro Departamento de IA.</h1>
-						<p class="s" style="margin-top:8px">Traveltool ha creado un departamento de inteligencia artificial <strong>exclusivo</strong> para sus agencias.</p>
-						<div class="g3" style="margin-top:16px">
-							<div class="tile"><div class="ico">🎓</div><h4>Formación</h4><p>Sesiones en directo + grabaciones.</p></div>
-							<div class="tile"><div class="ico">🧰</div><h4>Herramientas</h4><p>Prompts, Gemas y flujos listos para usar.</p></div>
-							<div class="tile"><div class="ico">🤝</div><h4>Soporte</h4><p>Dudas y casos reales.</p></div>
+					<div class="panel">
+						<div class="eyebrow">Quién soy</div>
+						<h1>Soy Fernando Córdoba</h1>
+						<p class="lead" style="margin-top:14px">Agente de viajes que aplica IA en su propia agencia.</p>
+						<div class="grid2" style="margin-top:22px">
+							<div class="tile"><div class="ico">✈️</div><strong>SAFE TOUR desde 2008</strong><span>Agencia real, problemas reales.</span></div>
+							<div class="tile"><div class="ico">🤖</div><strong>IA desde 2023</strong><span>Propuestas, correos, expedientes y seguimiento.</span></div>
+							<div class="tile"><div class="ico">🧠</div><strong>Automatiza2</strong><span>Sistemas y automatizaciones para agencias.</span></div>
+							<div class="tile"><div class="ico">🌍</div><strong>TravelAgentIA</strong><span>Comunidad y formación para agentes.</span></div>
 						</div>
 					</div>
-					<div class="pic" style="background-image:url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000&q=80&auto=format&fit=crop')"></div>
+					<div class="photo" style="background-image:url('https://travelagentia.com/image/fernando_elegante.png');background-position:center top"><div class="num">FC</div></div>
 				</div>
 			</div>
 		</section>
 
-		<!-- 4 POR QUÉ AHORA -->
-		<section class="slide" data-title="¿Por qué ahora?">
-			<div class="bg soft" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80&auto=format&fit=crop')"></div>
-			<div class="card box">
-				<div class="badge">Momento</div>
-				<h3 class="s">¿Por qué ahora?</h3>
-				<h1 class="s">La IA no es el futuro.<br/>Ya es el presente.</h1>
-				<div class="kpi">
-					<div class="box"><div class="num">72%</div><div class="lbl">de empresas turísticas ya usan IA en algún proceso</div></div>
-					<div class="box"><div class="num">8-12h</div><div class="lbl">de ahorro semanal en agencias que la adoptan</div></div>
-					<div class="box"><div class="num">1</div><div class="lbl">diferencia real: saber CÓMO usarla</div></div>
-				</div>
-				<p class="s" style="margin-top:16px"><em>La agencia que se forma hoy, saca ventaja mañana.</em></p>
-			</div>
-		</section>
-
-		<!-- 5 ESCALERA -->
-		<section class="slide" data-title="La Escalera IA">
-			<div class="bg soft" style="background-image:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&q=80&auto=format&fit=crop')"></div>
-			<div class="card box">
-				<div class="badge">Visión general</div>
-				<h3 class="s">Visión</h3>
-				<h1 class="s">La Escalera de Implementación IA</h1>
-				<p class="s">5 peldaños para integrar la IA en tu agencia. Cada peldaño se apoya en el anterior — si no dominas el de abajo, no podrás subir al siguiente.</p>
-				<div class="stairs">
-					<div class="stair"><div class="ico">🔍</div><strong>1. Explorador</strong><span>Chat IA</span></div>
-					<div class="stair"><div class="ico">🤖</div><strong>2. Becario Digital</strong><span>GPTs / Gemas</span></div>
-					<div class="stair"><div class="ico">📚</div><strong>3. Experto Entrenado</strong><span>Con tus datos</span></div>
-					<div class="stair"><div class="ico">⚙️</div><strong>4. Empleado Autónomo</strong><span>Se ejecuta sola</span></div>
-					<div class="stair"><div class="ico">🏗️</div><strong>5. Ecosistema Agéntico</strong><span>Red de agentes</span></div>
-				</div>
-			</div>
-		</section>
-
-		<!-- 6 PELDAÑO 1 -->
-		<section class="slide" data-title="Peldaño 1 — Explorador">
-			<div class="card" style="padding:36px">
-				<div class="peldano">
-					<div>
-						<div class="badge" style="position:static;margin-bottom:6px">Peldaño 1 / 5</div>
-						<h3 class="s">🔍 Explorador</h3>
-						<h1 class="s" style="font-size:36px">Usas la IA como un chat: preguntas y recibes respuestas.</h1>
-						<ul class="bul">
-							<li>Redactar emails</li>
-							<li>Buscar ideas</li>
-							<li>Traducir</li>
-							<li>Resolver dudas rápidas</li>
-						</ul>
-						<div class="tools"><span>ChatGPT</span><span>Gemini</span><span>Claude</span><span>NotebookLM</span></div>
-						<div class="result">💡 Resultado: Ahorras tiempo en tareas sueltas</div>
-					</div>
-					<div class="visual" data-num="1" style="background-image:url('https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=1200&q=80&auto=format&fit=crop')"><span class="ic">🔍</span></div>
-				</div>
-			</div>
-		</section>
-
-		<!-- 7 PELDAÑO 2 -->
-		<section class="slide" data-title="Peldaño 2 — Becario Digital">
-			<div class="card" style="padding:36px">
-				<div class="peldano">
-					<div class="visual" data-num="2" style="background-image:url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80&auto=format&fit=crop')"><span class="ic">🤖</span></div>
-					<div>
-						<div class="badge" style="position:static;margin-bottom:6px">Peldaño 2 / 5</div>
-						<h3 class="s">🤖 Becario Digital</h3>
-						<h1 class="s" style="font-size:34px">Creas tu propio asistente entrenado para UNA tarea (GPTs / Gemas).</h1>
-						<ul class="bul">
-							<li>No repites instrucciones</li>
-							<li>Consistencia en las respuestas</li>
-							<li>Tu tono, tu formato</li>
-						</ul>
-						<div class="tools"><span>GPTs personalizados</span><span>Gemas de Google</span></div>
-						<div class="result">💡 Resultado: Velocidad y consistencia en tareas recurrentes</div>
+		<section class="slide" data-title="Mapa de la sesión">
+			<div class="bg light" style="background-image:url('https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card">
+				<div class="panel">
+					<div class="eyebrow">Hoy vamos a ordenar el mapa</div>
+					<h1>De usar un chat a integrar IA en procesos</h1>
+					<div class="grid3" style="margin-top:28px">
+						<div class="tile"><div class="ico">✈️</div><strong>Qué aporta la IA</strong><span>Más servicio, no solo más velocidad.</span></div>
+						<div class="tile"><div class="ico">🪜</div><strong>El trayecto real</strong><span>5 peldaños para no perderse.</span></div>
+						<div class="tile"><div class="ico">💻</div><strong>Ejemplos reales</strong><span>Casos que han estado en uso.</span></div>
+						<div class="tile"><div class="ico">🎯</div><strong>Dónde usarla</strong><span>Elegir proceso antes que herramienta.</span></div>
+						<div class="tile"><div class="ico">🤝</div><strong>Comunidad</strong><span>Avanzar con apoyo, no en solitario.</span></div>
+						<div class="tile"><div class="ico">📄</div><strong>Primer recurso</strong><span>config_agencia.txt.</span></div>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- 8 PELDAÑO 3 -->
-		<section class="slide" data-title="Peldaño 3 — Experto Entrenado">
-			<div class="card" style="padding:36px">
-				<div class="peldano">
-					<div>
-						<div class="badge" style="position:static;margin-bottom:6px">Peldaño 3 / 5</div>
-						<h3 class="s">📚 Experto Entrenado</h3>
-						<h1 class="s" style="font-size:36px">Conectas la IA con TU documentación real.</h1>
-						<ul class="bul">
-							<li>Manuales de proveedores</li>
-							<li>Contratos</li>
-							<li>Tarifas</li>
-							<li>Políticas internas</li>
-						</ul>
-						<div class="tools"><span>NotebookLM</span><span>Gemini Deep Research</span><span>Conocimiento en Gemas</span></div>
-						<div class="result">💡 Resultado: Respuestas fiables basadas en TUS datos</div>
+		<section class="slide" data-title="Departamento de IA">
+			<div class="bg splitfade" style="background-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card">
+				<div class="panel" style="max-width:760px">
+					<div class="eyebrow">Departamento de IA Traveltool</div>
+					<h1>No es otro curso más</h1>
+					<p class="lead" style="margin-top:14px">Es un punto de apoyo para que las agencias apliquen IA con sentido práctico.</p>
+					<div class="pillrow">
+						<span class="pill">Formación</span>
+						<span class="pill">Herramientas</span>
+						<span class="pill">Comunidad</span>
+						<span class="pill">Soporte</span>
+						<span class="pill">Casos reales</span>
 					</div>
-					<div class="visual" data-num="3" style="background-image:url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1200&q=80&auto=format&fit=crop')"><span class="ic">📚</span></div>
+					<div class="quote">Un curso empieza y termina. Un departamento acompaña.</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- 9 PELDAÑO 4 -->
-		<section class="slide" data-title="Peldaño 4 — Empleado Autónomo">
-			<div class="card" style="padding:36px">
-				<div class="peldano">
-					<div class="visual" data-num="4" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80&auto=format&fit=crop')"><span class="ic">⚙️</span></div>
-					<div>
-						<div class="badge" style="position:static;margin-bottom:6px">Peldaño 4 / 5</div>
-						<h3 class="s">⚙️ Empleado Autónomo</h3>
-						<h1 class="s" style="font-size:34px">La IA se ejecuta SOLA, sin que le preguntes.</h1>
-						<ul class="bul">
-							<li>Revisa tu correo</li>
-							<li>Hace seguimiento de clientes</li>
-							<li>Genera alertas</li>
-							<li>Prepara informes</li>
-						</ul>
-						<div class="tools"><span>Agentes IA</span><span>n8n</span><span>Make</span><span>Zapier</span></div>
-						<div class="result">💡 Resultado: Tareas que se hacen sin tu intervención</div>
+		<section class="slide" data-title="La oportunidad">
+			<div class="bg light" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card">
+				<div class="panel">
+					<div class="eyebrow">Por qué ahora</div>
+					<h1>La oportunidad no es “usar IA”. Es usarla bien.</h1>
+					<div class="grid3" style="margin-top:28px">
+						<div class="tile"><div class="ico">❌</div><strong>No es magia</strong><span>La IA no mejora una agencia por arte de magia.</span></div>
+						<div class="tile"><div class="ico">🎯</div><strong>Es enfoque</strong><span>Mejora cuando se aplica al proceso adecuado.</span></div>
+						<div class="tile"><div class="ico">💚</div><strong>Es servicio</strong><span>Responder antes, cuidar más y atender mejor.</span></div>
 					</div>
+					<div class="quote">No gana quien prueba más herramientas. Gana quien sabe dónde aplicarlas y para qué.</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- 10 PELDAÑO 5 -->
-		<section class="slide" data-title="Peldaño 5 — Ecosistema Agéntico">
-			<div class="card" style="padding:36px">
-				<div class="peldano">
-					<div>
-						<div class="badge" style="position:static;margin-bottom:6px">Peldaño 5 / 5</div>
-						<h3 class="s">🏗️ Ecosistema Agéntico</h3>
-						<h1 class="s" style="font-size:32px">Varios agentes conectados entre sí con un cerebro central (CRM).</h1>
-						<ul class="bul">
-							<li>Propuestas automáticas</li>
-							<li>Seguimiento sin intervención</li>
-							<li>Facturación integrada</li>
-						</ul>
-						<div class="tools"><span>Notion CRM</span><span>Red de agentes</span><span>Automatizaciones end-to-end</span></div>
-						<div class="result">💡 Resultado: Transformación completa del negocio</div>
+		<section class="slide" data-title="La escalera">
+			<div class="bg light" style="background-image:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card">
+				<div class="panel">
+					<div class="eyebrow">El trayecto real</div>
+					<h1>La escalera para integrar IA sin frustrarte</h1>
+					<p style="margin-top:12px">No se empieza con una IA trabajando sola. Se sube paso a paso.</p>
+					<div class="stairs">
+						<div class="step"><div class="bigico">🔍</div><strong>Preguntar</strong><span>Chat puntual</span></div>
+						<div class="step"><div class="bigico">🤖</div><strong>Entrenar</strong><span>Becario digital</span></div>
+						<div class="step"><div class="bigico">📚</div><strong>Conectar</strong><span>Documentos</span></div>
+						<div class="step"><div class="bigico">⚙️</div><strong>Automatizar</strong><span>Procesos</span></div>
+						<div class="step"><div class="bigico">🏗️</div><strong>Coordinar</strong><span>Agentes</span></div>
 					</div>
-					<div class="visual" data-num="5" style="background-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80&auto=format&fit=crop')"><span class="ic">🏗️</span></div>
+					<div class="warn">Primero entendemos el proceso. Después elegimos la IA.</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- 11 DEMO -->
-		<section class="slide" data-title="Demo en vivo">
-			<div class="bg soft" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=80&auto=format&fit=crop')"></div>
-			<div class="card box">
-				<div class="badge">15 minutos</div>
-				<h3 class="s">Demo en vivo</h3>
-				<h1 class="s">Un ejemplo real de cada peldaño</h1>
-				<div class="g3" style="margin-top:14px">
-					<div class="tile"><div class="ico">🔍</div><h4>Peldaño 1</h4><p>Email con ChatGPT</p></div>
-					<div class="tile"><div class="ico">🤖</div><h4>Peldaño 2</h4><p>Gema: Analista de propuestas</p></div>
-					<div class="tile"><div class="ico">📚</div><h4>Peldaño 3</h4><p>NotebookLM con manual de proveedor</p></div>
-					<div class="tile"><div class="ico">⚙️</div><h4>Peldaño 4</h4><p>Agente que revisa correo</p></div>
-					<div class="tile" style="grid-column:span 2;background:linear-gradient(135deg,#e8fbf5,#fff6e0);border-color:#FFCA6B"><div class="ico">🏗️</div><h4>Peldaño 5</h4><p>CRM de SAFE TOUR (nuestro living lab)</p></div>
-				</div>
-			</div>
-		</section>
-
-		<!-- 12 EJERCICIO -->
-		<section class="slide" data-title="Ejercicio participativo">
-			<div class="card" style="padding:36px">
+		<section class="slide" data-title="Peldaño 1">
+			<div class="bg light" style="background-image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card">
 				<div class="split">
-					<div style="display:flex;flex-direction:column;justify-content:center">
-						<div class="badge" style="position:static;margin-bottom:8px">Tu turno</div>
-						<h3 class="s">Ejercicio participativo</h3>
-						<h1 class="s">¿En qué peldaño estás?</h1>
-						<div class="g2" style="margin-top:14px">
-							<div class="tile"><div class="ico">1️⃣</div><h4>Piensa</h4><p>en tu día a día en la agencia</p></div>
-							<div class="tile"><div class="ico">2️⃣</div><h4>Pregúntate</h4><p>¿Usas alguna IA? ¿Cuál? ¿Para qué?</p></div>
-							<div class="tile"><div class="ico">3️⃣</div><h4>Identifica</h4><p>tu peldaño actual</p></div>
-							<div class="tile"><div class="ico">4️⃣</div><h4>Comparte</h4><p>compártelo en el chat</p></div>
+					<div class="panel">
+						<div class="eyebrow">Peldaño 1 / 5</div>
+						<h1>Preguntar a la IA</h1>
+						<p class="lead" style="margin-top:12px">La usas como apoyo puntual para desbloquear tareas.</p>
+						<div class="grid2" style="margin-top:22px">
+							<div class="tile"><div class="ico">✉️</div><strong>Redactar emails</strong></div>
+							<div class="tile"><div class="ico">🌐</div><strong>Traducir o resumir</strong></div>
+							<div class="tile"><div class="ico">💡</div><strong>Ordenar ideas</strong></div>
+							<div class="tile"><div class="ico">⚡</div><strong>Responder rápido</strong></div>
 						</div>
-						<p class="s" style="margin-top:12px"><em>No hay peldaño "malo". Todos empezamos en el 1.</em></p>
+						<div class="quote">Útil para empezar. Limitado si siempre partes de cero.</div>
 					</div>
-					<div class="pic" style="background-image:url('https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1000&q=80&auto=format&fit=crop')"></div>
+					<div class="photo" style="background-image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&q=80&auto=format&fit=crop')"><div class="num">1</div></div>
 				</div>
 			</div>
 		</section>
 
-		<!-- 13 COMUNIDAD -->
+		<section class="slide" data-title="Peldaño 2">
+			<div class="bg light" style="background-image:url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card">
+				<div class="split">
+					<div class="photo" style="background-image:url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80&auto=format&fit=crop')"><div class="num">2</div></div>
+					<div class="panel">
+						<div class="eyebrow">Peldaño 2 / 5</div>
+						<h1>Tu becario digital</h1>
+						<p class="lead" style="margin-top:12px">Una IA preparada para una tarea concreta.</p>
+						<div class="pillrow">
+							<span class="pill">Ya conoce tus instrucciones</span>
+							<span class="pill">Mantiene tu tono</span>
+							<span class="pill">Da primeros borradores</span>
+							<span class="pill">Ayuda en tareas repetidas</span>
+						</div>
+						<div class="quote">No decide por ti. Te quita trabajo de arranque.</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="slide" data-title="Peldaño 3">
+			<div class="bg light" style="background-image:url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card">
+				<div class="split">
+					<div class="panel">
+						<div class="eyebrow">Peldaño 3 / 5</div>
+						<h1>La IA con tus documentos delante</h1>
+						<p class="lead" style="margin-top:12px">Ya no responde “al aire”: trabaja con información concreta.</p>
+						<div class="grid2" style="margin-top:22px">
+							<div class="tile"><div class="ico">📚</div><strong>Manuales</strong><span>Proveedores y sistemas.</span></div>
+							<div class="tile"><div class="ico">📄</div><strong>Condiciones</strong><span>Viajes, políticas y contratos.</span></div>
+							<div class="tile"><div class="ico">💶</div><strong>Tarifas</strong><span>Datos reales de trabajo.</span></div>
+							<div class="tile"><div class="ico">🏢</div><strong>Tu agencia</strong><span>Proceso, tono y cliente tipo.</span></div>
+						</div>
+						<div class="quote">Mejor contexto = mejores respuestas.</div>
+					</div>
+					<div class="photo" style="background-image:url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80&auto=format&fit=crop')"><div class="num">3</div></div>
+				</div>
+			</div>
+		</section>
+
+		<section class="slide" data-title="Peldaño 4">
+			<div class="bg light" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card">
+				<div class="split">
+					<div class="photo" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80&auto=format&fit=crop')"><div class="num">4</div></div>
+					<div class="panel">
+						<div class="eyebrow">Peldaño 4 / 5</div>
+						<h1>La IA empieza a mover trabajo</h1>
+						<p class="lead" style="margin-top:12px">No trabaja sola “por magia”: prepara partes del proceso dentro de tu sistema.</p>
+						<div class="pillrow">
+							<span class="pill">Revisa correos</span>
+							<span class="pill">Resume peticiones</span>
+							<span class="pill">Crea tareas</span>
+							<span class="pill">Prepara informes</span>
+							<span class="pill">Deja listo el siguiente paso</span>
+						</div>
+						<div class="quote">Menos copiar y pegar. Más tiempo para atender y decidir.</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="slide" data-title="Peldaño 5">
+			<div class="bg light" style="background-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card">
+				<div class="split">
+					<div class="panel">
+						<div class="eyebrow">Peldaño 5 / 5</div>
+						<h1>Un equipo conectado de agentes</h1>
+						<p class="lead" style="margin-top:12px">No es tener muchos bots. Es tener especialistas digitales trabajando con el mismo contexto.</p>
+						<div class="grid3" style="margin-top:22px">
+							<div class="tile"><div class="ico">🧳</div><strong>Propuestas</strong></div>
+							<div class="tile"><div class="ico">📞</div><strong>Seguimiento</strong></div>
+							<div class="tile"><div class="ico">📧</div><strong>Correos</strong></div>
+							<div class="tile"><div class="ico">💶</div><strong>Facturación</strong></div>
+							<div class="tile"><div class="ico">📁</div><strong>Expedientes</strong></div>
+							<div class="tile"><div class="ico">📣</div><strong>Marketing</strong></div>
+						</div>
+					</div>
+					<div class="photo" style="background-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80&auto=format&fit=crop')"><div class="num">5</div></div>
+				</div>
+			</div>
+		</section>
+
+		<section class="slide" data-title="Proceso antes que herramienta">
+			<div class="bg light" style="background-image:url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card">
+				<div class="panel">
+					<div class="eyebrow">La clave</div>
+					<h1>Antes de usar IA, decide dónde y para qué</h1>
+					<div class="processLine">
+						<div class="node"><div class="ico">💚</div><strong>Cliente</strong><span>¿Qué servicio quiero mejorar?</span></div>
+						<div class="node"><div class="ico">🔁</div><strong>Repetición</strong><span>¿Qué tarea se repite?</span></div>
+						<div class="node"><div class="ico">⏱️</div><strong>Tiempo</strong><span>¿Dónde pierdo más?</span></div>
+						<div class="node"><div class="ico">📋</div><strong>Datos</strong><span>¿Qué necesita saber la IA?</span></div>
+						<div class="node"><div class="ico">👤</div><strong>Revisión</strong><span>¿Qué decide una persona?</span></div>
+					</div>
+					<div class="quote">La IA funciona mejor cuando el proceso está claro.</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="slide" data-title="Ejercicio">
+			<div class="bg splitfade" style="background-image:url('https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card">
+				<div class="panel" style="max-width:760px">
+					<div class="eyebrow">Ahora te toca a ti</div>
+					<h1>Piensa en tu agencia un lunes por la mañana</h1>
+					<p class="lead" style="margin-top:14px">Elige una tarea real que se repite, te roba tiempo o depende de copiar y pegar.</p>
+					<div class="quote">Ese puede ser tu primer caso de uso con IA.</div>
+					<a class="cta">Escríbelo en el chat: “Mi proceso es…”</a>
+				</div>
+			</div>
+		</section>
+
 		<section class="slide" data-title="Comunidad IA Traveltool">
-			<div class="bg soft" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80&auto=format&fit=crop')"></div>
-			<div class="card box">
-				<div class="badge">Cómo avanzar</div>
-				<h3 class="s">Tu Comunidad IA Traveltool</h3>
-				<h1 class="s">¿Cómo avanzar?</h1>
-				<div class="g2" style="margin-top:14px">
-					<div class="tile"><div class="ico">📢</div><h4>Formación quincenal</h4><p>en directo + grabaciones</p></div>
-					<div class="tile"><div class="ico">🛠️</div><h4>Herramientas</h4><p>prompts y Gemas listas para usar</p></div>
-					<div class="tile"><div class="ico">💬</div><h4>Soporte directo</h4><p>y preguntas entre compañeros</p></div>
-					<div class="tile"><div class="ico">💡</div><h4>Casos reales</h4><p>de agencias que ya lo usan</p></div>
-				</div>
-				<div style="text-align:center;margin-top:16px">
-					<span class="cta">Acceso EXCLUSIVO para todas las agencias Traveltool</span>
-				</div>
-			</div>
-		</section>
-
-		<!-- 14 PRÓXIMAS SESIONES -->
-		<section class="slide" data-title="Próximas sesiones">
-			<div class="bg soft" style="background-image:url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=1600&q=80&auto=format&fit=crop')"></div>
-			<div class="card box">
-				<div class="badge">Semana de la IA</div>
-				<h3 class="s">Próximas sesiones</h3>
-				<h1 class="s">Agenda de la semana</h1>
-				<div class="timeline">
-					<div class="t" style="background:linear-gradient(180deg,var(--g),var(--t));color:#fff;border:none">
-						<div class="d" style="color:#fff">LUN 5</div>
-						<strong style="color:#fff">Sesión 1</strong>
-						<p style="color:#fff">Visión IA — HOY</p>
-					</div>
-					<div class="t"><div class="d">MAR 6</div><strong>Sesión 2</strong><p>GPT y Gemas personalizadas</p></div>
-					<div class="t"><div class="d">LUN 19</div><strong>Sesión 3</strong><p>Conecta tu IA con el mundo</p></div>
-					<div class="t"><div class="d">MAR 20</div><strong>Sesión 4</strong><p>Visión de futuro + Q&amp;A</p></div>
-					<div class="t" style="background:var(--s);border:none"><div class="d">🕔 17:00</div><strong>Todas</strong><p>Grabación en comunidad</p></div>
-				</div>
-			</div>
-		</section>
-
-		<!-- 15 RECURSO -->
-		<section class="slide" data-title="Recurso descargable">
-			<div class="card" style="padding:36px">
-				<div class="split">
-					<div style="display:flex;flex-direction:column;justify-content:center">
-						<div class="badge" style="position:static;margin-bottom:8px">Descargable</div>
-						<h3 class="s">Tu recurso de hoy</h3>
-						<h1 class="s">📄 "Mi agencia"</h1>
-						<p class="s">Archivo <strong>.txt</strong> con el contexto básico para trabajar con cualquier agencia.</p>
-						<div class="g2" style="margin-top:18px">
-							<div class="tile"><div class="ico">📥</div><h4>Descarga</h4><p>03 — config_agencia.txt</p></div>
-							<div class="tile"><div class="ico">⚡</div><h4>¿Cómo lo usamos?</h4><p>Lo pegas como contexto en tu GPT/Gema y la IA ya sabrá "con qué agencia trabaja".</p></div>
-						</div>
-					</div>
-					<div class="pic" style="background-image:url('https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1000&q=80&auto=format&fit=crop')"></div>
-				</div>
-			</div>
-		</section>
-
-		<!-- 16 PLANTILLA CONFIG -->
-		<section class="slide" data-title="Estructura del archivo">
-			<div class="bg soft" style="background-image:url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1600&q=80&auto=format&fit=crop')"></div>
-			<div class="card box" style="padding:22px 28px;justify-content:flex-start">
-				<div class="badge">Plantilla</div>
-				<h3 class="s" style="margin-bottom:4px">Estructura del archivo</h3>
-				<h1 class="s" style="font-size:28px;margin-bottom:8px">Esto es lo que cada agencia rellena</h1>
-				<div style="display:grid;grid-template-columns:1.15fr 1fr;gap:20px;flex:1;min-height:0;margin-top:4px">
-					<!-- Código tipo IDE -->
-					<div style="background:#0E2A33;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh);border:1px solid rgba(45,190,160,.2)">
-						<div style="background:#1B3B45;padding:7px 12px;display:flex;align-items:center;gap:6px;border-bottom:1px solid rgba(255,255,255,.08)">
-							<span style="width:9px;height:9px;border-radius:50%;background:#FF5F56"></span>
-							<span style="width:9px;height:9px;border-radius:50%;background:#FFBD2E"></span>
-							<span style="width:9px;height:9px;border-radius:50%;background:#27C93F"></span>
-							<span style="color:#9BF0D7;font-size:11px;margin-left:8px;font-weight:700;letter-spacing:.5px">config_agencia.txt</span>
-						</div>
-						<pre style="color:#E8FBF5;font-family:'SF Mono',ui-monospace,'Courier New',monospace;font-size:11px;line-height:1.55;padding:14px 16px;margin:0;overflow:hidden;flex:1;display:flex;flex-direction:column;justify-content:center"># ═══════════════════════════
-# ARCHIVO DE CONFIGURACIÓN
-# ═══════════════════════════
-<span style="color:#2DBEA0">── IDENTIDAD DE LA AGENCIA ──</span>
-NOMBRE_AGENCIA = [Tu agencia]
-CIF · DIRECCION · WEB
-
-<span style="color:#2DBEA0">── AGENTE / ASESOR ──</span>
-NOMBRE_AGENTE = [Nombre]
-TELEFONO · EMAIL · WHATSAPP
-
-<span style="color:#2DBEA0">── TONO Y ESTILO ──</span>
-TONO = cercano | formal | premium
-
-<span style="color:#2DBEA0">── SERVICIOS Y PAGO ──</span>
-SERVICIOS_FIJOS · PAGO_ESTANDAR
-METODOS_PAGO · URL_FINANCIACION
-
-<span style="color:#2DBEA0">── PROVEEDORES Y CLIENTE TIPO ──</span>
-PROVEEDORES · URL_AFILIADO
-CLIENTE_TIPO · DESTINOS · MOTIVACION
-
-<span style="color:#FFCA6B">TIPO_PAQUETE = SI  ·  TIPO_LUNA_MIEL = SI  ·  TIPO_CRUCERO = SI</span>
-</pre>
-					</div>
-					<!-- Explicación + CTA -->
-					<div style="display:flex;flex-direction:column;justify-content:center">
-						<p class="s" style="margin-bottom:10px;font-size:15px">Un bloque de texto con los datos de tu agencia, tu tono y tu cliente tipo. La IA lo lee y personaliza <strong>todas</strong> las propuestas.</p>
-						<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-							<div class="tile" style="padding:9px 12px"><div style="font-weight:900;color:var(--t);font-size:16px">1</div><p style="font-size:12px">Copia el bloque</p></div>
-							<div class="tile" style="padding:9px 12px"><div style="font-weight:900;color:var(--t);font-size:16px">2</div><p style="font-size:12px">Rellena los [...]</p></div>
-							<div class="tile" style="padding:9px 12px"><div style="font-weight:900;color:var(--t);font-size:16px">3</div><p style="font-size:12px">Guarda como .txt o .md</p></div>
-							<div class="tile" style="padding:9px 12px"><div style="font-weight:900;color:var(--t);font-size:16px">4</div><p style="font-size:12px">Adjúntalo a tu GPT/Gema</p></div>
-						</div>
-						<a href="https://www.notion.so/" target="_blank" rel="noopener" class="cta" style="text-decoration:none;text-align:center;font-size:14px;padding:11px 18px;display:block">📖 Ver plantilla completa en Notion</a>
-						<p class="s" style="margin-top:10px;font-size:12px;color:var(--m);text-align:center"><em>También recibirás el enlace al TXT por email.</em></p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- 17 Q&A -->
-		<section class="slide hero" data-title="Q&amp;A">
-			<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=1600&q=80&auto=format&fit=crop')"></div>
-			<div class="card qa">
-				<div class="eyebrow">Abrimos micros</div>
-				<div class="big">❓</div>
-				<h1 class="big" style="font-size:52px">Preguntas y Respuestas</h1>
-				<div class="sub">Escribe tu pregunta en el chat</div>
-				<div class="sub" style="margin-top:6px">🎤 ¡Abrimos micros!</div>
-			</div>
-		</section>
-
-		<!-- 17 CIERRE -->
-		<section class="slide hero" data-title="Cierre">
-			<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="bg light" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80&auto=format&fit=crop')"></div>
 			<div class="card">
-				<div class="eyebrow">Hasta mañana</div>
-				<h1 class="big">Gracias por asistir</h1>
-				<div class="sub">Nos vemos en la Sesión 2: GPT y Gemas personalizadas</div>
-				<div class="when">🗓️ Martes 6 mayo · 🕔 17:00 h</div>
-				<div>
-					<span class="author">✈ Traveltool E-Services · Departamento de IA</span>
-					<span class="author">🎙️ Fernando Córdoba</span>
-					<span class="author">✉️ contacto@travelagentia.com</span>
+				<div class="panel">
+					<div class="eyebrow">Cómo avanzar</div>
+					<h1>No tienes que aprender IA en solitario</h1>
+					<div class="grid4" style="margin-top:26px">
+						<div class="tile"><div class="ico">📢</div><strong>Directos</strong><span>Sesiones y grabaciones.</span></div>
+						<div class="tile"><div class="ico">🛠️</div><strong>Plantillas</strong><span>Prompts y ejemplos reales.</span></div>
+						<div class="tile"><div class="ico">💬</div><strong>Dudas</strong><span>Soporte entre agencias.</span></div>
+						<div class="tile"><div class="ico">🧭</div><strong>Procesos</strong><span>Ayuda para elegir dónde aplicar IA.</span></div>
+					</div>
+					<div class="quote">IA + procesos + comunidad = avance real.</div>
 				</div>
+			</div>
+		</section>
+
+		<section class="slide" data-title="Próximas sesiones">
+			<div class="bg light" style="background-image:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card">
+				<div class="panel">
+					<div class="eyebrow">Seguimos subiendo peldaños</div>
+					<h1>Próximas sesiones</h1>
+					<div class="grid3" style="margin-top:26px">
+						<div class="tile"><div class="ico">🤖</div><strong>Martes 6 mayo</strong><span>Crea tu primer GPT o Gema útil.</span></div>
+						<div class="tile"><div class="ico">📚</div><strong>Lunes 19 mayo</strong><span>Conecta la IA con tus documentos y contexto.</span></div>
+						<div class="tile"><div class="ico">🚀</div><strong>Martes 20 mayo</strong><span>Visión de futuro + respuestas a vuestras preguntas.</span></div>
+					</div>
+					<div class="quote">Entra en la comunidad y deja tus dudas: las trabajaremos en directo.</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="slide" data-title="Recurso descargable">
+			<div class="bg light" style="background-image:url('https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card">
+				<div class="split">
+					<div class="panel">
+						<div class="eyebrow">Primer paso práctico</div>
+						<h1>config_agencia.txt</h1>
+						<p class="lead" style="margin-top:12px">Un archivo sencillo para que la IA entienda tu agencia desde el principio.</p>
+						<div class="grid2" style="margin-top:22px">
+							<div class="tile"><div class="ico">🏢</div><strong>Quién eres</strong></div>
+							<div class="tile"><div class="ico">🗣️</div><strong>Cómo hablas</strong></div>
+							<div class="tile"><div class="ico">✅</div><strong>Qué incluyes</strong></div>
+							<div class="tile"><div class="ico">👥</div><strong>Qué cliente trabajas</strong></div>
+						</div>
+						<div class="quote">Si la IA entiende tu agencia, sus respuestas mejoran.</div>
+					</div>
+					<div class="photo" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80&auto=format&fit=crop')"><div class="num">TXT</div></div>
+				</div>
+			</div>
+		</section>
+
+		<section class="slide" data-title="Idea final">
+			<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card" style="align-items:center;text-align:center">
+				<div class="eyebrow dark">Nos quedamos con una idea</div>
+				<h1 class="hero" style="font-size:64px">No empieces por la herramienta.<br>Empieza por el proceso.</h1>
+				<div class="subhero">La IA no va de hacer magia en 5 minutos.<br>Va de entender dónde usarla y para qué.</div>
+			</div>
+		</section>
+
+		<section class="slide" data-title="Cierre">
+			<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1600&q=80&auto=format&fit=crop')"></div>
+			<div class="card" style="align-items:center;text-align:center">
+				<div class="eyebrow dark">Gracias por asistir</div>
+				<h1 class="hero">Seguimos trabajando<br>proceso a proceso</h1>
+				<div class="subhero">Rellena config_agencia.txt · Elige un proceso · Compártelo en la comunidad</div>
+				<div class="metaLine">Fernando Córdoba · Traveltool E-Services · Departamento de IA</div>
+				<div class="footerNote">Próxima sesión: GPT y Gemas personalizadas</div>
 			</div>
 		</section>
 
@@ -547,45 +586,56 @@ CLIENTE_TIPO · DESTINOS · MOTIVACION
 </div>
 
 <aside class="menu" id="menu">
-	<h4>Índice de la sesión</h4>
+	<h3>Índice</h3>
 	<ol id="menuList"></ol>
 </aside>
 
-<div class="navbar">
+<div class="nav">
 	<button id="prev">← Anterior</button>
-	<div class="count"><span id="curr">1</span> / <span id="total">17</span></div>
+	<div class="counter"><span id="curr">1</span> / <span id="total">18</span></div>
 	<button id="next">Siguiente →</button>
 </div>
 
 <script>
 (function(){
 	const slides=[...document.querySelectorAll('.slide')];
-	const bar=document.getElementById('bar');
+	const frame=document.getElementById('frame');
+	const stage=document.getElementById('stage');
+	const progress=document.getElementById('progress');
 	const curr=document.getElementById('curr');
 	const total=document.getElementById('total');
-	const title=document.getElementById('slideTitle');
+	const slideName=document.getElementById('slideName');
+	const ambient=document.getElementById('ambient');
 	const menu=document.getElementById('menu');
 	const menuList=document.getElementById('menuList');
-	const stage=document.getElementById('stage');
-	const frame=document.getElementById('frame');
 	const SW=1280,SH=720;
 	let i=0;
 	total.textContent=slides.length;
 
 	function fit(){
-		const w=stage.clientWidth,h=stage.clientHeight;
-		const s=Math.min(w/SW,h/SH)*0.98;
-		frame.style.transform='scale('+s+')';
+		const rect=stage.getBoundingClientRect();
+		const scale=Math.min(rect.width/SW,rect.height/SH)*0.98;
+		frame.style.setProperty('--deck-scale',Math.max(0.1,scale));
 	}
 	window.addEventListener('resize',fit);
+	window.addEventListener('load',fit);
+	if(document.fonts && document.fonts.ready){document.fonts.ready.then(fit);}
+	if(window.visualViewport){window.visualViewport.addEventListener('resize',fit);}
 	fit();
 
 	slides.forEach((s,idx)=>{
 		const li=document.createElement('li');
-		li.textContent=s.dataset.title||('Diapositiva '+(idx+1));
-		li.onclick=()=>{go(idx);tm(false);};
+		li.textContent=s.dataset.title || ('Diapositiva '+(idx+1));
+		li.addEventListener('click',()=>{go(idx);toggleMenu(false);});
 		menuList.appendChild(li);
 	});
+
+	function setAmbient(){
+		const img=slides[i].querySelector('.bg,.photo');
+		if(!img)return;
+		const bg=getComputedStyle(img).backgroundImage;
+		if(bg && bg!=='none')ambient.style.backgroundImage=bg;
+	}
 
 	function go(n){
 		n=Math.max(0,Math.min(slides.length-1,n));
@@ -607,25 +657,38 @@ CLIENTE_TIPO · DESTINOS · MOTIVACION
 				s.classList.remove('active','leaving');
 			}
 		});
-		[...menuList.children].forEach((li,idx)=>li.classList.toggle('active',idx===i));
-		bar.style.width=((i+1)/slides.length*100)+'%';
+		progress.style.width=((i+1)/slides.length*100)+'%';
 		curr.textContent=i+1;
-		title.textContent=slides[i].dataset.title;
+		slideName.textContent=slides[i].dataset.title || '';
+		[...menuList.children].forEach((li,idx)=>li.classList.toggle('active',idx===i));
 		history.replaceState(null,'','#'+(i+1));
-		const abg=slides[i].querySelector('.bg, .pic, .visual');
-		const amb=document.getElementById('ambient');
-		if(abg){const bi=getComputedStyle(abg).backgroundImage;if(bi && bi!=='none')amb.style.backgroundImage=bi;}
+		setAmbient();
 	}
-	document.getElementById('prev').onclick=()=>go(i-1);
-	document.getElementById('next').onclick=()=>go(i+1);
+
+	function next(){go(i+1)}
+	function prev(){go(i-1)}
+	function full(){
+		if(!document.fullscreenElement)document.documentElement.requestFullscreen();
+		else document.exitFullscreen();
+	}
+	function toggleMenu(force){
+		const open=force===undefined?!menu.classList.contains('open'):force;
+		menu.classList.toggle('open',open);
+	}
+
+	document.getElementById('next').addEventListener('click',next);
+	document.getElementById('prev').addEventListener('click',prev);
+	document.getElementById('fullBtn').addEventListener('click',full);
+	document.getElementById('menuBtn').addEventListener('click',()=>toggleMenu());
+
 	document.addEventListener('keydown',e=>{
-		if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(i+1);}
-		else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(i-1);}
-		else if(e.key==='Home')go(0);
-		else if(e.key==='End')go(slides.length-1);
-		else if(e.key==='f'||e.key==='F')tf();
-		else if(e.key==='m'||e.key==='M')tm();
-		else if(/^[1-9]$/.test(e.key))go(parseInt(e.key)-1);
+		if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();next();}
+		if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev();}
+		if(e.key==='Home')go(0);
+		if(e.key==='End')go(slides.length-1);
+		if(e.key==='f'||e.key==='F')full();
+		if(e.key==='m'||e.key==='M')toggleMenu();
+		if(/^[1-9]$/.test(e.key))go(parseInt(e.key)-1);
 	});
 
 	let sx=0;
@@ -635,15 +698,9 @@ CLIENTE_TIPO · DESTINOS · MOTIVACION
 		if(Math.abs(dx)>50)go(i+(dx<0?1:-1));
 	});
 
-	function tf(){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
-	document.getElementById('btnFull').onclick=tf;
-	function tm(f){const o=f===undefined?!menu.classList.contains('open'):f;menu.classList.toggle('open',o);}
-	document.getElementById('btnMenu').onclick=()=>tm();
-
 	const h=parseInt((location.hash||'').replace('#',''));
 	go(isNaN(h)?0:h-1);
 })();
 </script>
 </body>
 </html>
-

@@ -1,3 +1,5 @@
+Por que si te pego el codigo completo?
+—-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -133,6 +135,9 @@ footer.st-footer{background:var(--st-navy);color:var(--st-white);padding:2rem 1.
   .st-hero-content h1{font-size:1.75rem}
 }
 button,.decide-card,.subnav button{touch-action:manipulation}
+.cfg-option input[type=radio]{position:absolute;opacity:0;pointer-events:none}
+.cfg-check input[type=checkbox]{width:18px;height:18px;accent-color:var(--st-gold);cursor:pointer}
+.cfg-check:hover{background:rgba(201,169,97,.08) !important}
 </style>
 </head>
 <body>
@@ -514,40 +519,188 @@ button,.decide-card,.subnav button{touch-action:manipulation}
 
   <!-- ========== DECIDE ========== -->
   <section data-tab="decide">
-    <h2>💰 Resumen de Precio</h2>
+    <h2>💰 Configura tu viaje, <span class="st-personal">Blanca</span></h2>
+    <p>Personaliza los extras que quieras añadir a tu paquete base. El precio se actualiza automáticamente.</p>
 
-    <div class="st-table-wrap">
-      <table class="st-table">
-        <thead><tr><th>Concepto</th><th>Detalle</th></tr></thead>
-        <tbody>
-          <tr><td>Paquete completo (vuelos + hoteles)</td><td style="font-family:var(--st-mono);font-weight:700;color:var(--st-gold);font-size:1.2rem">4.468 €</td></tr>
-          <tr><td>Precio por persona</td><td style="font-family:var(--st-mono);font-weight:600">2.234 €/pax</td></tr>
-          <tr><td>Seguro con anulación (opcional)</td><td style="font-family:var(--st-mono)">+140 € (70 €/pax)</td></tr>
-          <tr class="highlight"><td><strong>Total con seguro</strong></td><td style="font-family:var(--st-mono);font-weight:700;color:var(--st-gold);font-size:1.2rem">4.608 €</td></tr>
-        </tbody>
-      </table>
+    <!-- PAQUETE BASE -->
+    <div class="st-card" style="border-left:4px solid var(--st-gold)">
+      <div class="st-card-title">Paquete base (vuelos + hoteles · 13 noches)</div>
+      <div class="st-card-value" style="font-family:var(--st-mono);color:var(--st-gold);font-size:1.3rem">4.468 €</div>
+      <p style="font-size:.85rem;color:var(--st-muted);margin-top:.25rem;margin-bottom:0">2.234 €/persona · Incluido siempre</p>
     </div>
 
-    <div class="st-callout success" style="margin-top:1.5rem">
-      <h4>✅ Dentro de vuestro presupuesto</h4>
-      <p style="margin-bottom:0">El paquete completo con seguro se sitúa dentro del rango de 4.000–5.000 € que nos indicasteis, dejando margen para excursiones opcionales.</p>
+    <!-- SEGURO -->
+    <h3 style="margin-top:2rem">🛡️ Seguro de viaje</h3>
+    <p style="font-size:.9rem;color:var(--st-muted)">Elige la modalidad que prefieras. Puedes ver todos los detalles en la pestaña <strong>Seguro</strong>.</p>
+    <div class="cfg-options" style="display:flex;flex-wrap:wrap;gap:.75rem;margin:.75rem 0">
+      <label class="cfg-option" style="flex:1;min-width:200px;cursor:pointer">
+        <input type="radio" name="seguro" value="140" data-label="Seguro CON Anulación" checked onchange="recalc()">
+        <div class="cfg-option-box" style="background:var(--st-surface);border:2px solid var(--st-gold);border-radius:10px;padding:1rem;text-align:center;transition:all .2s">
+          <div style="font-weight:700;color:var(--st-white)">CON Anulación</div>
+          <div style="font-family:var(--st-mono);font-size:1.1rem;color:var(--st-gold);margin-top:.25rem">+140 €</div>
+          <div style="font-size:.75rem;color:var(--st-muted)">70 €/pax · Hasta 3.500 € cobertura</div>
+        </div>
+      </label>
+      <label class="cfg-option" style="flex:1;min-width:200px;cursor:pointer">
+        <input type="radio" name="seguro" value="114" data-label="Seguro SIN Anulación" onchange="recalc()">
+        <div class="cfg-option-box" style="background:var(--st-surface);border:2px solid #374151;border-radius:10px;padding:1rem;text-align:center;transition:all .2s">
+          <div style="font-weight:700;color:var(--st-white)">SIN Anulación</div>
+          <div style="font-family:var(--st-mono);font-size:1.1rem;color:var(--st-gold);margin-top:.25rem">+114 €</div>
+          <div style="font-size:.75rem;color:var(--st-muted)">57 €/pax · Asistencia médica + equipaje</div>
+        </div>
+      </label>
+      <label class="cfg-option" style="flex:1;min-width:200px;cursor:pointer">
+        <input type="radio" name="seguro" value="0" data-label="Sin seguro" onchange="recalc()">
+        <div class="cfg-option-box" style="background:var(--st-surface);border:2px solid #374151;border-radius:10px;padding:1rem;text-align:center;transition:all .2s">
+          <div style="font-weight:700;color:var(--st-white)">Sin seguro</div>
+          <div style="font-family:var(--st-mono);font-size:1.1rem;color:var(--st-muted);margin-top:.25rem">+0 €</div>
+          <div style="font-size:.75rem;color:var(--st-danger)">⚠️ No recomendado</div>
+        </div>
+      </label>
     </div>
 
-    <h2 style="margin-top:2.5rem">🤝 ¿Cómo seguimos, <span class="st-personal">Blanca</span>?</h2>
-    <p>Si te interesa alguna de nuestras propuestas, te aconsejamos no dejarlo mucho tiempo, ya que los precios pueden variar en cualquier momento.</p>
+    <!-- TRASLADOS -->
+    <h3 style="margin-top:2rem">🚐 Traslados aeropuerto ↔ hotel (privados)</h3>
+    <p style="font-size:.9rem;color:var(--st-muted)">Selecciona los traslados que os interesen. Precios orientativos por vehículo (hasta 3 pax).</p>
+    <div style="margin:.75rem 0">
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.5rem;cursor:pointer">
+        <input type="checkbox" class="traslado-cb" value="65" data-label="🗼 Orly → Hotel París" onchange="recalc()">
+        <span style="flex:1">🗼 Orly (ORY) → Hotel París centro</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold)">~65 €</span>
+      </label>
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.5rem;cursor:pointer">
+        <input type="checkbox" class="traslado-cb" value="65" data-label="🗼 Hotel París → Orly" onchange="recalc()">
+        <span style="flex:1">🗼 Hotel París centro → Orly (ORY)</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold)">~65 €</span>
+      </label>
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.5rem;cursor:pointer">
+        <input type="checkbox" class="traslado-cb" value="38" data-label="🏰 Balice → Hotel Cracovia" onchange="recalc()">
+        <span style="flex:1">🏰 Balice (KRK) → Hotel Cracovia centro</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold)">~38 €</span>
+      </label>
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.5rem;cursor:pointer">
+        <input type="checkbox" class="traslado-cb" value="38" data-label="🏰 Hotel Cracovia → Balice" onchange="recalc()">
+        <span style="flex:1">🏰 Hotel Cracovia centro → Balice (KRK)</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold)">~38 €</span>
+      </label>
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.5rem;cursor:pointer">
+        <input type="checkbox" class="traslado-cb" value="80" data-label="🏛️ Fiumicino → Hotel Roma" onchange="recalc()">
+        <span style="flex:1">🏛️ Fiumicino (FCO) → Hotel Roma centro</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold)">~80 €</span>
+      </label>
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.5rem;cursor:pointer">
+        <input type="checkbox" class="traslado-cb" value="80" data-label="🏛️ Hotel Roma → Fiumicino" onchange="recalc()">
+        <span style="flex:1">🏛️ Hotel Roma centro → Fiumicino (FCO)</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold)">~80 €</span>
+      </label>
+    </div>
+
+    <!-- EXCURSIONES -->
+    <h3 style="margin-top:2rem">🎒 Excursiones opcionales</h3>
+    <p style="font-size:.9rem;color:var(--st-muted)">Marca las que os gustaría hacer. Los precios son por persona (×2). Puedes ver más detalle en la pestaña <strong>Excursiones</strong>.</p>
+
+    <h4 style="color:var(--st-gold);font-size:.85rem;margin-top:1rem">🗼 PARÍS</h4>
+    <div style="margin:.5rem 0">
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.6rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.4rem;cursor:pointer">
+        <input type="checkbox" class="exc-cb" value="34" data-label="Paseo barco Sena (×2)" onchange="recalc()">
+        <span style="flex:1">Paseo en barco por el Sena</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold);font-size:.9rem">~34 € <small style='color:var(--st-muted)'>(17×2)</small></span>
+      </label>
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.6rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.4rem;cursor:pointer">
+        <input type="checkbox" class="exc-cb" value="98" data-label="Combo Torre Eiffel + Crucero (×2)" onchange="recalc()">
+        <span style="flex:1">Combo Torre Eiffel + Crucero Sena</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold);font-size:.9rem">~98 € <small style='color:var(--st-muted)'>(49×2)</small></span>
+      </label>
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.6rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.4rem;cursor:pointer">
+        <input type="checkbox" class="exc-cb" value="178" data-label="Visita guiada Louvre (×2)" onchange="recalc()">
+        <span style="flex:1">Visita guiada Museo del Louvre</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold);font-size:.9rem">~178 € <small style='color:var(--st-muted)'>(89×2)</small></span>
+      </label>
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.6rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.4rem;cursor:pointer">
+        <input type="checkbox" class="exc-cb" value="118" data-label="Excursión Versalles (×2)" onchange="recalc()">
+        <span style="flex:1">Excursión Palacio de Versalles</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold);font-size:.9rem">~118 € <small style='color:var(--st-muted)'>(59×2)</small></span>
+      </label>
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.6rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.4rem;cursor:pointer">
+        <input type="checkbox" class="exc-cb" value="274" data-label="Excursión Disneyland bus+entrada (×2)" onchange="recalc()">
+        <span style="flex:1">🏰 Disneyland Paris (bus + entrada)</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold);font-size:.9rem">~274 € <small style='color:var(--st-muted)'>(137×2)</small></span>
+      </label>
+    </div>
+
+    <h4 style="color:var(--st-gold);font-size:.85rem;margin-top:1rem">🏰 CRACOVIA</h4>
+    <div style="margin:.5rem 0">
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.6rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.4rem;cursor:pointer">
+        <input type="checkbox" class="exc-cb" value="250" data-label="Combo Auschwitz + Minas (×2)" onchange="recalc()">
+        <span style="flex:1">Combo Auschwitz + Minas de Sal</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold);font-size:.9rem">~250 € <small style='color:var(--st-muted)'>(125×2)</small></span>
+      </label>
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.6rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.4rem;cursor:pointer">
+        <input type="checkbox" class="exc-cb" value="88" data-label="Fábrica Schindler (×2)" onchange="recalc()">
+        <span style="flex:1">Fábrica de Oskar Schindler</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold);font-size:.9rem">~88 € <small style='color:var(--st-muted)'>(44×2)</small></span>
+      </label>
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.6rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.4rem;cursor:pointer">
+        <input type="checkbox" class="exc-cb" value="178" data-label="Excursión Zakopane + Termas (×2)" onchange="recalc()">
+        <span style="flex:1">Excursión Zakopane + Termas</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold);font-size:.9rem">~178 € <small style='color:var(--st-muted)'>(89×2)</small></span>
+      </label>
+    </div>
+
+    <h4 style="color:var(--st-gold);font-size:.85rem;margin-top:1rem">🏛️ ROMA</h4>
+    <div style="margin:.5rem 0">
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.6rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.4rem;cursor:pointer">
+        <input type="checkbox" class="exc-cb" value="110" data-label="Visita Coliseo+Foro+Palatino (×2)" onchange="recalc()">
+        <span style="flex:1">Visita guiada Coliseo, Foro y Palatino</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold);font-size:.9rem">~110 € <small style='color:var(--st-muted)'>(55×2)</small></span>
+      </label>
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.6rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.4rem;cursor:pointer">
+        <input type="checkbox" class="exc-cb" value="128" data-label="Museos Vaticanos+Sixtina (×2)" onchange="recalc()">
+        <span style="flex:1">Museos Vaticanos y Capilla Sixtina</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold);font-size:.9rem">~128 € <small style='color:var(--st-muted)'>(64×2)</small></span>
+      </label>
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.6rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.4rem;cursor:pointer">
+        <input type="checkbox" class="exc-cb" value="56" data-label="Ruta gastronómica Trastevere (×2)" onchange="recalc()">
+        <span style="flex:1">Ruta gastronómica Trastevere</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold);font-size:.9rem">~56 € <small style='color:var(--st-muted)'>(28×2)</small></span>
+      </label>
+      <label class="cfg-check" style="display:flex;align-items:center;gap:.75rem;padding:.6rem 1rem;background:var(--st-surface);border-radius:8px;margin-bottom:.4rem;cursor:pointer">
+        <input type="checkbox" class="exc-cb" value="170" data-label="Excursión Pompeya+Sorrento (×2)" onchange="recalc()">
+        <span style="flex:1">Excursión Pompeya y Sorrento</span>
+        <span style="font-family:var(--st-mono);color:var(--st-gold);font-size:.9rem">~170 € <small style='color:var(--st-muted)'>(85×2)</small></span>
+      </label>
+    </div>
+
+    <!-- RESUMEN DINÁMICO -->
+    <div id="cfgSummary" style="margin-top:2.5rem;background:var(--st-surface);border:2px solid var(--st-gold);border-radius:12px;padding:1.5rem;box-shadow:var(--st-shadow)">
+      <h3 style="color:var(--st-gold);margin-top:0;font-family:var(--st-serif)">📋 Tu presupuesto personalizado</h3>
+      <div id="cfgLines" style="margin:.75rem 0"></div>
+      <div style="border-top:2px solid var(--st-gold);margin-top:1rem;padding-top:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem">
+        <div style="font-size:1rem;font-weight:600;color:var(--st-white)">TOTAL ESTIMADO</div>
+        <div id="cfgTotal" style="font-family:var(--st-mono);font-size:1.6rem;font-weight:700;color:var(--st-gold)">4.608 €</div>
+      </div>
+      <div id="cfgPP" style="text-align:right;font-size:.85rem;color:var(--st-muted);margin-top:.25rem"></div>
+      <div class="st-callout info" style="margin-top:1rem;margin-bottom:0">
+        <p style="margin-bottom:0;font-size:.85rem">⚠️ Los precios de traslados y excursiones son <strong>orientativos</strong>. Fernando te confirmará el precio final exacto antes de reservar.</p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <h2 style="margin-top:2.5rem">🤝 ¿Te gusta esta configuración, <span class="st-personal">Blanca</span>?</h2>
+    <p>Cuando tengas claro qué extras te interesan, contacta con Fernando para confirmar precios y proceder a la reserva. Los precios pueden variar, así que te recomendamos no dejarlo mucho tiempo.</p>
 
     <div class="decide-cards">
       <div class="decide-card confirm">
         <div class="icon">📩</div>
-        <h4>Quiero más información</h4>
-        <p>Contacta con Fernando para re-confirmar precios y proceder a la reserva.</p>
+        <h4>Quiero reservar</h4>
+        <p>Contacta con Fernando para confirmar precios finales y proceder.</p>
         <a class="decide-btn" href="tel:+34953890650">📞 Llamar: 953 890 650</a>
       </div>
       <div class="decide-card whatsapp">
         <div class="icon">💬</div>
         <h4>Hablemos por WhatsApp</h4>
-        <p>Abre una conversación directa con tu asesor.</p>
-        <a class="decide-btn" href="https://wa.me/34717717266?text=Hola%2C%20soy%20Blanca%20Ruiz%20Diaz%2C%20sobre%20la%20propuesta%20del%20tour%20por%20Europa%20(Par%C3%ADs%2C%20Cracovia%2C%20Roma).%20Me%20gustar%C3%ADa%20comentarla." target="_blank">Abrir WhatsApp</a>
+        <p>Cuéntale a Fernando qué extras te interesan.</p>
+        <a class="decide-btn" id="waCfgBtn" href="https://wa.me/34717717266?text=Hola%2C%20soy%20Blanca%20Ruiz%20Diaz%2C%20sobre%20la%20propuesta%20del%20tour%20por%20Europa%20(Par%C3%ADs%2C%20Cracovia%2C%20Roma).%20Me%20gustar%C3%ADa%20comentarla." target="_blank">Abrir WhatsApp</a>
       </div>
       <div class="decide-card think">
         <div class="icon">✉️</div>
@@ -617,6 +770,61 @@ button,.decide-card,.subnav button{touch-action:manipulation}
     });
   });
 })();
+
+function recalc(){
+  var base=4468;
+  var lines=[];
+  lines.push({label:'Paquete base (vuelos + hoteles)',amount:base});
+  /* Seguro */
+  var segRadio=document.querySelector('input[name="seguro"]:checked');
+  var segVal=segRadio?parseInt(segRadio.value,10):0;
+  var segLabel=segRadio?segRadio.getAttribute('data-label'):'Sin seguro';
+  /* highlight selected radio box */
+  document.querySelectorAll('.cfg-option .cfg-option-box').forEach(function(b){b.style.borderColor='#374151'});
+  if(segRadio)segRadio.closest('.cfg-option').querySelector('.cfg-option-box').style.borderColor='var(--st-gold)';
+  if(segVal>0) lines.push({label:segLabel,amount:segVal});
+  /* Traslados */
+  var trasTotal=0;
+  document.querySelectorAll('.traslado-cb:checked').forEach(function(cb){
+    var v=parseInt(cb.value,10);
+    trasTotal+=v;
+    lines.push({label:cb.getAttribute('data-label'),amount:v});
+  });
+  /* Excursiones */
+  var excTotal=0;
+  document.querySelectorAll('.exc-cb:checked').forEach(function(cb){
+    var v=parseInt(cb.value,10);
+    excTotal+=v;
+    lines.push({label:cb.getAttribute('data-label'),amount:v});
+  });
+  /* Render */
+  var total=base+segVal+trasTotal+excTotal;
+  var html='';
+  lines.forEach(function(l){
+    var col=l.amount===base?'var(--st-white)':'var(--st-ink)';
+    html+='<div style="display:flex;justify-content:space-between;padding:.35rem 0;border-bottom:1px solid rgba(55,65,81,.4);font-size:.9rem">';
+    html+='<span style="color:'+col+'">'+l.label+'</span>';
+    html+='<span style="font-family:var(--st-mono);color:var(--st-gold)">'+l.amount.toLocaleString('es-ES')+' €</span>';
+    html+='</div>';
+  });
+  document.getElementById('cfgLines').innerHTML=html;
+  document.getElementById('cfgTotal').textContent=total.toLocaleString('es-ES')+' €';
+  document.getElementById('cfgPP').textContent=(total/2).toLocaleString('es-ES',{maximumFractionDigits:0})+' €/persona';
+  /* Update WA link with summary */
+  var waBtn=document.getElementById('waCfgBtn');
+  if(waBtn){
+    var extras=[];
+    if(segVal>0) extras.push(segLabel+' ('+segVal+'€)');
+    if(trasTotal>0) extras.push('Traslados (~'+trasTotal+'€)');
+    if(excTotal>0) extras.push('Excursiones (~'+excTotal+'€)');
+    var msg='Hola, soy Blanca Ruiz Diaz. Sobre la propuesta del tour por Europa (París, Cracovia, Roma). ';
+    if(extras.length>0) msg+='Me interesan estos extras: '+extras.join(', ')+'. Total estimado: '+total.toLocaleString('es-ES')+'€. ';
+    msg+='Me gustaría confirmar precios.';
+    waBtn.href='https://wa.me/34717717266?text='+encodeURIComponent(msg);
+  }
+}
+/* Init on load */
+recalc();
 </script>
 </body>
 </html>

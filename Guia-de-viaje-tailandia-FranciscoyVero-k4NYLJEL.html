@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Tailandia 2026 — Verónica & Francisco | Safe Tour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#c9a96e;
+  --gold-light:#e8d5a8;
+  --gold-dark:#a07d3f;
+  --navy:#1b2d45;
+  --navy-light:#2e4a6e;
+  --cream:#faf8f4;
+  --warm:#f5f0e8;
+  --card:#ffffff;
+  --txt:#1a1a1a;
+  --txt-soft:#5a5a5a;
+  --txt-muted:#8a8a8a;
+  --rose:#c4727f;
+  --rose-light:#f5e6e9;
+  --emerald:#4a9e7a;
+  --emerald-light:#e8f5ee;
+  --coral:#e07a5f;
+  --sky:#5c9ece;
+  --r:16px;
+  --sh:0 1px 3px rgba(0,0,0,.04),0 6px 24px rgba(0,0,0,.06);
+  --sh-lg:0 4px 12px rgba(0,0,0,.03),0 16px 48px rgba(0,0,0,.08)
+}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--txt);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4,.serif{font-family:'Playfair Display',Georgia,serif}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--navy-light);text-decoration:none;transition:color .2s}
+a:hover{color:var(--gold-dark)}
+
+/* === HEADER === */
+.hdr{background:var(--navy);text-align:center;padding:18px 20px 16px;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(201,169,110,.3)}
+.hdr img{height:32px;margin:0 auto 6px;filter:brightness(0) invert(1);opacity:.9}
+.hdr h1{color:#fff;font-size:1.05rem;font-weight:600;letter-spacing:.5px}
+.hdr p{color:var(--gold-light);font-size:.72rem;font-weight:300;letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+
+/* === HERO === */
+.hero{position:relative;height:260px;overflow:hidden}
+.hero img{width:100%;height:100%;object-fit:cover;filter:brightness(.85)}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(27,45,69,.7) 0%,rgba(27,45,69,.2) 40%,transparent 70%)}
+.hero-c{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 20px}
+.hero-c .tag{display:inline-flex;align-items:center;gap:5px;background:rgba(201,169,110,.9);color:var(--navy);font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:20px;width:fit-content;margin-bottom:8px;backdrop-filter:blur(4px)}
+.hero-c h2{color:#fff;font-size:1.5rem;font-weight:700;line-height:1.2;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+.hero-c .sub{color:rgba(255,255,255,.85);font-size:.78rem;font-weight:300;margin-top:4px}
+
+/* === STATS BAR === */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);margin:0 16px;margin-top:-20px;position:relative;z-index:3;border-radius:var(--r);box-shadow:var(--sh-lg);padding:16px 8px}
+.stat{text-align:center;border-right:1px solid var(--warm)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--navy)}
+.stat-l{font-size:.58rem;color:var(--txt-muted);text-transform:uppercase;letter-spacing:.5px;margin-top:1px}
+
+/* === TABS === */
+.tw{position:sticky;top:66px;z-index:90;background:var(--cream);padding:14px 0 0}
+.tabs{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:8px;padding:0 16px 12px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tb{flex-shrink:0;scroll-snap-align:start;background:var(--card);border:1.5px solid #e8e4dc;border-radius:12px;padding:8px 16px;font-size:.72rem;font-weight:500;color:var(--txt-soft);cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);white-space:nowrap;font-family:'Inter',sans-serif;letter-spacing:.2px}
+.tb.on{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:0 4px 16px rgba(27,45,69,.25)}
+.tb:not(.on):active{transform:scale(.97)}
+/* === PANELS === */
+.pan{display:none;padding:16px;animation:fadeUp .4s ease}
+.pan.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* === SECTION TITLE === */
+.st{display:flex;align-items:center;gap:10px;margin:20px 0 12px}
+.st::after{content:'';flex:1;height:1px;background:linear-gradient(to right,#e0dbd2,transparent)}
+.st span{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--navy);white-space:nowrap}
+
+/* === CARDS === */
+.cd{background:var(--card);border-radius:var(--r);padding:20px;margin-bottom:14px;box-shadow:var(--sh);border:1px solid rgba(0,0,0,.04)}
+
+/* === DAY CARD === */
+.dy{background:var(--card);border-radius:var(--r);margin-bottom:16px;overflow:hidden;box-shadow:var(--sh);border:1px solid rgba(0,0,0,.04)}
+.dy .di{height:160px;object-fit:cover;width:100%;filter:brightness(.92) saturate(1.05)}
+.dy .db{padding:18px 20px}
+.dy .dn{display:inline-block;background:var(--navy);color:var(--gold-light);font-size:.58rem;font-weight:600;padding:4px 12px;border-radius:8px;letter-spacing:1px;text-transform:uppercase}
+.dy .dd{font-size:.7rem;color:var(--txt-muted);margin-top:5px;font-weight:400}
+.dy h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--navy);margin:8px 0}
+.dy .rg{display:inline-flex;align-items:center;gap:4px;font-size:.62rem;background:var(--emerald-light);color:var(--emerald);padding:3px 10px;border-radius:8px;font-weight:500;margin-bottom:8px}
+.dy p,.dy li{font-size:.8rem;line-height:1.65;color:var(--txt-soft)}
+.dy ul{padding-left:18px;margin-top:6px}
+.dy li{margin-bottom:5px}
+.dy li b{color:var(--txt)}
+
+/* === TIPS === */
+.tp{border-radius:12px;padding:12px 16px;margin-top:12px;font-size:.75rem;line-height:1.6}
+.tp b{display:inline}
+.tp.gold{background:linear-gradient(135deg,#fdf8ed,#f7ecd3);border-left:3px solid var(--gold)}
+.tp.gold b{color:var(--gold-dark)}
+.tp.rose{background:linear-gradient(135deg,#fdf2f4,#fae4e8);border-left:3px solid var(--rose)}
+.tp.rose b{color:var(--rose)}
+.tp.navy{background:linear-gradient(135deg,#eef3f9,#dce6f2);border-left:3px solid var(--navy-light)}
+.tp.navy b{color:var(--navy)}
+.tp.alert{background:linear-gradient(135deg,#fef0ec,#fde0d8);border-left:3px solid var(--coral)}
+.tp.alert b{color:var(--coral)}
+
+/* === FLIGHTS === */
+.fl{background:var(--card);border-radius:var(--r);padding:16px;margin-bottom:10px;box-shadow:var(--sh);border:1px solid rgba(0,0,0,.04);display:flex;align-items:center;gap:14px}
+.fl .dot{width:36px;height:36px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.fl .fi{flex:1}
+.fl .fc{font-size:.82rem;font-weight:600;color:var(--navy)}
+.fl .fr{font-size:.68rem;color:var(--txt-muted);margin-top:1px}
+.fl .ft{text-align:right}
+.fl .fd{font-size:.85rem;font-weight:700;color:var(--navy)}
+.fl .fa{font-size:.85rem;font-weight:700;color:var(--emerald)}
+.fl .fx{font-size:.6rem;color:var(--txt-muted);margin-top:2px}
+
+/* === HOTELS === */
+.ht{background:var(--card);border-radius:var(--r);padding:18px 20px;margin-bottom:10px;box-shadow:var(--sh);border:1px solid rgba(0,0,0,.04);position:relative;overflow:hidden}
+.ht::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--gold)}
+.ht h4{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:600;color:var(--navy);padding-left:12px}
+.ht .hc{font-size:.68rem;color:var(--gold-dark);font-weight:500;padding-left:12px;margin-top:2px}
+.ht .hd{font-size:.68rem;color:var(--txt-muted);padding-left:12px;margin-top:2px}
+.ht .hr{font-size:.72rem;color:var(--txt-soft);padding-left:12px;margin-top:2px}
+.ht.sp::before{background:linear-gradient(to bottom,var(--rose),var(--gold))}
+
+/* === CHECKLIST === */
+.cl{list-style:none;padding:0}
+.cl li{font-size:.78rem;padding:8px 0;border-bottom:1px solid var(--warm);display:flex;align-items:flex-start;gap:10px;line-height:1.55}
+.cl li:last-child{border-bottom:none}
+.ck{color:var(--emerald);font-weight:600;flex-shrink:0;font-size:.85rem}
+.nx{color:var(--coral);font-weight:600;flex-shrink:0;font-size:.85rem}
+
+/* === CONTACTS === */
+.cc{background:var(--card);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;box-shadow:var(--sh);border:1px solid rgba(0,0,0,.04);display:flex;align-items:center;gap:12px}
+.cc .ci{width:40px;height:40px;border-radius:12px;background:var(--warm);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.cc .cl2{font-size:.65rem;color:var(--txt-muted);text-transform:uppercase;letter-spacing:.5px}
+.cc .cv{font-size:.82rem;font-weight:600;color:var(--navy);margin-top:1px}
+
+/* === LOC CHIPS === */
+.ls{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px}
+.lc{background:var(--card);border-radius:12px;padding:12px 14px;box-shadow:var(--sh);border:1px solid rgba(0,0,0,.04)}
+.lc .ll{font-size:.55rem;color:var(--txt-muted);text-transform:uppercase;letter-spacing:.8px;font-weight:500}
+.lc .lv{font-size:.88rem;font-weight:700;color:var(--navy);letter-spacing:.8px;margin-top:2px}
+
+/* === DATA TABLE === */
+.dtable{width:100%;font-size:.76rem;border-collapse:collapse}
+.dtable td{padding:8px 0;vertical-align:top}
+.dtable tr{border-bottom:1px solid var(--warm)}
+.dtable tr:last-child{border-bottom:none}
+.dtable .lbl{color:var(--txt-muted);width:32%;font-weight:400}
+.dtable .val{color:var(--txt);font-weight:500}
+.dtable .val.strong{font-weight:700;color:var(--navy)}
+
+/* === PRACTICAL INFO === */
+.ps{margin-bottom:18px}
+.ps h4{font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--navy);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.ps p,.ps li{font-size:.76rem;line-height:1.65;color:var(--txt-soft)}
+.ps ul{padding-left:18px;margin-top:4px}
+.ps li{margin-bottom:4px}
+.ps li b{color:var(--txt)}
+
+/* === ROUTE STEPS === */
+.route{display:flex;flex-direction:column;gap:0;position:relative;padding-left:28px}
+.route::before{content:'';position:absolute;left:9px;top:12px;bottom:12px;width:2px;background:linear-gradient(to bottom,var(--gold-light),var(--gold),var(--gold-light))}
+.route-s{position:relative;padding:10px 0}
+.route-s::before{content:'';position:absolute;left:-19px;top:14px;width:10px;height:10px;border-radius:50%;background:var(--gold);border:2px solid var(--card);box-shadow:0 0 0 2px var(--gold-light)}
+.route-s .rn{font-weight:600;font-size:.8rem;color:var(--navy)}
+.route-s .rd{font-size:.72rem;color:var(--txt-muted);margin-top:1px}
+
+/* === EXPERIENCES === */
+.exp{display:grid;gap:10px}
+.exp-i{background:var(--card);border-radius:12px;padding:14px 16px;box-shadow:var(--sh);border:1px solid rgba(0,0,0,.04);font-size:.78rem;color:var(--txt-soft);display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+.exp-i .ei{font-size:1.1rem;flex-shrink:0;margin-top:-1px}
+.exp-i b{color:var(--txt)}
+
+/* === FOOTER === */
+.ftr{background:var(--navy);color:#fff;text-align:center;padding:32px 20px;margin-top:24px}
+.ftr img{height:30px;margin:0 auto 10px;filter:brightness(0) invert(1);opacity:.85}
+.ftr .fp{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:600;color:var(--gold-light);margin:8px 0}
+.ftr p{font-size:.7rem;opacity:.6;line-height:1.6}
+.ftr .heart{font-size:1.4rem;margin-top:12px;display:block}
+
+/* === BTT === */
+.btt{position:fixed;bottom:20px;right:16px;width:44px;height:44px;border-radius:50%;background:var(--navy);color:var(--gold-light);border:none;font-size:1rem;box-shadow:var(--sh-lg);cursor:pointer;display:none;z-index:200;align-items:center;justify-content:center;transition:transform .2s}
+.btt.vis{display:flex}
+.btt:active{transform:scale(.92)}
+
+/* === DIVIDER === */
+.div{height:1px;background:linear-gradient(to right,transparent,var(--gold-light),transparent);margin:8px 0}
+@media(min-width:600px){.hero{height:340px}.dy .di{height:200px}.tabs{justify-content:center}.stats{max-width:480px;margin-left:auto;margin-right:auto}.ls{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <img src="https://safetour.es/images/logo-safetour-big.png" alt="Safe Tour" onerror="this.src='https://safetour.es/images/logo.png'">
+  <h1>Tailandia 2026</h1>
+  <p>Verónica &amp; Francisco · Luna de miel</p>
+</header>
+
+<div class="hero">
+  <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?w=900&q=80" alt="Tailandia">
+  <div class="hero-c">
+    <div class="tag">🤍 Luna de miel</div>
+    <h2>El país de la sonrisa<br>os espera</h2>
+    <div class="sub">13 días · 6 destinos · Recuerdos para siempre</div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-n">18–30</div><div class="stat-l">Mayo 2026</div></div>
+  <div class="stat"><div class="stat-n">10</div><div class="stat-l">Noches</div></div>
+  <div class="stat"><div class="stat-n">6</div><div class="stat-l">Destinos</div></div>
+  <div class="stat"><div class="stat-n">5</div><div class="stat-l">Hoteles</div></div>
+</div>
+
+<div class="tw">
+  <div class="tabs" id="tabs">
+    <button class="tb on" onclick="sw(this,'resumen')">Resumen</button>
+    <button class="tb" onclick="sw(this,'vuelos')">Vuelos</button>
+    <button class="tb" onclick="sw(this,'hoteles')">Hoteles</button>
+    <button class="tb" onclick="sw(this,'itinerario')">Itinerario</button>
+    <button class="tb" onclick="sw(this,'incluye')">Incluye</button>
+    <button class="tb" onclick="sw(this,'practica')">Info práctica</button>
+    <button class="tb" onclick="sw(this,'contactos')">Contactos</button>
+  </div>
+</div>
+
+<!-- ===== RESUMEN ===== -->
+<div class="pan on" id="resumen">
+  <div class="cd">
+    <table class="dtable">
+      <tr><td class="lbl">Viajeros</td><td class="val">Verónica García García<br>Francisco Javier Chiachio Garrido</td></tr>
+      <tr><td class="lbl">Tipo</td><td class="val">Luna de miel 🤍</td></tr>
+      <tr><td class="lbl">Fechas</td><td class="val strong">18 – 30 mayo 2026</td></tr>
+      <tr><td class="lbl">Duración</td><td class="val">13 días / 10 noches</td></tr>
+      <tr><td class="lbl">Régimen</td><td class="val">Bangkok: Desayuno · Circuito: D+A · Phuket: AD</td></tr>
+      <tr><td class="lbl">Seguro</td><td class="val">Inclusión Mundo — ARAGES1965799</td></tr>
+      <tr><td class="lbl">Guía</td><td class="val">Habla español en circuito</td></tr>
+      <tr><td class="lbl">Localizador</td><td class="val strong">319703</td></tr>
+    </table>
+  </div>
+
+  <div class="st"><span>Vuestro recorrido</span></div>
+  <div class="cd">
+    <div class="route">
+      <div class="route-s"><div class="rn">Bangkok</div><div class="rd">Templos, mercados, comida callejera</div></div>
+      <div class="route-s"><div class="rn">Ayutthaya</div><div class="rd">Ruinas UNESCO del reino de Siam</div></div>
+      <div class="route-s"><div class="rn">Sukhothai</div><div class="rd">Primera capital, templos entre lotos</div></div>
+      <div class="route-s"><div class="rn">Chiang Rai</div><div class="rd">Triángulo del Oro, Templo Blanco y Azul</div></div>
+      <div class="route-s"><div class="rn">Chiang Mai</div><div class="rd">Elefantes, tribus, Doi Suthep</div></div>
+      <div class="route-s"><div class="rn">Phuket</div><div class="rd">Playas paradisíacas y relax</div></div>
+    </div>
+  </div>
+
+  <div class="st"><span>Experiencias imprescindibles</span></div>
+  <div class="exp">
+    <div class="exp-i"><span class="ei">🏛️</span>Cabeza de Buda entre raíces en <b>Ayutthaya</b></div>
+    <div class="exp-i"><span class="ei">🚂</span>El tren a centímetros en <b>Mae Klong</b></div>
+    <div class="exp-i"><span class="ei">🛶</span>Barcas de frutas en <b>Damnoen Saduak</b></div>
+<div class="exp-i"><span class="ei">🍽️</span>Cena para dos en <b>Restaurante Scarlett</b>, Bangkok</div>
+    <div class="exp-i"><span class="ei">🤍</span><b>Templo Blanco</b> de Chiang Rai</div>
+    <div class="exp-i"><span class="ei">🐘</span>Safari en elefante por la jungla, <b>Chiang Mai</b></div>
+    <div class="exp-i"><span class="ei">⛰️</span><b>Doi Suthep</b> — vistas panorámicas</div>
+    <div class="exp-i"><span class="ei">🏖️</span><b>Piscina privada frente al mar</b> en Phuket</div>
+    <div class="exp-i"><span class="ei">🥭</span><b>Mango sticky rice</b> en un puesto callejero</div>
+  </div>
+
+  <div class="st"><span>Localizadores</span></div>
+  <div class="ls">
+    <div class="lc"><div class="ll">DUAOC</div><div class="lv">319703</div></div>
+    <div class="lc"><div class="ll">Etihad</div><div class="lv">F8S0PB</div></div>
+    <div class="lc"><div class="ll">Check-in</div><div class="lv">YOBKLK</div></div>
+    <div class="lc"><div class="ll">AirAsia</div><div class="lv">VG1DJA</div></div>
+    <div class="lc"><div class="ll">Parking P4</div><div class="lv">UTCO8</div></div>
+  </div>
+</div>
+
+<!-- ===== VUELOS ===== -->
+<div class="pan" id="vuelos">
+  <div class="st"><span>Ida — 18 mayo</span></div>
+  <div class="fl"><div class="dot">✈️</div><div class="fi"><div class="fc">EY 102 · Etihad</div><div class="fr">Madrid MAD T4 → Abu Dhabi AUH</div><div class="fr">Boeing 787-9 · 25 kg</div></div><div class="ft"><div class="fd">10:45</div><div class="fa">19:40</div><div class="fx">6h 55min</div></div></div>
+  <div class="tp navy">⏱️ <b>Conexión Abu Dhabi: 1h 30min.</b> No cambiáis de terminal.</div>
+  <div class="fl" style="margin-top:10px"><div class="dot">✈️</div><div class="fi"><div class="fc">EY 402 · Etihad</div><div class="fr">Abu Dhabi AUH → Bangkok BKK</div><div class="fr">Boeing 787-10 · 25 kg</div></div><div class="ft"><div class="fd">21:10</div><div class="fa">06:45<small>+1</small></div><div class="fx">6h 35min · nocturno</div></div></div>
+
+  <div class="st"><span>Interno — 26 mayo</span></div>
+  <div class="fl"><div class="dot">🛩️</div><div class="fi"><div class="fc">FD 3162 · Thai AirAsia</div><div class="fr">Chiang Mai CNX → Phuket HKT</div><div class="fr">Reserva: VG1DJA · 20kg + 7kg cabina</div></div><div class="ft"><div class="fd">13:35</div><div class="fa">15:35</div><div class="fx">2h · directo</div></div></div>
+
+  <div class="st"><span>Vuelta — 29/30 mayo (nocturno)</span></div>
+  <div class="fl"><div class="dot">✈️</div><div class="fi"><div class="fc">EY 413 · Etihad</div><div class="fr">Phuket HKT → Abu Dhabi AUH</div><div class="fr">Boeing 777-300ER · 25 kg</div></div><div class="ft"><div class="fd">21:20</div><div class="fa">00:40<small>+1</small></div><div class="fx">6h 20min · nocturno</div></div></div>
+  <div class="tp navy">⏱️ <b>Conexión Abu Dhabi: 1h 45min nocturna.</b> Misma Terminal A.</div>
+  <div class="fl" style="margin-top:10px"><div class="dot">✈️</div><div class="fi"><div class="fc">EY 101 · Etihad</div><div class="fr">Abu Dhabi AUH → Madrid MAD T4</div><div class="fr">Boeing 787-9 · 25 kg</div></div><div class="ft"><div class="fd">02:25</div><div class="fa">08:10</div><div class="fx">7h 45min · 30/05</div></div></div>
+
+  <div class="tp gold">🧳 <b>Equipaje Etihad:</b> 25 kg/pax. <b>AirAsia:</b> 20 kg + 7 kg cabina/pax.</div>
+  <div class="ls" style="margin-top:12px">
+    <div class="lc"><div class="ll">Etihad</div><div class="lv">F8S0PB</div></div>
+    <div class="lc"><div class="ll">Check-in</div><div class="lv">YOBKLK</div></div>
+    <div class="lc"><div class="ll">AirAsia</div><div class="lv">VG1DJA</div></div>
+  </div>
+</div>
+
+<!-- ===== HOTELES ===== -->
+<div class="pan" id="hoteles">
+  <div class="st"><span>Hoteles confirmados</span></div>
+  <div class="ht"><h4>Holiday Inn Silom</h4><div class="hc">Bangkok</div><div class="hd">19 – 22 mayo · 3 noches</div><div class="hr">Doble Standard · Desayuno</div></div>
+<div class="ht"><h4>Topland Hotel & Convention Centre</h4><div class="hc">Phitsanulok</div><div class="hd">22 – 23 mayo · 1 noche</div><div class="hr">Doble · Media pensión</div></div>
+  <div class="ht"><h4>The Heritage Chiang Rai</h4><div class="hc">Chiang Rai</div><div class="hd">23 – 24 mayo · 1 noche</div><div class="hr">Doble · Media pensión</div></div>
+  <div class="ht"><h4>The Empress Premier Chiang Mai</h4><div class="hc">Chiang Mai</div><div class="hd">24 – 26 mayo · 2 noches</div><div class="hr">Doble · Media pensión</div></div>
+  <div class="ht sp"><h4>🤍 My Beach Resort Phuket</h4><div class="hc">Phuket</div><div class="hd">26 – 29 mayo · 3 noches</div><div class="hr"><b>Private Pool Beachfront</b> — Piscina privada frente al mar · AD</div></div>
+  <div class="tp rose">🤍 <b>Detalle luna de miel:</b> En Phuket tenéis habitación Private Pool Beachfront con piscina privada y acceso directo a la playa.</div>
+</div>
+
+<!-- ===== ITINERARIO ===== -->
+<div class="pan" id="itinerario">
+
+  <div class="dy"><img class="di" src="https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=700&q=80" alt="Aeropuerto"><div class="db"><span class="dn">Día 1</span><div class="dd">Lunes 18 mayo</div><h3>Salida desde Madrid</h3><p>Presentaos en <b>Madrid-Barajas T4</b> sobre las <b>07:45</b>.</p><ul><li><b>10:45</b> — EY 102 Madrid → Abu Dhabi (6h55)</li><li><b>21:10</b> — EY 402 Abu Dhabi → Bangkok (6h35). Noche a bordo.</li></ul><div class="tp gold">💡 <b>Tip:</b> Escala corta (1h30). No salgáis de tránsito. Aprovechad el vuelo nocturno para dormir.</div></div></div>
+
+  <div class="dy"><img class="di" src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=700&q=80" alt="Bangkok"><div class="db"><span class="dn">Día 2</span><div class="dd">Martes 19 mayo</div><h3>Llegada a Bangkok</h3><p>Llegada Suvarnabhumi a las <b>06:45</b>. Traslado al <b>Holiday Inn Silom</b>. Día libre.</p><div class="tp navy">📍 <b>Punto de encuentro:</b> Puerta 6, hall de llegadas, Level 2. Cartel ASIAN SPIRIT / DUAOC.</div><div class="tp gold">🌡️ <b>Clima:</b> 30-35°C, lluvias cortas por la tarde, humedad alta.</div></div></div>
+
+  <div class="dy"><img class="di" src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=700&q=80" alt="Wat Pho"><div class="db"><span class="dn">Día 3</span><div class="dd">Miércoles 20 mayo</div><h3>Bangkok: Templos y cultura</h3><span class="rg">🍳 Desayuno incluido</span><ul><li>🛕 <b>Wat Traimit</b> — Buda de 5t de oro macizo</li><li>🛕 <b>Wat Pho</b> — Buda Reclinado de 46m</li><li>💎 <b>Fábrica de piedras preciosas</b></li></ul><div class="tp rose">🤍 <b>Sorpresa luna de miel:</b> Cena para dos en <b>Restaurante Scarlett</b> (Pullman Bangkok G), terraza al aire libre. Fecha confirmada por el restaurante.</div><div class="tp gold">👗 <b>Templos:</b> Hombros y rodillas cubiertos. Descalzarse al entrar.</div></div></div>
+
+  <div class="dy"><img class="di" src="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=700&q=80" alt="Mercado flotante"><div class="db"><span class="dn">Día 4</span><div class="dd">Jueves 21 mayo</div><h3>Mercado del Tren y Mercado Flotante</h3><span class="rg">🍳 Desayuno incluido</span><ul><li>🚂 <b>Mae Klong</b> — Mercado sobre vías del tren. ¡Pasa a centímetros!</li><li>🛶 <b>Damnoen Saduak</b> — Mercado flotante, paseo en barca</li></ul><p>Regreso a Bangkok. Última noche en <b>Holiday Inn Silom</b>.</p><div class="tp gold">💡 <b>Tip:</b> Llevad efectivo en billetes pequeños para compras en los mercados.</div></div></div>
+
+  <div class="dy"><img class="di" src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=700&q=80" alt="Ayutthaya"><div class="db"><span class="dn">Día 5</span><div class="dd">Viernes 22 mayo</div><h3>Bangkok → Ayutthaya → Phitsanulok</h3><span class="rg">🍳🍽️ D + Almuerzo</span><ul><li>🏛️ <b>Ayutthaya</b> — Patrimonio UNESCO, cabeza de Buda en raíces (Wat Mahathat)</li><li>🏛️ <b>Wat Muang</b> — Buda sentado más grande de Tailandia (~100m)</li></ul><p>Alojamiento: <b>Topland Hotel</b>, Phitsanulok.</p><div class="tp gold">💡 <b>Circuito:</b> Distancias largas (3-4h bus) pero paisaje precioso: arrozales, templos, aldeas.</div></div></div>
+
+  <div class="dy"><img class="di" src="https://images.unsplash.com/photo-1600592693929-aff0db20b8dd?w=700&q=80" alt="Sukhothai"><div class="db"><span class="dn">Día 6</span><div class="dd">Sábado 23 mayo</div><h3>Phitsanulok → Sukhothai → Chiang Rai</h3><span class="rg">🍳🍽️ D + Almuerzo</span><ul><li>🙏 <b>Ofrenda matinal a los monjes</b> (opcional)</li><li>🏛️ <b>Sukhothai</b> — Patrimonio UNESCO, templos, lotos, estatuas centenarias</li><li>Cruce por <b>Lampang</b>, vistas al <b>lago Prayao</b></li></ul><p>Alojamiento: <b>The Heritage Chiang Rai</b>.</p><div class="tp gold">📸 <b>Foto tip:</b> Sukhothai con luz de mañana y reflejos en el agua es espectacular.</div></div></div>
+
+  <div class="dy"><img class="di" src="https://images.unsplash.com/photo-1553853738-96c4920b6edb?w=700&q=80" alt="Templo Blanco"><div class="db"><span class="dn">Día 7</span><div class="dd">Domingo 24 mayo</div><h3>Chiang Rai → Chiang Mai</h3><span class="rg">🍳🍽️ D + Almuerzo</span><ul><li>🔺 <b>Triángulo del Oro</b> — Confluencia Tailandia, Laos, Myanmar</li><li>🏛️ <b>Museo del Opio</b></li><li>💙 <b>Templo Azul</b> (Wat Rong Suea Ten)</li><li>🤍 <b>Templo Blanco</b> (Wat Rong Khun) — Obra surrealista en blanco puro</li></ul><p>Alojamiento: <b>The Empress Premier Chiang Mai</b> (2 noches).</p><div class="tp gold">📸 <b>Foto obligada:</b> El Templo Blanco y sus figuras mitológicas.</div></div></div>
+
+  <div class="dy"><img class="di" src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=700&q=80" alt="Elefantes"><div class="db"><span class="dn">Día 8</span><div class="dd">Lunes 25 mayo</div><h3>Chiang Mai: Naturaleza y cultura</h3><span class="rg">🍳🍽️ D + Almuerzo</span><ul><li>🐘 <b>Campamento de elefantes</b> — Safari por la jungla</li><li>👩‍🦰 <b>Tribus del norte</b> — Mujeres Jirafa (Long Neck)</li><li>🌺 <b>Plantación de orquídeas</b></li><li>🛕 <b>Doi Suthep</b> — Templo a 1.076m con vistas panorámicas</li></ul><div class="tp gold">💡 <b>Night Bazaar:</b> Si tenéis energía, el mercado nocturno es genial para artesanía y comida.</div></div></div>
+
+  <div class="dy"><img class="di" src="https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=700&q=80" alt="Phuket"><div class="db"><span class="dn">Día 9</span><div class="dd">Martes 26 mayo</div><h3>Vuelo a Phuket</h3><span class="rg">🍳 Desayuno incluido</span><ul><li><b>13:35</b> — FD 3162 Chiang Mai → Phuket (2h). Llegada <b>15:35</b>.</li><li>Transfer incluido al hotel.</li></ul><p>Llegada al <b>My Beach Resort</b> — <b>Private Pool Beachfront</b> 🏖️</p><div class="tp rose">🌴 <b>Phuket:</b> Playa privada y piscina propia en la habitación. ¡Perfecta para luna de miel!</div></div></div>
+
+  <div class="dy"><img class="di" src="https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?w=700&q=80" alt="Phuket relax"><div class="db"><span class="dn">Días 10–11</span><div class="dd">Miércoles 27 — Jueves 28 mayo</div><h3>Phuket libre</h3><span class="rg">🍳 AD</span><p>Dos días libres para disfrutar:</p><ul><li>🏖️ <b>Nai Harn Beach</b> — De las más bonitas del sur</li><li>🚤 <b>Phi Phi Islands</b> — Excursión con snorkel (no incluida)</li><li>🤿 <b>Snorkel o buceo</b></li><li>💆 <b>Masaje tailandés</b> — Desde 200 bahts (5€)</li><li>🌅 <b>Promthep Cape</b> — Atardeceres legendarios</li><li>🛕 <b>Big Buddha</b> — 45 metros de altura</li></ul><div class="tp gold">🍽️ <b>Gastronomía:</b> Pad thai, massaman curry, mango sticky rice, marisco fresco en Rawai.</div></div></div>
+
+  <div class="dy"><img class="di" src="https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=700&q=80" alt="Regreso"><div class="db"><span class="dn">Día 12</span><div class="dd">Jueves 29 mayo</div><h3>Último día en Phuket + vuelo nocturno</h3><span class="rg">🍳 Desayuno incluido</span><p>Último día libre en Phuket.
+Check-out y día para disfrutar hasta el vuelo nocturno.</p><ul><li><b>21:20</b> — EY 413 Phuket → Abu Dhabi (00:40 del 30/05)</li><li><b>02:25</b> — EY 101 Abu Dhabi → Madrid (<b>08:10</b> del 30/05)</li></ul><p>Llegada Madrid-Barajas T4 a las <b>08:10 del sábado 30 de mayo</b>.</p><div class="tp gold">💡 <b>Tip:</b> Al ser vuelo nocturno, aprovechad el último día completo en Phuket. Preguntad al hotel si os guardan maletas.</div></div></div>
+
+</div>
+
+<!-- ===== INCLUYE ===== -->
+<div class="pan" id="incluye">
+  <div class="st"><span>Qué incluye</span></div>
+  <div class="cd"><ul class="cl">
+    <li><span class="ck">✓</span> Vuelos internacionales Madrid ↔ Bangkok / Phuket ↔ Madrid con Etihad</li>
+    <li><span class="ck">✓</span> Vuelo interno Chiang Mai → Phuket con Thai AirAsia</li>
+    <li><span class="ck">✓</span> Todos los traslados aeropuerto ↔ hotel</li>
+    <li><span class="ck">✓</span> 3 noches Bangkok — Holiday Inn Silom (Desayuno)</li>
+    <li><span class="ck">✓</span> 4 noches circuito Norte (Media Pensión: D + Almuerzo)</li>
+    <li><span class="ck">✓</span> 3 noches Phuket — My Beach Resort, Private Pool Beachfront (AD)</li>
+    <li><span class="ck">✓</span> Entradas a lugares del itinerario</li>
+    <li><span class="ck">✓</span> Guía de habla española durante el circuito</li>
+    <li><span class="ck">✓</span> 🤍 Cena para dos Campaña Novios — Restaurante Scarlett</li>
+    <li><span class="ck">✓</span> Seguro Inclusión Mundo con anulación</li>
+    <li><span class="ck">✓</span> Equipaje facturado en todos los vuelos</li>
+  </ul></div>
+
+  <div class="st"><span>Qué no incluye</span></div>
+  <div class="cd"><ul class="cl">
+    <li><span class="nx">✗</span> Bebidas en las comidas</li>
+    <li><span class="nx">✗</span> Gastos personales</li>
+    <li><span class="nx">✗</span> Propinas a conductores y guías</li>
+    <li><span class="nx">✗</span> Excursiones opcionales (Gran Palacio, Phi Phi Islands…)</li>
+    <li><span class="nx">✗</span> Comidas y cenas no especificadas</li>
+  </ul></div>
+</div>
+
+<!-- ===== INFO PRÁCTICA ===== -->
+<div class="pan" id="practica">
+
+  <div class="ps"><h4>📄 Documentación</h4><p><b>Pasaporte</b> con validez mínima <b>6 meses</b> (hasta nov. 2026). <b>No se necesita visado</b> para estancias hasta 30 días.</p></div>
+  <div class="tp alert" style="margin-bottom:18px">⚠️ <b>TDAC OBLIGATORIA</b> — Rellenar <b>3 días antes</b> de llegar en <a href="http://tdac.immigration.go.th" target="_blank">tdac.immigration.go.th</a>. Necesitáis: pasaporte, datos de vuelo/alojamiento, declaración sanitaria.</div>
+
+  <div class="ps"><h4>💰 Dinero y pagos</h4><ul>
+    <li><b>Moneda:</b> Baht (THB). 1€ ≈ 37-39 bahts</li>
+    <li><b>Cambio:</b> Mejor en Tailandia (SuperRich o aeropuerto)</li>
+    <li><b>Tarjetas:</b> Visa/MC en hoteles y malls. Efectivo para mercados</li>
+    <li><b>Cajeros:</b> Comisión 220 bahts (~6€). Sacad cantidades grandes</li>
+    <li><b>Precios:</b> Comida callejera 1-2€, restaurante 5-13€, masaje 5-10€</li>
+  </ul></div>
+
+  <div class="ps"><h4>🌡️ Clima (mayo)</h4><ul>
+    <li>28-35°C. Chaparrones cortos por la tarde</li>
+    <li>Humedad 70-80%. Bebed mucha agua</li>
+    <li>Norte: algo más fresco por la noche (24-28°C)</li>
+  </ul></div>
+
+  <div class="ps"><h4>👕 Maleta</h4><ul>
+    <li>Ropa ligera, transpirable, secado rápido</li>
+    <li>Camiseta manga larga / pañuelo para templos</li>
+    <li>Pantalón largo fino (templos y noches)</li>
+    <li>Calzado cómodo + chanclas</li>
+    <li>Protector solar 50+, repelente DEET</li>
+    <li>Gafas de sol, gorra/sombrero</li>
+    <li>Paraguas o chubasquero fino</li>
+    <li>2 bañadores (tardan en secar)</li>
+    <li>Botiquín: antidiarreico, paracetamol, tiritas, suero oral</li>
+    <li>Adaptador enchufe universal</li>
+    <li>Candado para maletas</li>
+  </ul></div>
+<div class="ps"><h4>🏥 Salud</h4><ul>
+    <li><b>Vacunas:</b> No obligatorias. Recomendables: hepatitis A/B, tétanos</li>
+    <li><b>Mosquitos:</b> Repelente al amanecer/atardecer</li>
+    <li><b>Agua:</b> Siempre embotellada. Cuidado con hielo en puestos pequeños</li>
+    <li><b>Seguro:</b> Póliza ARAGES1965799 activa. Llevad el nº a mano</li>
+  </ul></div>
+
+  <div class="ps"><h4>🙏 Cultura y costumbres</h4><ul>
+    <li><b>Rey sagrado:</b> No comentarios negativos sobre monarquía (delito)</li>
+    <li><b>Pies impuros:</b> No señalar ni tocar nada con los pies</li>
+    <li><b>Cabeza sagrada:</b> No tocar la cabeza de nadie</li>
+    <li><b>Wai:</b> Palmas juntas al pecho e inclinad la cabeza</li>
+    <li><b>Templos:</b> Descalzarse, hombros y rodillas cubiertos</li>
+    <li><b>Propinas:</b> 20-50 bahts restaurantes, 100 bahts/día al guía</li>
+    <li><b>Regateo:</b> Normal en mercados. Empezad al 50-60%</li>
+  </ul></div>
+
+  <div class="ps"><h4>📱 Conectividad</h4><ul>
+    <li><b>SIM local:</b> AIS/TrueMove/DTAC en aeropuerto (300-600 bahts)</li>
+    <li>Apps útiles: <b>Grab</b> (taxi), <b>Google Maps</b>, <b>Google Translate</b> (paquete thai offline)</li>
+  </ul></div>
+
+  <div class="ps"><h4>⚠️ Seguridad</h4><ul>
+    <li>País <b>muy seguro</b>. Cuidado con carteristas</li>
+    <li><b>Estafas:</b> Tuk-tuks a tiendas, taxis sin taxímetro, "templo cerrado hoy"</li>
+    <li>Copia pasaporte; original en caja fuerte</li>
+    <li>Cruzar calles en Bangkok: con decisión</li>
+  </ul></div>
+</div>
+
+<!-- ===== CONTACTOS ===== -->
+<div class="pan" id="contactos">
+  <div class="st"><span>Contactos útiles</span></div>
+  <div class="cc"><div class="ci">📱</div><div><div class="cl2">Receptivo 24h destino (WhatsApp)</div><div class="cv"><a href="https://wa.me/66889247971">+66 88 924 7971</a></div></div></div>
+  <div class="cc"><div class="ci">🆘</div><div><div class="cl2">Emergencias DUAOC (España)</div><div class="cv"><a href="tel:+34695110244">+34 695 110 244</a></div></div></div>
+  <div class="cc"><div class="ci">🏢</div><div><div class="cl2">Safe Tour (vuestra agencia)</div><div class="cv"><a href="tel:+34953890650">+34 953 890 650</a></div></div></div>
+  <div class="cc"><div class="ci">🚔</div><div><div class="cl2">Emergencias Tailandia</div><div class="cv">191 (policía) · 1155 (turística)</div></div></div>
+  <div class="cc"><div class="ci">🚑</div><div><div class="cl2">Ambulancia</div><div class="cv">1669</div></div></div>
+  <div class="cc"><div class="ci">🇪🇸</div><div><div class="cl2">Embajada de España en Bangkok</div><div class="cv">+66 2 661 8284</div></div></div>
+  <div class="cc"><div class="ci">🍽️</div><div><div class="cl2">Restaurante Scarlett (Bangkok)</div><div class="cv"><a href="tel:+66968607990">+66 96 860 7990</a></div></div></div>
+
+  <div class="st"><span>Localizadores</span></div>
+  <div class="ls">
+    <div class="lc"><div class="ll">DUAOC</div><div class="lv">319703</div></div>
+    <div class="lc"><div class="ll">Etihad</div><div class="lv">F8S0PB</div></div>
+    <div class="lc"><div class="ll">Check-in</div><div class="lv">YOBKLK</div></div>
+    <div class="lc"><div class="ll">AirAsia</div><div class="lv">VG1DJA</div></div>
+    <div class="lc"><div class="ll">Parking P4</div><div class="lv">UTCO8</div></div>
+    <div class="lc"><div class="ll">Seguro</div><div class="lv" style="font-size:.7rem">ARAGES1965799</div></div>
+  </div>
+
+  <div class="st"><span>Parking Madrid-Barajas</span></div>
+  <div class="cd">
+    <table class="dtable">
+      <tr><td class="lbl">Parking</td><td class="val">AENA Parking General P4 (interior)</td></tr>
+      <tr><td class="lbl">Localizador</td><td class="val strong">IC0000420939 · Aena: UTCO8</td></tr>
+<tr><td class="lbl">Entrada</td><td class="val">18/05/2026 · 05:00 → T4</td></tr>
+      <tr><td class="lbl">Salida</td><td class="val">30/05/2026 · 10:00 → T4</td></tr>
+      <tr><td class="lbl">Coste</td><td class="val">93,18€ (prepagado)</td></tr>
+      <tr><td class="lbl">Vehículo</td><td class="val">Opel Astra azul · 5978HVP</td></tr>
+      <tr><td class="lbl">Teléfono</td><td class="val">91 321 10 00</td></tr>
+    </table>
+  </div>
+  <div class="tp gold">🅿️ <b>Instrucciones:</b> Recoged ticket en la barrera. Verificad que tiene el localizador impreso. A la vuelta, validadlo en el cajero automático. Usad obligatoriamente P4.</div>
+</div>
+
+<footer class="ftr">
+  <img src="https://safetour.es/images/logo-safetour-big.png" alt="Safe Tour" onerror="this.src='https://safetour.es/images/logo.png'">
+  <div class="fp">¡Disfrutad de vuestra luna de miel!</div>
+  <p>+34 953 890 650 · info@safetour.es<br>safetour.es · Andújar (Jaén)</p>
+  <span class="heart">🇹🇭 🤍</span>
+</footer>
+
+<button class="btt" id="btt" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function sw(btn,id){document.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));document.querySelectorAll('.pan').forEach(p=>p.classList.remove('on'));btn.classList.add('on');document.getElementById(id).classList.add('on');window.scrollTo({top:document.querySelector('.tw').offsetTop-70,behavior:'smooth'})}
+window.addEventListener('scroll',()=>{document.getElementById('btt').classList.toggle('vis',scrollY>500)})
+</script>
+</body>
+</html>

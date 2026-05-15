@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>París + Disneyland + Cracovia + Roma · Blanca Ruiz Diaz · SAFE TOUR Magazine</title>
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/n8n-01sft/image/upload/v1772971640/safe_tour_logo_transparente_epuwlg.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#111827;--blue:#60A5FA;--gold:#C9A961;--sand:#030712;--white:#FFF;--ink:#E5E7EB;--surface:#1F2937;--muted:#9CA3AF;--success:#34D399;--danger:#F87171;--serif:'Playfair Display',serif;--sans:'Inter',sans-serif;--mono:'JetBrains Mono',monospace;--shadow:0 4px 20px rgba(0,0,0,.3)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);color:var(--ink);background:var(--sand);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);color:var(--white);letter-spacing:-.01em}
+h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;font-weight:700}
+h2{font-size:clamp(1.5rem,3.5vw,2.25rem);margin-bottom:1rem}
+h3{font-size:1.25rem;margin:1.5rem 0 .75rem}
+p{margin-bottom:1rem}
+a{color:var(--blue);text-decoration:none;transition:border-color .2s}
+.personal{color:var(--gold);font-weight:600}
+.container{max-width:1100px;margin:0 auto;padding:0 1.25rem}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:2px solid var(--gold);box-shadow:var(--shadow)}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1.25rem;max-width:1100px;margin:0 auto}
+.brand{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--gold);display:flex;align-items:center;gap:.65rem}
+.brand img{height:36px}
+.brand small{display:block;font-family:var(--sans);font-size:.7rem;color:var(--white);opacity:.85;margin-top:2px}
+.nav{display:flex;gap:.25rem;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav button{background:0;border:0;color:var(--white);opacity:.7;padding:.6rem 1rem;font-family:var(--sans);font-size:.85rem;font-weight:500;cursor:pointer;border-radius:6px;white-space:nowrap;transition:all .2s}
+.nav button:hover{opacity:1;background:rgba(255,255,255,.08)}
+.nav button.active{opacity:1;background:var(--gold);color:var(--navy);font-weight:600}
+.hamburger{display:none;background:0;border:0;color:var(--white);font-size:1.5rem;cursor:pointer}
+
+/* MAIN */
+main{min-height:80vh;padding:2.5rem 0 4rem}
+section[data-tab]{display:none;animation:fadeIn .35s ease}
+section[data-tab].active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* HERO */
+.hero{position:relative;border-radius:12px;overflow:hidden;margin-bottom:2rem;min-height:380px;display:flex;align-items:flex-end;background:var(--navy)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5}
+.hero-content{position:relative;padding:2.5rem;color:var(--white);z-index:2;width:100%}
+.hero-kicker{display:inline-block;background:var(--gold);color:var(--navy);font-family:var(--mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;padding:.35rem .75rem;border-radius:3px;margin-bottom:1rem;font-weight:700}
+
+/* CARDS & GRID */
+.card{background:var(--surface);border-radius:10px;padding:1.5rem;box-shadow:var(--shadow);margin-bottom:1.25rem}
+.card-title{color:var(--gold);font-weight:600;margin-bottom:.5rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em}
+.card-value{font-size:1.1rem;font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin:1.5rem 0}
+
+/* CALLOUT */
+.callout{background:var(--sand);border-left:4px solid var(--gold);padding:1rem 1.25rem;margin:1.25rem 0;border-radius:0 6px 6px 0}
+.callout.success{border-color:var(--success);background:rgba(52,211,153,.12)}
+.callout.warn{border-color:var(--danger);background:rgba(248,113,113,.12)}
+.callout h4{margin-bottom:.5rem;font-family:var(--serif);color:var(--white)}
+
+/* PULLQUOTE */
+.pullquote{font-family:var(--serif);font-size:1.35rem;line-height:1.5;color:var(--gold);border-left:3px solid var(--gold);padding:1rem 1.25rem;margin:2rem 0;font-style:italic;background:rgba(201,169,97,.05);border-radius:0 8px 8px 0}
+
+/* TABLE */
+table.st{width:100%;border-collapse:collapse;margin:1rem 0;background:var(--surface);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
+.st th,.st td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid #374151}
+.st th{background:var(--navy);color:var(--white);font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+.st tr:last-child td{border-bottom:0}
+.st tr.hl{background:rgba(201,169,97,.12)}
+.tw{overflow-x:auto;margin:1rem 0;border-radius:8px}
+
+/* SUBNAV */
+.subnav{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #374151}
+.subnav button{background:var(--surface);border:1px solid #374151;color:var(--ink);padding:.5rem 1rem;font-family:var(--sans);font-size:.85rem;font-weight:500;cursor:pointer;border-radius:20px;transition:all .2s}
+.subnav button:hover{border-color:var(--blue);color:var(--blue)}
+.subnav button.active{background:var(--gold);color:#111;border-color:var(--gold)}
+.subtab{display:none;animation:fadeIn .3s ease}
+.subtab.active{display:block}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:2rem;margin:1.5rem 0}
+.timeline::before{content:'';position:absolute;left:.75rem;top:0;bottom:0;width:2px;background:var(--gold)}
+.tl-item{position:relative;margin-bottom:1.5rem}
+.tl-item::before{content:'';position:absolute;left:-1.6rem;top:.4rem;width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid var(--sand)}
+.tl-item h4{font-family:var(--sans);font-size:.9rem;font-weight:600;color:var(--gold)}
+.tl-item p{font-size:.9rem;margin-bottom:0}
+
+/* PROS/CONS */
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
+@media(max-width:600px){.pc{grid-template-columns:1fr}}
+.pc>div{background:var(--surface);border-radius:8px;padding:1.25rem;box-shadow:var(--shadow)}
+.pc .p{border-left:4px solid var(--success)}
+.pc .c{border-left:4px solid #F59E0B}
+.pc h4{margin-bottom:.75rem;font-size:.9rem}
+.pc ul{list-style:none;padding:0}
+.pc li{padding:.3rem 0 .3rem 1.5rem;font-size:.9rem;position:relative}
+.pc .p li::before{content:'\2705';position:absolute;left:0}
+.pc .c li::before{content:'\26A0\FE0F';position:absolute;left:0}
+
+/* ACCORDION */
+.acc{margin-bottom:.75rem}
+.acc summary{cursor:pointer;font-weight:600;padding:1rem 1.25rem;background:var(--surface);border-radius:8px;box-shadow:var(--shadow);list-style:none;display:flex;align-items:center;gap:.5rem;transition:background .2s}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::before{content:'\25B6';font-size:.7rem;transition:transform .2s;color:var(--gold)}
+.acc[open] summary::before{transform:rotate(90deg)}
+.acc[open] summary{border-radius:8px 8px 0 0;background:var(--gold);color:#111}
+.acc-body{background:var(--surface);padding:1.25rem;border-radius:0 0 8px 8px;box-shadow:var(--shadow)}
+
+/* TAG */
+.tag{display:inline-block;background:var(--navy);color:var(--white);font-size:.7rem;font-weight:600;padding:.2rem .6rem;border-radius:3px;text-transform:uppercase;letter-spacing:.05em}
+.tag.green{background:var(--success);color:#111}
+.tag.gold{background:var(--gold);color:var(--navy)}
+
+/* CHECKLIST */
+.checklist{list-style:none;padding:0;margin:1rem 0}
+.checklist li{padding:.5rem 0 .5rem 1.75rem;position:relative;font-size:.95rem;border-bottom:1px solid rgba(55,65,81,.5)}
+.checklist li:last-child{border-bottom:0}
+.checklist li.y::before{content:'\2705';position:absolute;left:0}
+.checklist li.n::before{content:'\274C';position:absolute;left:0}
+
+/* DECIDE */
+.decide-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin:1.5rem 0}
+.dc{background:var(--surface);border:2px solid #374151;border-radius:12px;padding:1.5rem;text-align:center;transition:all .25s;display:flex;flex-direction:column;align-items:center;cursor:pointer}
+.dc:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 10px 25px rgba(0,0,0,.3)}
+.dc .icon{font-size:2.25rem;margin-bottom:.65rem}
+.dc h4{font-family:var(--serif);color:var(--white);margin-bottom:.5rem;font-size:1.1rem}
+.dc p{font-size:.85rem;color:var(--muted);margin-bottom:1rem;flex:1}
+.dc .btn{display:inline-block;width:100%;padding:.7rem 1rem;border-radius:8px;font-family:var(--sans);font-size:.9rem;font-weight:600;cursor:pointer;border:0;text-decoration:none;transition:all .2s}
+.dc.confirm .btn{background:var(--gold);color:var(--navy)}
+.dc.wa .btn{background:#25D366;color:#FFF}
+.dc.think .btn{background:transparent;color:var(--blue);border:2px solid var(--blue)}
+
+/* CONTACT */
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid #374151}
+.contact-card{background:var(--surface);border-radius:8px;padding:1rem;text-align:center;font-size:.85rem;border:1px solid #374151;transition:all .2s}
+.contact-card:hover{border-color:var(--gold)}
+.contact-card .icon{font-size:1.5rem;margin-bottom:.5rem}
+
+/* FOOTER */
+footer{background:var(--navy);padding:2rem 0;text-align:center;color:var(--muted);font-size:.8rem;border-top:2px solid var(--gold)}
+footer img{height:40px;margin-bottom:.75rem}
+
+/* FAB */
+.fab{position:fixed;bottom:1.5rem;right:1.5rem;width:56px;height:56px;border-radius:50%;background:#25D366;color:#FFF;font-size:1.75rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.4);cursor:pointer;z-index:200;transition:transform .2s;text-decoration:none;border:0}
+.fab:hover{transform:scale(1.1)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--navy);padding:1rem;border-top:1px solid #374151;gap:.25rem}
+  .nav.open{display:flex}
+  .hamburger{display:block}
+  .hero{min-height:280px}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="nav-wrap">
+    <div class="brand">
+      <img src="https://res.cloudinary.com/n8n-01sft/image/upload/v1772971640/safe_tour_logo_transparente_epuwlg.png" alt="SAFE TOUR">
+      <div>SAFE TOUR<small>Magazine</small></div>
+    </div>
+    <button class="hamburger" onclick="document.querySelector('.nav').classList.toggle('open')" aria-label="Menú">☰</button>
+    <nav class="nav" id="mainNav">
+      <button class="active" onclick="showTab('portada')">Portada</button>
+      <button onclick="showTab('viaje')">Tu viaje</button>
+      <button onclick="showTab('servicios')">Servicios</button>
+      <button onclick="showTab('precios')">Precios</button>
+      <button onclick="showTab('opinion')">Opiniones</button>
+      <button onclick="showTab('opcionales')">Opcionales</button>
+      <button onclick="showTab('condiciones')">Condiciones</button>
+      <button onclick="showTab('decide')">Decide</button>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+<!-- ═══════════ 1. PORTADA ═══════════ -->
+<section data-tab="portada" class="active">
+  <div class="hero">
+    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1400&q=80" alt="París">
+    <div class="hero-content">
+      <span class="hero-kicker">Propuesta Nº 883 · Luna de Miel</span>
+      <h1>París · Disneyland · Cracovia · Roma</h1>
+      <p style="font-size:1.1rem;margin-top:.75rem;opacity:.9">Un viaje diseñado en exclusiva para <span class="personal">Blanca Ruiz Diaz</span></p>
+      <p style="font-size:.85rem;opacity:.75;margin:0">12 – 25 octubre 2026 · 13 noches · 4 destinos · 2 viajeros</p>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card"><div class="card-title">✈️ Destinos</div><div class="card-value">París · Disneyland · Cracovia · Roma</div></div>
+    <div class="card"><div class="card-title">📅 Fechas</div><div class="card-value">12 – 25 oct 2026</div></div>
+    <div class="card"><div class="card-title">🌙 Noches</div><div class="card-value">13 noches</div></div>
+    <div class="card"><div class="card-title">👥 Viajeros</div><div class="card-value">2 adultos</div></div>
+    <div class="card"><div class="card-title">💰 Desde</div><div class="card-value">2.801,10 €/persona</div></div>
+    <div class="card"><div class="card-title">💍 Tipo</div><div class="card-value">Luna de Miel + Paquete</div></div>
+  </div>
+
+  <div class="pullquote">Cuatro ciudades, trece noches y una historia que empieza en la torre más famosa del mundo y termina brindando con un Aperol frente al Coliseo.</div>
+</section>
+
+<!-- ═══════════ 2. TU VIAJE ═══════════ -->
+<section data-tab="viaje">
+  <h2>🗺️ Tu itinerario día a día</h2>
+  <div class="timeline">
+    <div class="tl-item"><h4>Día 1 · Lun 12 oct — Madrid → París</h4><p>Vuelo Iberia IB3404 15:45→17:55. Traslado privado CDG → Hotel Crayon. Check-in y paseo por Les Halles.</p></div>
+    <div class="tl-item"><h4>Día 2 · Mar 13 oct — París</h4><p>Día libre en la Ciudad de la Luz. Sube a la Torre Eiffel, pasea por Montmartre o navega el Sena.</p></div>
+    <div class="tl-item"><h4>Día 3 · Mié 14 oct — París</h4><p>Visita Versalles o el Louvre. Tarde libre para el Barrio Latino y Notre-Dame.</p></div>
+    <div class="tl-item"><h4>Día 4 · Jue 15 oct — París → Disneyland</h4><p>Check-out Hotel Crayon. Traslado privado a Disneyland Paris. Check-in Disney Hotel Cheyenne. Parques hasta cierre.</p></div>
+    <div class="tl-item"><h4>Día 5 · Vie 16 oct — Disneyland Paris</h4><p>Segundo día de magia: Walt Disney Studios y atracciones. Media pensión Plus incluida.</p></div>
+    <div class="tl-item"><h4>Día 6 · Sáb 17 oct — Disneyland → Cracovia</h4><p>Traslado privado Disneyland → ORY. Vuelo LOT LO336 20:35→22:50. Traslado privado → Aparthotel Inspire Miodova.</p></div>
+    <div class="tl-item"><h4>Día 7 · Dom 18 oct — Cracovia</h4><p>Free tour por el casco antiguo: Plaza del Mercado, Basílica de Santa María, Barbacana.</p></div>
+    <div class="tl-item"><h4>Día 8 · Lun 19 oct — Cracovia</h4><p>Excursión a Auschwitz-Birkenau (opcional). Tarde en el barrio de Kazimierz.</p></div>
+    <div class="tl-item"><h4>Día 9 · Mar 20 oct — Cracovia</h4><p>Minas de Sal de Wieliczka (opcional). Tarde libre y Castillo de Wawel.</p></div>
+    <div class="tl-item"><h4>Día 10 · Mié 21 oct — Cracovia → Roma</h4><p>Día libre por la mañana. Traslado → KRK. Vuelo Wizz Air W6 1476 18:40→20:45. Traslado privado → Hotel Relais Dei Papi.</p></div>
+    <div class="tl-item"><h4>Día 11 · Jue 22 oct — Roma</h4><p>Coliseo, Foro Romano y Palatino. Tarde en Trastevere. Alojamiento y desayuno.</p></div>
+    <div class="tl-item"><h4>Día 12 · Vie 23 oct — Roma</h4><p>Vaticano: Museos Vaticanos y Capilla Sixtina. Basílica de San Pedro. Piazza Navona.</p></div>
+    <div class="tl-item"><h4>Día 13 · Sáb 24 oct — Roma</h4><p>Fontana di Trevi, Panteón, Piazza di Spagna. Último atardecer romano.</p></div>
+    <div class="tl-item"><h4>Día 14 · Dom 25 oct — Roma → Madrid</h4><p>Desayuno. Traslado privado → FCO. Vuelo Iberia IB3247 14:45→17:20. Llegada a Madrid.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ 3. SERVICIOS ═══════════ -->
+<section data-tab="servicios">
+  <h2>🛎️ Servicios incluidos</h2>
+  <div class="subnav" id="svcNav">
+    <button class="active" onclick="showSub('svcNav','svc','vuelos')">✈️ Vuelos</button>
+    <button onclick="showSub('svcNav','svc','hoteles')">🏨 Hoteles</button>
+    <button onclick="showSub('svcNav','svc','traslados')">🚐 Traslados</button>
+  </div>
+
+  <!-- VUELOS -->
+  <div class="subtab svc active" data-sub="vuelos">
+    <h3>Vuelos incluidos</h3>
+    <div class="tw"><table class="st">
+      <tr><th>Fecha</th><th>Ruta</th><th>Vuelo</th><th>Horario</th><th>Duración</th></tr>
+      <tr><td>12 oct</td><td>Madrid → París CDG</td><td>Iberia IB3404</td><td>15:45 → 17:55</td><td>2h 10min</td></tr>
+      <tr><td>17 oct</td><td>París ORY → Cracovia KRK</td><td>LOT LO336</td><td>20:35 → 22:50</td><td>2h 15min</td></tr>
+      <tr><td>21 oct</td><td>Cracovia KRK → Roma FCO</td><td>Wizz Air W6 1476</td><td>18:40 → 20:45</td><td>2h 05min</td></tr>
+      <tr><td>25 oct</td><td>Roma FCO → Madrid</td><td>Iberia IB3247</td><td>14:45 → 17:20</td><td>2h 35min</td></tr>
+    </table></div>
+    <div class="callout"><h4>🧳 Equipaje incluido en todos los vuelos</h4><p>Todos los vuelos incluyen <strong>1 bolso/mochila pequeño</strong> (40 × 30 × 20 cm, máx. 10 kg) que debe caber bajo el asiento delantero.</p><p><strong>No se incluye en ninguno de los vuelos:</strong> maleta de cabina/trolley, maleta facturada ni selección de asiento.</p></div>
+    <div class="callout warn" style="border-color:#F87171">
+      <h4>⚠️ MUY IMPORTANTE — Vuelo Wizz Air (Cracovia → Roma, 21 oct)</h4>
+      <p>Wizz Air opera con una política de equipaje <strong>muy restrictiva</strong> en tarifa Basic. Solo incluye una mochila pequeña (40 × 30 × 20 cm). <strong>No incluye maleta de cabina ni equipaje facturado.</strong></p>
+      <table class="st" style="margin-top:.75rem">
+        <tr><th>Extra</th><th>Qué incluye</th><th>Precio orientativo (por persona)</th></tr>
+        <tr><td><strong>WIZZ Priority</strong></td><td>Maleta cabina/trolley (55 × 40 × 23 cm, 10 kg) + embarque prioritario + check-in prioritario</td><td><strong>10 € – 60 €</strong> (online)<br><strong>65 € – 75 €</strong> (aeropuerto)</td></tr>
+        <tr><td><strong>Maleta facturada</strong></td><td>Equipaje en bodega (10, 20, 26 o 32 kg)</td><td>Variable según peso y fecha</td></tr>
+        <tr><td><strong>Selección de asiento</strong></td><td>Elegir asiento concreto</td><td>Variable según tipo de asiento</td></tr>
+      </table>
+      <p style="margin-top:.75rem">⚠️ <strong>Si necesitan llevar maleta de cabina tipo trolley</strong>, es imprescindible contratar <strong>WIZZ Priority</strong> (no se permite trolley a bordo sin este servicio). Recomendamos contratarlo online durante la reserva para obtener el mejor precio.</p>
+      <p>⚠️ Los vuelos con <strong>LOT Polish Airlines</strong> e <strong>Iberia</strong> en tarifas básicas tampoco incluyen equipaje facturado. Consultar suplementos.</p>
+    </div>
+  </div>
+
+  <!-- HOTELES -->
+  <div class="subtab svc" data-sub="hoteles">
+    <h3>Alojamientos seleccionados</h3>
+
+    <div class="card">
+      <div class="card-title">🇫🇷 París · 3 noches (12–15 oct)</div>
+      <h3 style="margin-top:0">Hotel Crayon ⭐⭐⭐⭐ <span class="tag green">87% Booking</span></h3>
+      <p>📍 25 Rue Du Bouloi, París 1er · Régimen: Solo Alojamiento</p>
+      <p>Boutique artístico en pleno corazón de París, a pasos del Louvre y Les Halles. Habitaciones con decoración original inspirada en el mundo del arte. Desayuno opcional de alta calidad.</p>
+    </div>
+
+    <div class="card" style="border:2px solid var(--gold);padding:2rem">
+      <div class="card-title">🏰 Disneyland Paris · 2 noches (15–17 oct)</div>
+      <h3 style="margin-top:0">Disney Hotel Cheyenne <span class="tag gold">Hotel Disney Oficial</span></h3>
+      <p>📍 Rue Du Bœuf Agile, Disneyland Paris Resort</p>
+      <p>Hotel temático del Lejano Oeste dentro del complejo Disney, ambientado con Woody de Toy Story. Habitación Estándar Woody's Roundup (1 cama doble + 1 cama nido). A 20 min a pie de los parques (autobús gratuito disponible).</p>
+
+      <div style="background:rgba(52,211,153,.15);border:2px solid var(--success);border-radius:8px;padding:1.25rem;margin:1rem 0">
+        <h4 style="color:var(--success);margin-bottom:.5rem">🎢 INCLUIDO — Entradas a los 2 Parques Disney</h4>
+        <p style="margin-bottom:.25rem">Entrada a <strong>Disneyland® Park</strong> y <strong>Disney Adventure World</strong> (Walt Disney Studios) por persona y día, desde el día de llegada (15 oct) hasta el día de salida (17 oct) incluidos.</p>
+        <p>Además, acceso a <strong>Extra Magic Time</strong>: entrada anticipada a los parques antes de la apertura al público general.</p>
+      </div>
+
+      <div style="background:rgba(96,165,250,.12);border:2px solid var(--blue);border-radius:8px;padding:1.25rem;margin:1rem 0">
+        <h4 style="color:var(--blue);margin-bottom:.75rem">🍽️ INCLUIDO — Media Pensión Plus (Half Board Plus)</h4>
+        <p>El régimen de <strong>Media Pensión Plus</strong> incluye por persona y por cada noche de estancia:</p>
+        <p><strong>☀️ Desayuno:</strong> Buffet libre en el <strong>Chuck Wagon Café</strong> (restaurante propio del Hotel Cheyenne). Buffet completo tipo all-you-can-eat con amplia variedad: platos calientes y fríos, bollería, fruta, zumos, café, etc.</p>
+        <p><strong>🌙 1 comida (almuerzo o cena) a elegir</strong> en cualquiera de los <strong>más de 30 restaurantes</strong> disponibles con el plan Plus, repartidos entre los Parques Disney, Disney Village y todos los Hoteles Disney:</p>
+        <ul style="list-style:none;padding:0;margin:.5rem 0">
+          <li style="padding:.3rem 0">• <strong>Restaurantes de servicio a mesa:</strong> entrante + plato principal + postre + bebida sin alcohol</li>
+          <li style="padding:.3rem 0">• <strong>Restaurantes buffet libre:</strong> buffet completo + bebida sin alcohol</li>
+          <li style="padding:.3rem 0">• <strong>Restaurantes de servicio rápido:</strong> plato principal + acompañamiento + postre + bebida sin alcohol</li>
+        </ul>
+        <p style="margin-top:.75rem"><strong>Restaurantes destacados donde usar los vouchers:</strong></p>
+        <ul style="list-style:none;padding:0;margin:.25rem 0">
+          <li style="padding:.25rem 0">🤠 <strong>Chuck Wagon Café</strong> (Hotel Cheyenne) — Buffet Tex-Mex, su propio hotel</li>
+          <li style="padding:.25rem 0">🦸 <strong>Downtown Restaurant</strong> (Hotel New York - Art of Marvel) — Buffet americano, italiano y asiático</li>
+          <li style="padding:.25rem 0">⛵ <strong>Cape Cod</strong> (Newport Bay Club) — Buffet de mariscos y pescados</li>
+          <li style="padding:.25rem 0">🐀 <strong>Bistrot Chez Rémy</strong> (Disney Adventure World) — Cocina francesa de Ratatouille</li>
+          <li style="padding:.25rem 0">🏴‍☠️ <strong>Captain Jack's</strong> (Disneyland Park) — Cocina caribeña en Piratas del Caribe</li>
+          <li style="padding:.25rem 0">🌹 <strong>Plaza Gardens</strong> (Disneyland Park) — Buffet francés</li>
+          <li style="padding:.25rem 0">🤖 <strong>PYM Kitchen</strong> (Avengers Campus) — Cocina americana Marvel</li>
+          <li style="padding:.25rem 0">🥩 <strong>The Steakhouse</strong> (Disney Village) — Carnes a la brasa</li>
+          <li style="padding:.25rem 0">… y muchos más hasta un total de +30 restaurantes</li>
+        </ul>
+        <p style="margin-top:.75rem;font-size:.85rem;color:var(--muted)">💡 <em>Recomendación:</em> Reservar los restaurantes con antelación a través de la app oficial de Disneyland Paris, ya que la disponibilidad puede ser limitada en los restaurantes más populares.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🇵🇱 Cracovia · 4 noches (17–21 oct)</div>
+      <h3 style="margin-top:0">Aparthotel Inspire Miodova ⭐⭐⭐⭐ <span class="tag green">88% Booking</span></h3>
+      <p>📍 Miodowa 31, Cracovia · Régimen: Solo Alojamiento</p>
+      <p>Apartamentos amplios y modernos con cocina equipada, a 200 m de la Plaza del Mercado. Ideal para sentirse como en casa con la libertad de un apartamento de diseño en el centro histórico.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🇮🇹 Roma · 4 noches (21–25 oct)</div>
+      <h3 style="margin-top:0">Hotel Relais Dei Papi ⭐⭐⭐ <span class="tag green">82% Booking</span></h3>
+      <p>📍 Via dei Gracchi 161, Roma (Prati) · Régimen: Alojamiento y Desayuno</p>
+      <p>Hotel acogedor en el elegante barrio de Prati, a un paseo del Vaticano. Desayuno buffet abundante tipo italiano. Personal atento y ubicación perfecta para recorrer Roma a pie.</p>
+    </div>
+  </div>
+
+  <!-- TRASLADOS -->
+  <div class="subtab svc" data-sub="traslados">
+    <h3>Traslados privados</h3>
+    <div class="tw"><table class="st">
+      <tr><th>#</th><th>Recorrido</th><th>Tipo</th></tr>
+      <tr><td>1</td><td>Aeropuerto CDG → Hotel Crayon (París)</td><td>Privado</td></tr>
+      <tr><td>2</td><td>Hotel Crayon → Disneyland Paris</td><td>Privado</td></tr>
+      <tr><td>3</td><td>Disneyland Paris → Aeropuerto ORY</td><td>Privado</td></tr>
+      <tr><td>4</td><td>Aeropuerto KRK → Aparthotel Inspire Miodova</td><td>Privado</td></tr>
+      <tr><td>5</td><td>Aparthotel Inspire Miodova → Aeropuerto KRK</td><td>Privado</td></tr>
+      <tr><td>6</td><td>Aeropuerto FCO → Hotel Relais Dei Papi</td><td>Privado</td></tr>
+      <tr><td>7</td><td>Hotel Relais Dei Papi → Aeropuerto FCO</td><td>Privado</td></tr>
+    </table></div>
+    <div class="callout success"><h4>✅ Todos privados</h4><p>Todos los traslados son en vehículo privado, sin compartir con otros viajeros. Conductor esperando con cartel a la llegada.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ 4. PRECIOS ═══════════ -->
+<section data-tab="precios">
+  <h2>💰 Resumen de precios</h2>
+  <div class="tw"><table class="st">
+    <tr><th>Concepto</th><th>Total (2 pax)</th><th>Por persona</th></tr>
+    <tr><td>Paquete principal: vuelos + hoteles (Crayon + Inspire Miodova + Relais Dei Papi) + 7 traslados privados</td><td>3.771,00 €</td><td>1.885,50 €</td></tr>
+    <tr><td>Disney Hotel Cheyenne 2N Media Pensión Plus</td><td>1.584,20 €</td><td>792,10 €</td></tr>
+    <tr><td>Traslado privado París → Disneyland (ida)</td><td>107,00 €</td><td>53,50 €</td></tr>
+    <tr><td>Seguro I4T Base con cancelación (16 días, Europa)</td><td>140,00 €</td><td>70,00 €</td></tr>
+    <tr class="hl" style="font-weight:700;font-size:1.05rem"><td>TOTAL</td><td style="color:var(--gold)">5.602,20 €</td><td style="color:var(--gold)">2.801,10 €</td></tr>
+  </table></div>
+
+  <div class="callout"><h4>📌 El precio incluye</h4>
+    <ul class="checklist">
+      <li class="y">4 vuelos internacionales (MAD↔CDG, ORY→KRK, KRK→FCO, FCO→MAD)</li>
+      <li class="y">3 noches Hotel Crayon ⭐⭐⭐⭐ París — Solo Alojamiento</li>
+      <li class="y">2 noches Disney Hotel Cheyenne — Media Pensión Plus (desayuno buffet + 1 comida en +30 restaurantes Disney)</li>
+      <li class="y">Entradas a los 2 Parques Disney (Disneyland® Park + Disney Adventure World) durante la estancia + Extra Magic Time</li>
+      <li class="y">4 noches Aparthotel Inspire Miodova ⭐⭐⭐⭐ Cracovia — Solo Alojamiento</li>
+      <li class="y">4 noches Hotel Relais Dei Papi ⭐⭐⭐ Roma — Alojamiento y Desayuno</li>
+      <li class="y">7 traslados privados aeropuerto ↔ hotel</li>
+      <li class="y">Seguro de viaje I4T Base con cancelación</li>
+      <li class="y">Tasas de aeropuerto y gestión SAFE TOUR</li>
+    </ul>
+  </div>
+
+  <div class="callout warn"><h4>⚠️ No incluye</h4>
+    <ul class="checklist">
+      <li class="n">Comidas y cenas no indicadas en régimen</li>
+      <li class="n">Entradas a monumentos y museos (salvo las contratadas)</li>
+      <li class="n">Excursiones opcionales</li>
+      <li class="n">Propinas y extras personales</li>
+      <li class="n">Maleta de cabina/trolley y equipaje facturado (no incluido en ningún vuelo — ver detalle en pestaña Servicios > Vuelos)</li>
+      <li class="n">Selección de asientos en vuelos</li>
+      <li class="n">WIZZ Priority obligatorio si se desea llevar trolley en vuelo Cracovia→Roma (desde 10 €/persona)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════ 5. OPINIONES ═══════════ -->
+<section data-tab="opinion">
+  <h2>⭐ Nuestra opinión sobre los hoteles</h2>
+  <p>Hemos analizado cientos de opiniones reales para que <span class="personal">Blanca</span> viaje con total tranquilidad.</p>
+
+  <!-- CRAYON -->
+  <details class="acc" open>
+    <summary>🎨 Hotel Crayon ⭐⭐⭐⭐ París — 87%</summary>
+    <div class="acc-body">
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+        <div class="card"><div class="card-title">Ubicación</div><div class="card-value">9,2 / 10</div></div>
+        <div class="card"><div class="card-title">Limpieza</div><div class="card-value">8,7 / 10</div></div>
+        <div class="card"><div class="card-title">Servicio</div><div class="card-value">8,8 / 10</div></div>
+        <div class="card"><div class="card-title">Desayuno</div><div class="card-value">8,9 / 10</div></div>
+        <div class="card"><div class="card-title">Confort</div><div class="card-value">8,0 / 10</div></div>
+        <div class="card"><div class="card-title">Relación calidad-precio</div><div class="card-value">8,3 / 10</div></div>
+      </div>
+      <div class="pc">
+        <div class="p"><h4>👍 Puntos fuertes</h4><ul><li>Ubicación inmejorable junto al Louvre</li><li>Decoración artística única</li><li>Desayuno de alta calidad</li><li>Personal muy amable</li></ul></div>
+        <div class="c"><h4>👎 A tener en cuenta</h4><ul><li>Habitaciones algo pequeñas (estándar parisino)</li><li>Recepción reducida en horario nocturno</li><li>Sin gimnasio ni spa</li></ul></div>
+      </div>
+      <div class="pullquote" style="font-size:1rem">"La ubicación es perfecta, a dos minutos del metro y rodeado de restaurantes. El desayuno es una delicia."</div>
+      <div class="callout success"><h4>Valoración SAFE TOUR</h4><p>Excelente elección para una luna de miel en París. La ubicación y el encanto boutique compensan el tamaño de las habitaciones. Ideal para parejas que quieren vivir el auténtico París.</p></div>
+    </div>
+  </details>
+
+  <!-- CHEYENNE -->
+  <details class="acc">
+    <summary>🤠 Disney Hotel Cheyenne — 78%</summary>
+    <div class="acc-body">
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+        <div class="card"><div class="card-title">Ubicación</div><div class="card-value">8,5 / 10</div></div>
+        <div class="card"><div class="card-title">Temática</div><div class="card-value">8,8 / 10</div></div>
+        <div class="card"><div class="card-title">Limpieza</div><div class="card-value">7,5 / 10</div></div>
+        <div class="card"><div class="card-title">Comida MP+</div><div class="card-value">7,2 / 10</div></div>
+        <div class="card"><div class="card-title">Confort</div><div class="card-value">7,0 / 10</div></div>
+      </div>
+      <div class="pc">
+        <div class="p"><h4>👍 Puntos fuertes</h4><ul><li>Ambientación western encantadora</li><li>Acceso directo a parques + Extra Magic Time</li><li>MP+ en restaurantes Disney</li><li>Tienda Disney en recepción</li></ul></div>
+        <div class="c"><h4>👎 A tener en cuenta</h4><ul><li>Habitaciones básicas y funcionales</li><li>Comedor buffet bullicioso en hora punta</li><li>No es el hotel Disney más lujoso</li></ul></div>
+      </div>
+      <div class="pullquote" style="font-size:1rem">"Perfecto para vivir la experiencia Disney al máximo. Los niños lo adoran, pero las parejas también disfrutan de la magia."</div>
+      <div class="callout success"><h4>Valoración SAFE TOUR</h4><p>La mejor opción calidad-precio dentro de los hoteles Disney oficiales. La MP+ ahorra mucho en comidas y el acceso directo a los parques es un gran plus. Para una luna de miel, la magia Disney compensa con creces.</p></div>
+    </div>
+  </details>
+
+  <!-- INSPIRE MIODOVA -->
+  <details class="acc">
+    <summary>🏛️ Aparthotel Inspire Miodova ⭐⭐⭐⭐ Cracovia — 88%</summary>
+    <div class="acc-body">
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+        <div class="card"><div class="card-title">Ubicación</div><div class="card-value">9,4 / 10</div></div>
+        <div class="card"><div class="card-title">Espacio</div><div class="card-value">9,2 / 10</div></div>
+        <div class="card"><div class="card-title">Limpieza</div><div class="card-value">9,0 / 10</div></div>
+        <div class="card"><div class="card-title">Equipamiento</div><div class="card-value">8,8 / 10</div></div>
+        <div class="card"><div class="card-title">Relación calidad-precio</div><div class="card-value">9,1 / 10</div></div>
+      </div>
+      <div class="pc">
+        <div class="p"><h4>👍 Puntos fuertes</h4><ul><li>Apartamentos amplios con cocina completa</li><li>Ubicación a 200 m de la Plaza del Mercado</li><li>Diseño moderno y elegante</li><li>Excelente relación calidad-precio</li></ul></div>
+        <div class="c"><h4>👎 A tener en cuenta</h4><ul><li>Sin piscina ni gimnasio</li><li>Check-in automatizado (sin recepción 24h)</li><li>No incluye desayuno (hay cocina propia)</li></ul></div>
+      </div>
+      <div class="pullquote" style="font-size:1rem">"Apartamentos increíbles, amplios y con todo lo necesario. La ubicación no puede ser mejor. Volveríamos sin duda."</div>
+      <div class="callout success"><h4>Valoración SAFE TOUR</h4><p>Nuestra mejor puntuación del viaje. La combinación de espacio, diseño y ubicación lo hace ideal para estancias de 4 noches. Perfecto para una luna de miel donde la pareja quiere su propio espacio e independencia.</p></div>
+    </div>
+  </details>
+
+  <!-- RELAIS DEI PAPI -->
+  <details class="acc">
+    <summary>🏛️ Hotel Relais Dei Papi ⭐⭐⭐ Roma — 82%</summary>
+    <div class="acc-body">
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+        <div class="card"><div class="card-title">Ubicación</div><div class="card-value">8,8 / 10</div></div>
+        <div class="card"><div class="card-title">Desayuno</div><div class="card-value">8,5 / 10</div></div>
+        <div class="card"><div class="card-title">Servicio</div><div class="card-value">8,7 / 10</div></div>
+        <div class="card"><div class="card-title">Limpieza</div><div class="card-value">8,3 / 10</div></div>
+        <div class="card"><div class="card-title">Confort</div><div class="card-value">7,8 / 10</div></div>
+      </div>
+      <div class="pc">
+        <div class="p"><h4>👍 Puntos fuertes</h4><ul><li>Desayuno buffet abundante y variado</li><li>Personal atento y servicial</li><li>Cerca del Vaticano a pie</li><li>Barrio de Prati elegante y seguro</li></ul></div>
+        <div class="c"><h4>👎 A tener en cuenta</h4><ul><li>Decoración algo anticuada</li><li>Habitaciones sin vistas destacadas</li><li>No tiene terraza ni zonas comunes amplias</li></ul></div>
+      </div>
+      <div class="pullquote" style="font-size:1rem">"El desayuno es espectacular y el personal te hace sentir como en casa. Ubicación perfecta para visitar el Vaticano."</div>
+      <div class="callout success"><h4>Valoración SAFE TOUR</h4><p>Hotel correcto y bien ubicado con un desayuno que marca la diferencia. El trato personal compensa la decoración clásica. Buena base para explorar Roma durante 4 noches.</p></div>
+    </div>
+  </details>
+
+  <!-- COMPARATIVA -->
+  <h3>📊 Tabla comparativa</h3>
+  <div class="tw"><table class="st">
+    <tr><th>Hotel</th><th>Categoría</th><th>Puntuación</th><th>Lo mejor</th><th>Régimen</th></tr>
+    <tr><td>Hotel Crayon</td><td>⭐⭐⭐⭐</td><td>87%</td><td>Ubicación + diseño boutique</td><td>SA</td></tr>
+    <tr><td>Disney Cheyenne</td><td>Disney</td><td>78%</td><td>Acceso parques + MP+</td><td>MP+</td></tr>
+    <tr class="hl"><td>Inspire Miodova</td><td>⭐⭐⭐⭐</td><td>88%</td><td>Espacio + calidad-precio</td><td>SA</td></tr>
+    <tr><td>Relais Dei Papi</td><td>⭐⭐⭐</td><td>82%</td><td>Desayuno + servicio</td><td>AD</td></tr>
+  </table></div>
+</section>
+
+<!-- ═══════════ 6. OPCIONALES ═══════════ -->
+<section data-tab="opcionales">
+  <h2>🎟️ Opcionales y extras</h2>
+
+  <h3>🛡️ Seguro de viaje incluido</h3>
+  <div class="card">
+    <div class="card-title">Seguro I4T Base con cancelación</div>
+    <p><strong>70,00 €/persona</strong> · 16 días · Europa</p>
+    <div class="tw"><table class="st">
+      <tr><th>Cobertura</th><th>Límite</th></tr>
+      <tr><td>Gastos médicos</td><td>30.000 €</td></tr>
+      <tr><td>Cancelación de viaje</td><td>Incluida</td></tr>
+      <tr><td>Equipaje</td><td>1.500 €</td></tr>
+      <tr><td>Retraso de transporte</td><td>300 €</td></tr>
+      <tr><td>Responsabilidad civil</td><td>60.000 €</td></tr>
+      <tr><td>Repatriación</td><td>Incluida</td></tr>
+      <tr><td>Asistencia 24h</td><td>✅ Sí</td></tr>
+    </table></div>
+  </div>
+
+  <h3>🎯 Excursiones recomendadas</h3>
+  <p>Reservables con SAFE TOUR. Precios orientativos por persona.</p>
+
+  <details class="acc">
+    <summary>🇫🇷 París</summary>
+    <div class="acc-body">
+      <ul>
+        <li><strong>Free tour París imprescindible</strong> — Gratis (propina)</li>
+        <li><strong>Palacio de Versalles</strong> — desde 55 €</li>
+        <li><strong>Subida Torre Eiffel</strong> — desde 35 €</li>
+        <li><strong>Crucero por el Sena</strong> — desde 15 €</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary>🇵🇱 Cracovia</summary>
+    <div class="acc-body">
+      <ul>
+        <li><strong>Free tour Cracovia</strong> — Gratis (propina)</li>
+        <li><strong>Auschwitz-Birkenau</strong> — desde 45 €</li>
+        <li><strong>Minas de Sal de Wieliczka</strong> — desde 40 €</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary>🇮🇹 Roma</summary>
+    <div class="acc-body">
+      <ul>
+        <li><strong>Coliseo + Foro + Palatino</strong> — desde 50 €</li>
+        <li><strong>Museos Vaticanos + Sixtina</strong> — desde 45 €</li>
+        <li><strong>Free tour Roma</strong> — Gratis (propina)</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- ═══════════ 7. CONDICIONES ═══════════ -->
+<section data-tab="condiciones">
+  <h2>📋 Condiciones del viaje</h2>
+
+  <h3>💳 Forma de pago</h3>
+  <div class="grid" style="grid-template-columns:1fr 1fr">
+    <div class="card"><div class="card-title">Reserva (40%)</div><div class="card-value" style="color:var(--gold)">2.240,88 €</div><p style="margin:.5rem 0 0;font-size:.85rem">A la confirmación del viaje</p></div>
+    <div class="card"><div class="card-title">Resto (60%)</div><div class="card-value" style="color:var(--gold)">3.361,32 €</div><p style="margin:.5rem 0 0;font-size:.85rem">Antes del 12 de septiembre 2026</p></div>
+  </div>
+
+  <h3>❌ Política de cancelación</h3>
+  <div class="tw"><table class="st">
+    <tr><th>Período de cancelación</th><th>Gastos de cancelación</th></tr>
+    <tr><td>Desde la confirmación de la reserva hasta 30 días antes de la fecha de salida</td><td><strong>40%</strong> del importe total del viaje</td></tr>
+    <tr><td>A partir de 30 días antes de la fecha de salida (inclusive)</td><td><strong>100%</strong> del importe total del viaje</td></tr>
+  </table></div>
+
+  <div class="callout warn"><h4>⚠️ Servicios NO REEMBOLSABLES</h4>
+    <p>Los siguientes servicios se cobran aparte en cualquier caso de cancelación y no son reembolsables:</p>
+    <ul style="list-style:disc;padding-left:1.25rem;margin:.5rem 0">
+      <li>Vuelos</li>
+      <li>Maletas y equipaje adicional</li>
+      <li>Selección de asientos</li>
+      <li>Seguros</li>
+    </ul>
+  </div>
+
+  <div class="callout"><h4>📌 Notas importantes</h4>
+    <ul style="list-style:disc;padding-left:1.25rem;margin:.5rem 0">
+      <li>Precios basados en disponibilidad a fecha de emisión de la propuesta.</li>
+      <li>Sujetos a variación hasta confirmación de reserva.</li>
+      <li>Tasas aéreas incluidas; pueden variar hasta emisión de billetes.</li>
+      <li>Es obligatorio disponer de DNI/Pasaporte en vigor.</li>
+      <li>Seguro de viaje incluido; coberturas detalladas en la póliza I4T Base.</li>
+      <li>Estas condiciones pueden variar a la hora de la confirmación, las cuales serán indicadas de nuevo para su aceptación.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════ 8. DECIDE ═══════════ -->
+<section data-tab="decide">
+  <h2>💍 ¿Lista para la aventura, <span class="personal">Blanca</span>?</h2>
+  <p>13 noches, 4 destinos y una luna de miel que recordaréis toda la vida. Solo queda un paso:</p>
+
+  <div class="pullquote">Desde la Torre Eiffel hasta el Coliseo, pasando por la magia de Disney y el encanto de Cracovia. Tu viaje perfecto te espera.</div>
+
+  <div class="grid" style="grid-template-columns:1fr;max-width:500px;margin:1.5rem auto">
+    <div class="card" style="text-align:center;border:2px solid var(--gold)">
+      <div class="card-title">Tu propuesta</div>
+      <h3 style="margin-top:0;font-size:1.5rem">París + Disneyland + Cracovia + Roma</h3>
+      <p style="font-family:var(--mono);font-size:1.75rem;color:var(--gold);font-weight:700;margin:.75rem 0">5.602,20 €</p>
+      <p style="font-size:.9rem;color:var(--muted)">2.801,10 € por persona · 13 noches · Todo incluido*</p>
+    </div>
+  </div>
+
+  <div class="decide-cards">
+    <div class="dc confirm">
+      <div class="icon">✅</div>
+      <h4>¡Lo quiero!</h4>
+      <p>Confirma la reserva y empezamos a preparar tu luna de miel.</p>
+      <a href="mailto:info@safetour.es?subject=Confirmo%20Propuesta%20883%20-%20Blanca%20Ruiz%20Diaz&body=Hola%2C%20quiero%20confirmar%20la%20propuesta%20N%C2%BA%20883." class="btn">Confirmar propuesta</a>
+    </div>
+    <div class="dc wa">
+      <div class="icon">💬</div>
+      <h4>Tengo dudas</h4>
+      <p>Escríbenos por WhatsApp y resolvemos cualquier pregunta.</p>
+      <a href="https://wa.me/34600000000?text=Hola%2C%20tengo%20dudas%20sobre%20la%20propuesta%20883" class="btn">Abrir WhatsApp</a>
+    </div>
+    <div class="dc think">
+      <div class="icon">🤔</div>
+      <h4>Necesito pensarlo</h4>
+      <p>Sin compromiso. La propuesta estará aquí cuando estés lista.</p>
+      <a href="mailto:info@safetour.es?subject=Propuesta%20883%20-%20Consulta" class="btn">Enviar email</a>
+    </div>
+  </div>
+
+  <div class="contact">
+    <div class="contact-card"><div class="icon">📞</div><strong>Teléfono</strong><br>Llámanos</div>
+    <div class="contact-card"><div class="icon">✉️</div><strong>Email</strong><br>info@safetour.es</div>
+    <div class="contact-card"><div class="icon">💬</div><strong>WhatsApp</strong><br>Escríbenos</div>
+    <div class="contact-card"><div class="icon">📍</div><strong>Oficina</strong><br>SAFE TOUR</div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <img src="https://res.cloudinary.com/n8n-01sft/image/upload/v1772971640/safe_tour_logo_transparente_epuwlg.png" alt="SAFE TOUR">
+  <p>SAFE TOUR · Tu viaje, nuestra pasión</p>
+  <p style="margin-top:.5rem;font-size:.7rem">Propuesta Nº 883 · Generada el 15 mayo 2026 · Válida según disponibilidad</p>
+</footer>
+
+<!-- FAB WhatsApp -->
+<a class="fab" href="https://wa.me/34600000000?text=Hola%2C%20consulta%20sobre%20propuesta%20883" title="WhatsApp">💬</a>
+
+<!-- JS -->
+<script>
+function showTab(id){
+  document.querySelectorAll('[data-tab]').forEach(s=>s.classList.remove('active'));
+  document.querySelector('[data-tab="'+id+'"').classList.add('active');
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.querySelector('.nav').classList.remove('open');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showSub(navId,cls,sub){
+  document.querySelectorAll('.'+cls).forEach(s=>s.classList.remove('active'));
+  document.querySelector('[data-sub="'+sub+'"').classList.add('active');
+  document.querySelectorAll('#'+navId+' button').forEach(b=>b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+}
+</script>
+</body>
+</html>

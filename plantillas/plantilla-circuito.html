@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta de Viaje — DESTINO | SAFE TOUR</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300..1000;1,6..12,300..1000&display=swap" rel="stylesheet">
+
+  <!-- CSS compartido desde GitHub Pages -->
+  <link rel="stylesheet" href="https://fernandosft.github.io/propuestasSFT/css/safetour-base.css">
+  <link rel="stylesheet" href="https://fernandosft.github.io/propuestasSFT/css/safetour-components.css">
+  <link rel="stylesheet" href="https://fernandosft.github.io/propuestasSFT/css/safetour-print.css" media="print">
+
+  <!-- FALLBACK INLINE — Estilos críticos -->
+  <style>
+    :root { --st-primary: #1B3A4B; --st-accent: #E8A838; --st-bg: #FAFAF8; --st-text: #2C3E50; --st-radius: 12px; }
+    body { font-family: 'Nunito Sans', system-ui, sans-serif; color: var(--st-text); background: var(--st-bg); margin: 0; }
+    .header-propuesta { background: var(--st-primary); color: #fff; padding: 40px; text-align: center; }
+    .cta-btn { background: var(--st-accent); color: #fff; padding: 14px 28px; border-radius: 999px; font-weight: 800; text-decoration: none; display: inline-block; }
+    .card, .tile { border-radius: var(--st-radius); padding: 20px; border: 1px solid #e0e0e0; }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- 🟠 PLANTILLA CIRCUITO / CRUCERO              -->
+  <!-- Uso: Itinerario día a día, muchos servicios,  -->
+  <!--      excursiones, multidestino                -->
+  <!-- ============================================ -->
+
+  <!-- NAV STICKY -->
+  <nav class="nav-sticky">
+    <div class="container nav-inner">
+      <a href="#inicio" class="nav-logo">SAFE TOUR</a>
+      <ul class="nav-links">
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#ruta">Ruta</a></li>
+        <li><a href="#itinerario">Día a día</a></li>
+        <li><a href="#alojamientos">Alojamientos</a></li>
+        <li><a href="#excursiones">Excursiones</a></li>
+        <li><a href="#precio">Precio</a></li>
+        <li><a href="#condiciones">Condiciones</a></li>
+        <li><a href="#contacto" class="nav-cta">Reservar</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header id="inicio" class="header-propuesta">
+    <img src="https://fernandosft.github.io/propuestasSFT/Logonuevotraveltool.png" alt="SAFE TOUR" class="header-logo" style="max-width:180px; margin-bottom:20px;">
+    <p class="header-subtitulo">Propuesta de viaje personalizada</p>
+    <h1 class="header-destino">DESTINO</h1>
+    <div class="header-meta">
+      <span>📅 FECHA_SALIDA — FECHA_REGRESO</span>
+      <span>🌙 NUM_NOCHES noches</span>
+      <span>👥 NUM_VIAJEROS viajero(s)</span>
+      <span>🗺️ NUM_ETAPAS etapas</span>
+      <span>📋 Ref: REFERENCIA</span>
+    </div>
+    <p class="header-cliente">Preparado para <strong>NOMBRE_CLIENTE</strong></p>
+  </header>
+
+  <main class="container">
+
+    <!-- RESUMEN -->
+    <section id="resumen" class="section">
+      <h2 class="section-title">Tu circuito en un vistazo</h2>
+      <p class="section-intro">TEXTO_INTRO</p>
+      <div class="grid grid-4">
+        <div class="tile">
+          <div class="tile-icon">🗺️</div>
+          <div class="tile-label">Destinos</div>
+          <div class="tile-value">RESUMEN_DESTINOS</div>
+        </div>
+        <div class="tile">
+          <div class="tile-icon">🌙</div>
+          <div class="tile-label">Duración</div>
+          <div class="tile-value">NUM_NOCHES noches</div>
+        </div>
+        <div class="tile">
+          <div class="tile-icon">🏨</div>
+          <div class="tile-label">Alojamientos</div>
+          <div class="tile-value">RESUMEN_HOTELES</div>
+        </div>
+        <div class="tile">
+          <div class="tile-icon">💰</div>
+          <div class="tile-label">Desde</div>
+          <div class="tile-value">PRECIO_TOTAL €</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RUTA VISUAL -->
+    <section id="ruta" class="section">
+      <h2 class="section-title">Tu ruta</h2>
+      <div class="ruta-visual">
+        <!-- #RUTA_ETAPAS -->
+        <div class="ruta-etapa">
+          <div class="ruta-punto"></div>
+          <div class="ruta-info">
+            <strong>ETAPA_DESTINO</strong>
+            <span>ETAPA_NOCHES noches</span>
+          </div>
+        </div>
+        <div class="ruta-conector">ETAPA_TRANSPORTE</div>
+        <!-- /RUTA_ETAPAS -->
+      </div>
+      <!-- #MAPA_IMAGEN -->
+      <div style="text-align:center; margin-top:2rem;">
+        <img src="MAPA_IMAGEN" alt="Mapa de la ruta" style="max-width:100%; border-radius:var(--st-radius);">
+      </div>
+      <!-- /MAPA_IMAGEN -->
+    </section>
+
+    <!-- ITINERARIO DÍA A DÍA -->
+    <section id="itinerario" class="section">
+      <h2 class="section-title">Itinerario día a día</h2>
+      <div class="timeline">
+
+        <!-- #DIAS -->
+        <div class="timeline-day">
+          <div class="timeline-marker">
+            <span class="timeline-day-num">DIA_NUMERO</span>
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Día DIA_NUMERO: DIA_TITULO</h3>
+            <p class="timeline-location">📍 DIA_UBICACION</p>
+            <p>DIA_DESCRIPCION</p>
+
+            <!-- Servicios del día -->
+            <!-- #DIA_SERVICIOS -->
+            <div class="timeline-services">
+              <!-- #DIA_TRANSPORTE -->
+              <span class="timeline-tag">🚌 DIA_TRANSPORTE</span>
+              <!-- /DIA_TRANSPORTE -->
+              <!-- #DIA_ALOJAMIENTO -->
+              <span class="timeline-tag">🏨 DIA_ALOJAMIENTO</span>
+              <!-- /DIA_ALOJAMIENTO -->
+              <!-- #DIA_COMIDAS -->
+              <span class="timeline-tag">🍽️ DIA_COMIDAS</span>
+              <!-- /DIA_COMIDAS -->
+            </div>
+            <!-- /DIA_SERVICIOS -->
+
+            <!-- Excursiones del día -->
+            <!-- #DIA_EXCURSIONES -->
+            <div class="excursion-card">
+              <div class="excursion-badge">🎯 Excursión</div>
+              <h4>EXCURSION_NOMBRE</h4>
+              <p>EXCURSION_DESCRIPCION</p>
+              <p class="text-muted">⏱️ EXCURSION_DURACION · EXCURSION_TIPO</p>
+            </div>
+            <!-- /DIA_EXCURSIONES -->
+          </div>
+        </div>
+        <!-- /DIAS -->
+
+      </div>
+    </section>
+
+    <!-- ALOJAMIENTOS -->
+    <section id="alojamientos" class="section">
+      <h2 class="section-title">Alojamientos del circuito</h2>
+      <div class="grid grid-2">
+        <!-- #HOTELES -->
+        <div class="card">
+          <!-- #HOTEL_IMAGEN -->
+          <div class="card-image">
+            <img src="HOTEL_IMAGEN" alt="HOTEL_NOMBRE">
+          </div>
+          <!-- /HOTEL_IMAGEN -->
+          <div class="card-badge">HOTEL_CATEGORIA</div>
+          <h3 class="card-title">HOTEL_NOMBRE</h3>
+          <p class="card-subtitle">📍 HOTEL_UBICACION</p>
+          <ul class="card-list">
+            <li>📅 HOTEL_NOCHES noches (HOTEL_ETAPA)</li>
+            <li>🛏️ HOTEL_HABITACION</li>
+            <li>🍽️ HOTEL_REGIMEN</li>
+          </ul>
+        </div>
+        <!-- /HOTELES -->
+      </div>
+    </section>
+
+    <!-- VUELOS -->
+    <section class="section">
+      <h2 class="section-title">Vuelos</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-badge">✈️ Ida</div>
+          <h3 class="card-title">VUELO_IDA_ORIGEN → VUELO_IDA_DESTINO</h3>
+          <p>VUELO_IDA_FECHA · VUELO_IDA_HORARIO</p>
+          <p class="text-muted">VUELO_IDA_AEROLINEA · VUELO_IDA_NUMERO</p>
+          <!-- #VUELO_IDA_ESCALA -->
+          <p class="text-muted">Escala en VUELO_IDA_ESCALA</p>
+          <!-- /VUELO_IDA_ESCALA -->
+        </div>
+        <div class="card">
+          <div class="card-badge">✈️ Vuelta</div>
+          <h3 class="card-title">VUELO_VUELTA_ORIGEN → VUELO_VUELTA_DESTINO</h3>
+          <p>VUELO_VUELTA_FECHA · VUELO_VUELTA_HORARIO</p>
+          <p class="text-muted">VUELO_VUELTA_AEROLINEA · VUELO_VUELTA_NUMERO</p>
+          <!-- #VUELO_VUELTA_ESCALA -->
+          <p class="text-muted">Escala en VUELO_VUELTA_ESCALA</p>
+          <!-- /VUELO_VUELTA_ESCALA -->
+        </div>
+        <!-- #VUELOS_INTERNOS -->
+        <div class="card">
+          <div class="card-badge">✈️ Vuelo interno</div>
+          <h3 class="card-title">VUELO_INT_ORIGEN → VUELO_INT_DESTINO</h3>
+          <p>VUELO_INT_FECHA · VUELO_INT_HORARIO</p>
+          <p class="text-muted">VUELO_INT_AEROLINEA · VUELO_INT_NUMERO</p>
+        </div>
+        <!-- /VUELOS_INTERNOS -->
+      </div>
+    </section>
+
+    <!-- EXCURSIONES COMPLETAS -->
+    <section id="excursiones" class="section">
+      <h2 class="section-title">Excursiones y actividades</h2>
+
+      <!-- INCLUIDAS -->
+      <!-- #EXCURSIONES_INCLUIDAS -->
+      <h3>Incluidas en el precio</h3>
+      <div class="grid grid-2">
+        <!-- #EXCURSION_INC_ITEMS -->
+        <div class="excursion-card">
+          <div class="excursion-badge excursion-badge--included">✅ Incluida</div>
+          <h4>EXCURSION_NOMBRE</h4>
+          <p>EXCURSION_DESCRIPCION</p>
+          <p class="text-muted">📍 EXCURSION_UBICACION · ⏱️ EXCURSION_DURACION</p>
+        </div>
+        <!-- /EXCURSION_INC_ITEMS -->
+      </div>
+      <!-- /EXCURSIONES_INCLUIDAS -->
+
+      <!-- OPCIONALES -->
+      <!-- #EXCURSIONES_OPCIONALES -->
+      <h3 style="margin-top:2rem;">Opcionales (con suplemento)</h3>
+      <div class="grid grid-2">
+        <!-- #EXCURSION_OPC_ITEMS -->
+        <div class="excursion-card">
+          <div class="excursion-badge excursion-badge--optional">➕ Opcional</div>
+          <h4>EXCURSION_NOMBRE</h4>
+          <p>EXCURSION_DESCRIPCION</p>
+          <p class="text-muted">📍 EXCURSION_UBICACION · ⏱️ EXCURSION_DURACION</p>
+          <p class="card-price">EXCURSION_PRECIO €/persona</p>
+        </div>
+        <!-- /EXCURSION_OPC_ITEMS -->
+      </div>
+      <!-- /EXCURSIONES_OPCIONALES -->
+    </section>
+
+    <!-- PRECIO -->
+    <section id="precio" class="section">
+      <h2 class="section-title">Precio detallado</h2>
+      <div class="precio-bloque">
+        <table class="precio-desglose">
+          <thead>
+            <tr>
+              <th>Concepto</th>
+              <th>Precio/persona</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- #PRECIO_LINEAS -->
+            <tr>
+              <td>PRECIO_CONCEPTO</td>
+              <td>PRECIO_POR_PERSONA €</td>
+              <td>PRECIO_SUBTOTAL €</td>
+            </tr>
+            <!-- /PRECIO_LINEAS -->
+          </tbody>
+          <tfoot>
+            <tr class="precio-fila-total">
+              <td colspan="2">TOTAL (NUM_VIAJEROS viajeros)</td>
+              <td>PRECIO_TOTAL €</td>
+            </tr>
+            <tr>
+              <td colspan="2">Precio por persona</td>
+              <td>PRECIO_POR_PERSONA_TOTAL €</td>
+            </tr>
+          </tfoot>
+        </table>
+        <p class="precio-nota">PRECIO_NOTA</p>
+        <!-- #PRECIO_FINANCIACION -->
+        <p class="precio-nota">💳 PRECIO_FINANCIACION</p>
+        <!-- /PRECIO_FINANCIACION -->
+      </div>
+
+      <!-- Suplementos opcionales -->
+      <!-- #SUPLEMENTOS -->
+      <h3 style="margin-top:2rem;">Suplementos opcionales</h3>
+      <div class="precio-bloque">
+        <table class="precio-desglose">
+          <thead>
+            <tr>
+              <th>Suplemento</th>
+              <th>Precio/persona</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- #SUPLEMENTO_LINEAS -->
+            <tr>
+              <td>SUPL_CONCEPTO</td>
+              <td>SUPL_POR_PERSONA €</td>
+              <td>SUPL_SUBTOTAL €</td>
+            </tr>
+            <!-- /SUPLEMENTO_LINEAS -->
+          </tbody>
+        </table>
+      </div>
+      <!-- /SUPLEMENTOS -->
+    </section>
+
+    <!-- CONDICIONES -->
+    <section id="condiciones" class="section">
+      <h2 class="section-title">Condiciones</h2>
+      <div class="accordion">
+        <details>
+          <summary>✅ Incluye</summary>
+          <ul>
+            <!-- #INCLUYE -->
+            <li>INCLUYE_ITEM</li>
+            <!-- /INCLUYE -->
+          </ul>
+        </details>
+        <details>
+          <summary>❌ No incluye</summary>
+          <ul>
+            <!-- #NO_INCLUYE -->
+            <li>NO_INCLUYE_ITEM</li>
+            <!-- /NO_INCLUYE -->
+          </ul>
+        </details>
+        <details>
+          <summary>📝 Notas importantes</summary>
+          <ul>
+            <!-- #NOTAS -->
+            <li>NOTA_ITEM</li>
+            <!-- /NOTAS -->
+          </ul>
+        </details>
+        <details>
+          <summary>🔄 Política de cancelación</summary>
+          <p>POLITICA_CANCELACION</p>
+        </details>
+        <details>
+          <summary>💳 Formas de pago</summary>
+          <p>FORMAS_PAGO</p>
+        </details>
+        <details>
+          <summary>📄 Documentación necesaria</summary>
+          <p>DOCUMENTACION</p>
+        </details>
+        <!-- #VISADOS -->
+        <details>
+          <summary>🛂 Visados</summary>
+          <p>VISADOS_DETALLE</p>
+        </details>
+        <!-- /VISADOS -->
+        <!-- #VACUNAS -->
+        <details>
+          <summary>💉 Vacunas y salud</summary>
+          <p>VACUNAS_DETALLE</p>
+        </details>
+        <!-- /VACUNAS -->
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contacto" class="cta-section">
+      <h2>¿Preparado para esta aventura?</h2>
+      <p>Tu circuito por <strong>DESTINO</strong> te espera</p>
+      <div class="cta-buttons">
+        <a href="mailto:info@safetour.es?subject=Reservar%20-%20DESTINO%20-%20REFERENCIA" class="cta-btn cta-btn--primary">✅ Me interesa, quiero reservar</a>
+        <a href="mailto:info@safetour.es?subject=Ajustes%20-%20DESTINO%20-%20REFERENCIA" class="cta-btn cta-btn--secondary">🔄 Quiero ajustar algo</a>
+        <a href="https://wa.me/34WHATSAPP_NUMERO?text=Hola,%20me%20interesa%20la%20propuesta%20de%20DESTINO%20(REFERENCIA)" class="cta-btn cta-btn--whatsapp">💬 Hablamos por WhatsApp</a>
+        <a href="tel:+34TELEFONO" class="cta-btn cta-btn--call">📞 Prefiero llamar</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p><strong>SAFE TOUR</strong> — Tu agencia de viajes de confianza</p>
+      <p>📧 info@safetour.es · 📞 +34 TELEFONO · 💬 WhatsApp: +34 WHATSAPP_NUMERO</p>
+      <p class="text-muted">FOOTER_LEGAL</p>
+      <p class="text-muted">Propuesta válida hasta FECHA_VALIDEZ · Ref: REFERENCIA</p>
+    </div>
+  </footer>
+
+</body>
+</html>

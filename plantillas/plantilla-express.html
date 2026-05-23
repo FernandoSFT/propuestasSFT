@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta de Viaje — DESTINO | SAFE TOUR</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300..1000;1,6..12,300..1000&display=swap" rel="stylesheet">
+
+  <!-- CSS compartido desde GitHub Pages -->
+  <link rel="stylesheet" href="https://fernandosft.github.io/propuestasSFT/css/safetour-base.css">
+  <link rel="stylesheet" href="https://fernandosft.github.io/propuestasSFT/css/safetour-components.css">
+  <link rel="stylesheet" href="https://fernandosft.github.io/propuestasSFT/css/safetour-print.css" media="print">
+
+  <!-- FALLBACK INLINE — Estilos críticos -->
+  <style>
+    :root { --st-primary: #1B3A4B; --st-accent: #E8A838; --st-bg: #FAFAF8; --st-text: #2C3E50; --st-radius: 12px; }
+    body { font-family: 'Nunito Sans', system-ui, sans-serif; color: var(--st-text); background: var(--st-bg); margin: 0; }
+    .header-propuesta { background: var(--st-primary); color: #fff; padding: 40px; text-align: center; }
+    .cta-btn { background: var(--st-accent); color: #fff; padding: 14px 28px; border-radius: 999px; font-weight: 800; text-decoration: none; display: inline-block; }
+    .card, .tile { border-radius: var(--st-radius); padding: 20px; border: 1px solid #e0e0e0; }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- 🟢 PLANTILLA EXPRESS                         -->
+  <!-- Uso: 1 opción, itinerario simple, pocos      -->
+  <!--      servicios (hotel+vuelo, solo hotel, etc) -->
+  <!-- ============================================ -->
+
+  <!-- NAV STICKY -->
+  <nav class="nav-sticky">
+    <div class="container nav-inner">
+      <a href="#inicio" class="nav-logo">SAFE TOUR</a>
+      <ul class="nav-links">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#precio">Precio</a></li>
+        <li><a href="#condiciones">Condiciones</a></li>
+        <li><a href="#contacto" class="nav-cta">Reservar</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header id="inicio" class="header-propuesta">
+    <img src="https://fernandosft.github.io/propuestasSFT/Logonuevotraveltool.png" alt="SAFE TOUR" class="header-logo" style="max-width:180px; margin-bottom:20px;">
+    <p class="header-subtitulo">Propuesta de viaje personalizada</p>
+    <h1 class="header-destino">DESTINO</h1>
+    <div class="header-meta">
+      <span>📅 FECHA_SALIDA — FECHA_REGRESO</span>
+      <span>👥 NUM_VIAJEROS viajero(s)</span>
+      <span>📋 Ref: REFERENCIA</span>
+    </div>
+    <p class="header-cliente">Preparado para <strong>NOMBRE_CLIENTE</strong></p>
+  </header>
+
+  <main class="container">
+
+    <!-- RESUMEN RÁPIDO -->
+    <section class="section">
+      <p class="section-intro">TEXTO_INTRO</p>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="section">
+      <h2 class="section-title">Servicios incluidos</h2>
+      <div class="grid grid-2">
+
+        <!-- ALOJAMIENTO -->
+        <div class="card">
+          <div class="card-badge">🏨 Alojamiento</div>
+          <h3 class="card-title">HOTEL_NOMBRE</h3>
+          <p class="card-subtitle">HOTEL_CATEGORIA · HOTEL_REGIMEN</p>
+          <ul class="card-list">
+            <li>📅 HOTEL_CHECKIN → HOTEL_CHECKOUT</li>
+            <li>🛏️ HOTEL_HABITACION</li>
+            <!-- #HOTEL_EXTRAS -->
+            <li>HOTEL_EXTRA_ITEM</li>
+            <!-- /HOTEL_EXTRAS -->
+          </ul>
+        </div>
+
+        <!-- VUELOS -->
+        <div class="card">
+          <div class="card-badge">✈️ Vuelos</div>
+          <h3 class="card-title">VUELO_AEROLINEA</h3>
+          <div class="card-detail">
+            <p><strong>Ida:</strong> VUELO_IDA_ORIGEN → VUELO_IDA_DESTINO</p>
+            <p>VUELO_IDA_FECHA · VUELO_IDA_HORARIO · VUELO_IDA_NUMERO</p>
+            <!-- #VUELO_IDA_ESCALA -->
+            <p class="text-muted">Escala en VUELO_IDA_ESCALA</p>
+            <!-- /VUELO_IDA_ESCALA -->
+          </div>
+          <div class="card-detail">
+            <p><strong>Vuelta:</strong> VUELO_VUELTA_ORIGEN → VUELO_VUELTA_DESTINO</p>
+            <p>VUELO_VUELTA_FECHA · VUELO_VUELTA_HORARIO · VUELO_VUELTA_NUMERO</p>
+            <!-- #VUELO_VUELTA_ESCALA -->
+            <p class="text-muted">Escala en VUELO_VUELTA_ESCALA</p>
+            <!-- /VUELO_VUELTA_ESCALA -->
+          </div>
+        </div>
+
+        <!-- TRASLADOS (opcional) -->
+        <!-- #TRASLADOS -->
+        <div class="card">
+          <div class="card-badge">🚐 Traslados</div>
+          <h3 class="card-title">TRASLADO_TIPO</h3>
+          <p>TRASLADO_DETALLE</p>
+        </div>
+        <!-- /TRASLADOS -->
+
+        <!-- SEGURO (opcional) -->
+        <!-- #SEGURO -->
+        <div class="card">
+          <div class="card-badge">🛡️ Seguro</div>
+          <h3 class="card-title">SEGURO_NOMBRE</h3>
+          <p>SEGURO_DETALLE</p>
+        </div>
+        <!-- /SEGURO -->
+
+      </div>
+    </section>
+
+    <!-- PRECIO -->
+    <section id="precio" class="section">
+      <h2 class="section-title">Precio</h2>
+      <div class="precio-bloque">
+        <table class="precio-desglose">
+          <thead>
+            <tr>
+              <th>Concepto</th>
+              <th>Precio/persona</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- #PRECIO_LINEAS -->
+            <tr>
+              <td>PRECIO_CONCEPTO</td>
+              <td>PRECIO_POR_PERSONA €</td>
+              <td>PRECIO_SUBTOTAL €</td>
+            </tr>
+            <!-- /PRECIO_LINEAS -->
+          </tbody>
+          <tfoot>
+            <tr class="precio-fila-total">
+              <td colspan="2">TOTAL</td>
+              <td>PRECIO_TOTAL €</td>
+            </tr>
+          </tfoot>
+        </table>
+        <p class="precio-nota">PRECIO_NOTA</p>
+        <!-- #PRECIO_FINANCIACION -->
+        <p class="precio-nota">💳 PRECIO_FINANCIACION</p>
+        <!-- /PRECIO_FINANCIACION -->
+      </div>
+    </section>
+
+    <!-- CONDICIONES -->
+    <section id="condiciones" class="section">
+      <h2 class="section-title">Condiciones</h2>
+      <div class="accordion">
+        <details>
+          <summary>Incluye</summary>
+          <ul>
+            <!-- #INCLUYE -->
+            <li>INCLUYE_ITEM</li>
+            <!-- /INCLUYE -->
+          </ul>
+        </details>
+        <details>
+          <summary>No incluye</summary>
+          <ul>
+            <!-- #NO_INCLUYE -->
+            <li>NO_INCLUYE_ITEM</li>
+            <!-- /NO_INCLUYE -->
+          </ul>
+        </details>
+        <details>
+          <summary>Política de cancelación</summary>
+          <p>POLITICA_CANCELACION</p>
+        </details>
+        <details>
+          <summary>Formas de pago</summary>
+          <p>FORMAS_PAGO</p>
+        </details>
+        <details>
+          <summary>Documentación necesaria</summary>
+          <p>DOCUMENTACION</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contacto" class="cta-section">
+      <h2>¿Qué te parece esta propuesta?</h2>
+      <p>Estamos a un paso de hacer realidad tu viaje a <strong>DESTINO</strong></p>
+      <div class="cta-buttons">
+        <a href="mailto:info@safetour.es?subject=Reservar%20-%20DESTINO%20-%20REFERENCIA" class="cta-btn cta-btn--primary">✅ Me interesa, quiero reservar</a>
+        <a href="mailto:info@safetour.es?subject=Ajustes%20-%20DESTINO%20-%20REFERENCIA" class="cta-btn cta-btn--secondary">🔄 Quiero ajustar algo</a>
+        <a href="https://wa.me/34WHATSAPP_NUMERO?text=Hola,%20me%20interesa%20la%20propuesta%20de%20DESTINO%20(REFERENCIA)" class="cta-btn cta-btn--whatsapp">💬 Hablamos por WhatsApp</a>
+        <a href="tel:+34TELEFONO" class="cta-btn cta-btn--call">📞 Prefiero llamar</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p><strong>SAFE TOUR</strong> — Tu agencia de viajes de confianza</p>
+      <p>📧 info@safetour.es · 📞 +34 TELEFONO · 💬 WhatsApp: +34 WHATSAPP_NUMERO</p>
+      <p class="text-muted">FOOTER_LEGAL</p>
+      <p class="text-muted">Propuesta válida hasta FECHA_VALIDEZ · Ref: REFERENCIA</p>
+    </div>
+  </footer>
+
+</body>
+</html>

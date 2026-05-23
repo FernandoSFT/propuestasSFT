@@ -1,0 +1,193 @@
+/* ============================================================
+   SAFE TOUR — Print Styles (safetour-print.css)
+   Estilos para impresión y generación de PDF
+   Repo: FernandoSFT/propuestasSFT
+   ============================================================ */
+
+@media print {
+
+  /* ---------- Base Reset ---------- */
+  *, *::before, *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    font-size: 11pt;
+    color: #000;
+    background: #fff;
+    line-height: 1.5;
+  }
+
+  /* ---------- Layout ---------- */
+  .st-container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .st-section {
+    padding: 12pt 0;
+    page-break-inside: avoid;
+  }
+
+  /* ---------- Header ---------- */
+  .header-propuesta {
+    background: #1B3A4B !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    padding: 24pt;
+    page-break-after: avoid;
+  }
+
+  .header-propuesta--hero {
+    min-height: auto;
+    background-image: none !important;
+  }
+
+  .header-propuesta::before,
+  .header-propuesta--hero::after {
+    display: none;
+  }
+
+  /* ---------- Cards ---------- */
+  .card {
+    border: 1px solid #ccc;
+    page-break-inside: avoid;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .card--media .card-image {
+    max-height: 150px;
+  }
+
+  /* ---------- Tables ---------- */
+  .tabla-comparativa,
+  .precio-desglose {
+    font-size: 9pt;
+  }
+
+  .tabla-comparativa thead th {
+    background: #1B3A4B !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color: #fff !important;
+  }
+
+  .tabla-comparativa thead th.th-destacada {
+    background: #E8A838 !important;
+  }
+
+  /* ---------- Timeline ---------- */
+  .timeline {
+    page-break-inside: avoid;
+  }
+
+  .timeline-day {
+    page-break-inside: avoid;
+  }
+
+  .timeline-day .day-image {
+    max-height: 120px;
+  }
+
+  /* ---------- CTA ---------- */
+  .cta-section {
+    background: #f5f5f5 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    page-break-inside: avoid;
+  }
+
+  .cta-btn {
+    border: 1.5pt solid #333 !important;
+    color: #333 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 8pt 16pt;
+    font-size: 9pt;
+  }
+
+  .cta-btn--primary {
+    border-color: #E8A838 !important;
+    color: #E8A838 !important;
+  }
+
+  .cta-btn--whatsapp {
+    border-color: #25D366 !important;
+    color: #25D366 !important;
+  }
+
+  /* ---------- Precio ---------- */
+  .precio-total {
+    background: #1B3A4B !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color: #fff !important;
+  }
+
+  .precio-bloque {
+    background: #f5f5f5 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ---------- Accordion — expand all ---------- */
+  .accordion-panel {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .accordion-toggle::after {
+    display: none;
+  }
+
+  /* ---------- Sticky nav — hide ---------- */
+  .st-sticky-nav {
+    display: none;
+  }
+
+  /* ---------- Links — show URLs ---------- */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    color: #666;
+    word-break: break-all;
+  }
+
+  .cta-btn[href]::after {
+    content: none;
+  }
+
+  /* ---------- Page breaks ---------- */
+  h2 {
+    page-break-after: avoid;
+  }
+
+  .footer-propuesta {
+    page-break-before: avoid;
+  }
+
+  /* ---------- Excursiones ---------- */
+  .excursiones-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .excursion-card img {
+    max-height: 100px;
+  }
+
+  /* ---------- Badges & Highlights ---------- */
+  .badge-tipo {
+    background: #E8A838 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .callout {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

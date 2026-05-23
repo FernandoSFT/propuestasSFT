@@ -1,0 +1,259 @@
+/* ============================================================
+   SAFE TOUR — Base Styles (safetour-base.css)
+   Sistema de diseño compartido para propuestas HTML
+   Repo: FernandoSFT/propuestasSFT
+   ============================================================ */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  /* Brand colors */
+  --st-primary:    #1B3A4B;
+  --st-primary-light: #2A5468;
+  --st-primary-dark:  #0F2530;
+  --st-accent:     #E8A838;
+  --st-accent-light: #F2C56B;
+  --st-accent-dark:  #C88A1E;
+
+  /* Neutrals */
+  --st-bg:         #FAFAF8;
+  --st-bg-alt:     #F0EFEB;
+  --st-surface:    #FFFFFF;
+  --st-text:       #2C3E50;
+  --st-text-light: #5D6D7E;
+  --st-text-muted: #95A5A6;
+  --st-border:     #E0E0E0;
+  --st-border-light: #EEEEEE;
+
+  /* Semantic */
+  --st-success:    #27AE60;
+  --st-warning:    #F39C12;
+  --st-danger:     #E74C3C;
+  --st-info:       #3498DB;
+
+  /* Spacing scale (4px base) */
+  --st-space-xs:   4px;
+  --st-space-sm:   8px;
+  --st-space-md:   16px;
+  --st-space-lg:   24px;
+  --st-space-xl:   32px;
+  --st-space-2xl:  48px;
+  --st-space-3xl:  64px;
+
+  /* Border radius */
+  --st-radius:     12px;
+  --st-radius-sm:  8px;
+  --st-radius-lg:  16px;
+  --st-radius-xl:  24px;
+  --st-radius-pill: 999px;
+
+  /* Shadows */
+  --st-shadow-sm:  0 2px 8px rgba(27, 58, 75, 0.06);
+  --st-shadow-md:  0 4px 16px rgba(27, 58, 75, 0.10);
+  --st-shadow-lg:  0 8px 32px rgba(27, 58, 75, 0.14);
+  --st-shadow-xl:  0 16px 48px rgba(27, 58, 75, 0.18);
+
+  /* Typography */
+  --st-font-family: 'Nunito Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --st-font-mono:   'Courier New', monospace;
+  --st-line-height:  1.6;
+  --st-letter-spacing: -0.01em;
+
+  /* Layout */
+  --st-max-width:  900px;
+  --st-header-height: auto;
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--st-font-family);
+  color: var(--st-text);
+  background: var(--st-bg);
+  line-height: var(--st-line-height);
+  letter-spacing: var(--st-letter-spacing);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, video, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--st-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--st-accent);
+}
+
+/* ---------- Typography ---------- */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--st-primary);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+h2 { font-size: clamp(1.35rem, 3vw, 1.75rem); margin-top: var(--st-space-2xl); }
+h3 { font-size: clamp(1.1rem, 2.5vw, 1.35rem); }
+h4 { font-size: 1.1rem; }
+
+p {
+  margin-bottom: var(--st-space-md);
+  color: var(--st-text);
+}
+
+small {
+  font-size: 0.85rem;
+  color: var(--st-text-muted);
+}
+
+strong {
+  font-weight: 800;
+}
+
+em {
+  color: var(--st-text-light);
+  font-style: italic;
+}
+
+/* ---------- Layout Container ---------- */
+.st-container {
+  width: 100%;
+  max-width: var(--st-max-width);
+  margin: 0 auto;
+  padding: 0 var(--st-space-lg);
+}
+
+.st-section {
+  padding: var(--st-space-2xl) 0;
+}
+
+.st-section + .st-section {
+  border-top: 1px solid var(--st-border-light);
+}
+
+/* ---------- Utility Classes ---------- */
+.st-text-center { text-align: center; }
+.st-text-right  { text-align: right; }
+.st-text-muted  { color: var(--st-text-muted); }
+.st-text-accent { color: var(--st-accent); }
+.st-text-primary { color: var(--st-primary); }
+.st-text-success { color: var(--st-success); }
+.st-text-danger  { color: var(--st-danger); }
+
+.st-mt-sm { margin-top: var(--st-space-sm); }
+.st-mt-md { margin-top: var(--st-space-md); }
+.st-mt-lg { margin-top: var(--st-space-lg); }
+.st-mt-xl { margin-top: var(--st-space-xl); }
+.st-mb-md { margin-bottom: var(--st-space-md); }
+.st-mb-lg { margin-bottom: var(--st-space-lg); }
+
+.st-flex { display: flex; gap: var(--st-space-md); }
+.st-flex-wrap { flex-wrap: wrap; }
+.st-flex-center { align-items: center; justify-content: center; }
+
+.st-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--st-space-lg); }
+.st-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--st-space-lg); }
+.st-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--st-space-md); }
+
+/* ---------- Responsive Grids ---------- */
+@media (max-width: 768px) {
+  .st-grid-2, .st-grid-3, .st-grid-4 {
+    grid-template-columns: 1fr;
+  }
+  .st-container {
+    padding: 0 var(--st-space-md);
+  }
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.35rem; }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --st-space-lg: 16px;
+    --st-space-xl: 24px;
+    --st-space-2xl: 32px;
+  }
+}
+
+/* ---------- Sticky Nav ---------- */
+.st-sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--st-border-light);
+  padding: var(--st-space-sm) var(--st-space-lg);
+}
+
+.st-sticky-nav .st-nav-inner {
+  max-width: var(--st-max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--st-space-md);
+}
+
+.st-sticky-nav .st-nav-logo {
+  height: 32px;
+  width: auto;
+}
+
+.st-sticky-nav .st-nav-links {
+  display: flex;
+  gap: var(--st-space-md);
+  list-style: none;
+}
+
+.st-sticky-nav .st-nav-links a {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--st-text-light);
+  transition: color 0.2s;
+}
+
+.st-sticky-nav .st-nav-links a:hover,
+.st-sticky-nav .st-nav-links a.active {
+  color: var(--st-primary);
+}
+
+@media (max-width: 600px) {
+  .st-sticky-nav .st-nav-links {
+    display: none;
+  }
+}
+
+/* ---------- Divider ---------- */
+.st-divider {
+  border: none;
+  height: 1px;
+  background: var(--st-border-light);
+  margin: var(--st-space-2xl) 0;
+}
+
+.st-divider--accent {
+  height: 3px;
+  background: linear-gradient(90deg, var(--st-accent), var(--st-accent-light));
+  border-radius: 2px;
+}

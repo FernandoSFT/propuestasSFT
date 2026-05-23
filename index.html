@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAFE TOUR — Style Guide · Sistema de Plantillas HTML</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/safetour-base.css">
+<link rel="stylesheet" href="css/safetour-components.css">
+<link rel="stylesheet" href="css/safetour-print.css">
+<style>
+  .sg-section { padding: 48px 0; border-bottom: 1px solid var(--st-border-light); }
+  .sg-section:last-child { border-bottom: none; }
+  .sg-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--st-text-muted); margin-bottom: 8px; }
+  .sg-swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+  .sg-swatch { border-radius: var(--st-radius-sm); overflow: hidden; border: 1px solid var(--st-border-light); }
+  .sg-swatch-color { height: 60px; }
+  .sg-swatch-label { padding: 8px; font-size: 0.8rem; font-weight: 700; }
+  .sg-swatch-label code { font-size: 0.7rem; color: var(--st-text-muted); display: block; margin-top: 2px; }
+  .sg-code { background: #1a2a30; color: #e0f0e8; padding: 16px 20px; border-radius: var(--st-radius-sm); font-family: var(--st-font-mono); font-size: 0.8rem; line-height: 1.5; overflow-x: auto; margin: 12px 0; }
+  .sg-demo-box { border: 1px dashed var(--st-border); border-radius: var(--st-radius); padding: 24px; margin: 16px 0; background: var(--st-bg); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="st-sticky-nav">
+  <div class="st-nav-inner">
+    <strong style="color: var(--st-primary); font-size: 1.1rem;">✂️ SAFE TOUR Style Guide</strong>
+    <ul class="st-nav-links">
+      <li><a href="#colores">Colores</a></li>
+      <li><a href="#tipografia">Tipografía</a></li>
+      <li><a href="#header">Header</a></li>
+      <li><a href="#cards">Cards</a></li>
+      <li><a href="#precio">Precio</a></li>
+      <li><a href="#cta">CTA</a></li>
+      <li><a href="#accordion">Acordeón</a></li>
+      <li><a href="#tabla">Tabla</a></li>
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#extras">Extras</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="st-container">
+
+<!-- INTRO -->
+<div class="sg-section" style="text-align:center; padding-top: 64px;">
+  <p class="sg-label">Sistema de diseño</p>
+  <h1>SAFE TOUR — Plantillas HTML</h1>
+  <p style="max-width:600px; margin:12px auto 0;">Catálogo visual de todos los componentes CSS disponibles para propuestas de viaje, facturas, bonos y comunicaciones.</p>
+  <div style="margin-top:24px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+    <span class="badge-tipo">🟢 Express</span>
+    <span class="badge-tipo" style="background: var(--st-info);">🔵 Estándar</span>
+    <span class="badge-tipo" style="background: #9B59B6;">🟣 Comparativa</span>
+    <span class="badge-tipo" style="background: #E67E22;">🟠 Circuito</span>
+  </div>
+</div>
+
+<!-- COLORES -->
+<div class="sg-section" id="colores">
+  <p class="sg-label">01 · Colores</p>
+  <h2 style="margin-top:0;">Paleta de marca</h2>
+  <div class="sg-swatch-grid" style="margin-top:16px;">
+    <div class="sg-swatch"><div class="sg-swatch-color" style="background:#1B3A4B"></div><div class="sg-swatch-label">Primary<code>#1B3A4B</code></div></div>
+    <div class="sg-swatch"><div class="sg-swatch-color" style="background:#2A5468"></div><div class="sg-swatch-label">Primary Light<code>#2A5468</code></div></div>
+    <div class="sg-swatch"><div class="sg-swatch-color" style="background:#0F2530"></div><div class="sg-swatch-label">Primary Dark<code>#0F2530</code></div></div>
+    <div class="sg-swatch"><div class="sg-swatch-color" style="background:#E8A838"></div><div class="sg-swatch-label">Accent<code>#E8A838</code></div></div>
+    <div class="sg-swatch"><div class="sg-swatch-color" style="background:#F2C56B"></div><div class="sg-swatch-label">Accent Light<code>#F2C56B</code></div></div>
+    <div class="sg-swatch"><div class="sg-swatch-color" style="background:#C88A1E"></div><div class="sg-swatch-label">Accent Dark<code>#C88A1E</code></div></div>
+    <div class="sg-swatch"><div class="sg-swatch-color" style="background:#FAFAF8"></div><div class="sg-swatch-label">Background<code>#FAFAF8</code></div></div>
+    <div class="sg-swatch"><div class="sg-swatch-color" style="background:#2C3E50"></div><div class="sg-swatch-label">Text<code>#2C3E50</code></div></div>
+    <div class="sg-swatch"><div class="sg-swatch-color" style="background:#27AE60"></div><div class="sg-swatch-label">Success<code>#27AE60</code></div></div>
+    <div class="sg-swatch"><div class="sg-swatch-color" style="background:#E74C3C"></div><div class="sg-swatch-label">Danger<code>#E74C3C</code></div></div>
+    <div class="sg-swatch"><div class="sg-swatch-color" style="background:#3498DB"></div><div class="sg-swatch-label">Info<code>#3498DB</code></div></div>
+    <div class="sg-swatch"><div class="sg-swatch-color" style="background:#F39C12"></div><div class="sg-swatch-label">Warning<code>#F39C12</code></div></div>
+  </div>
+</div>
+
+<!-- TIPOGRAFIA -->
+<div class="sg-section" id="tipografia">
+  <p class="sg-label">02 · Tipografía</p>
+  <h2 style="margin-top:0;">Nunito Sans</h2>
+  <div style="margin-top:16px;">
+    <h1>H1 — Título principal (clamp 1.75–2.5rem)</h1>
+    <h2 style="margin-top:12px;">H2 — Sección (clamp 1.35–1.75rem)</h2>
+    <h3>H3 — Subtítulo (clamp 1.1–1.35rem)</h3>
+    <h4>H4 — Etiqueta (1.1rem)</h4>
+    <p style="margin-top:12px;">Párrafo body — Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fuente: Nunito Sans 400, tamaño 1rem, línea 1.6.</p>
+    <p><strong>Texto en negrita (800)</strong> · <em>Texto en cursiva</em> · <small>Texto pequeño (0.85rem)</small></p>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="sg-section" id="header">
+  <p class="sg-label">03 · Header de propuesta</p>
+  <h2 style="margin-top:0;">Header básico</h2>
+</div>
+</div><!-- close container temporarily for full-width header -->
+
+<div class="header-propuesta">
+  <span class="badge-tipo">Paquete completo</span>
+  <h1>Viaje a Riviera Maya</h1>
+  <p class="header-subtitle">Una experiencia única en el Caribe mexicano</p>
+  <div class="header-meta">
+    <span>📅 15 – 22 Junio 2026</span>
+    <span>👥 2 adultos + 1 niño</span>
+    <span>✈️ Vuelo + Hotel + Traslados</span>
+  </div>
+</div>
+
+<div class="st-container">
+
+<!-- CARDS -->
+<div class="sg-section" id="cards">
+  <p class="sg-label">04 · Cards</p>
+  <h2 style="margin-top:0;">Cards de servicio</h2>
+  <div class="st-grid-3" style="margin-top:16px;">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🏨</div>
+        <div><h3>Hotel Barceló Maya Palace</h3></div>
+        <span class="card-badge">⭐⭐⭐⭐⭐</span>
+      </div>
+      <div class="card-body">
+        <p>Todo incluido · Suite Junior · Vista al mar</p>
+        <ul class="servicio-list">
+          <li><span class="servicio-icon">🛏️</span><span class="servicio-label">Habitación</span> Suite Junior vista mar</li>
+          <li><span class="servicio-icon">🍽️</span><span class="servicio-label">Régimen</span> Todo Incluido</li>
+          <li><span class="servicio-icon">📅</span><span class="servicio-label">Check-in</span> 15 Jun 2026</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">✈️</div>
+        <div><h3>Vuelos Iberia</h3></div>
+      </div>
+      <div class="card-body">
+        <ul class="servicio-list">
+          <li><span class="servicio-icon">➡️</span><span class="servicio-label">Ida</span> MAD → CUN · 15 Jun · 10:45</li>
+          <li><span class="servicio-icon">⬅️</span><span class="servicio-label">Vuelta</span> CUN → MAD · 22 Jun · 18:30</li>
+          <li><span class="servicio-icon">💼</span><span class="servicio-label">Equipaje</span> 23 kg facturado incluido</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card card--destacada">
+      <div class="card-header">
+        <div class="card-icon">🛡️</div>
+        <div><h3>Seguro de viaje</h3></div>
+      </div>
+      <div class="card-body">
+        <p>Intermundial Totaltravel · Cobertura médica hasta 300.000€ · Cancelación incluida</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:32px;">Card con imagen</h3>
+  <div class="st-grid-3" style="margin-top:12px;">
+    <div class="card card--media">
+      <img class="card-image" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop" alt="Playa">
+      <div class="card-body">
+        <h4>Excursión a Isla Mujeres</h4>
+        <p>Catamarán + snorkel + almuerzo · 8h</p>
+        <strong class="st-text-accent">45€ / persona</strong>
+      </div>
+    </div>
+    <div class="card card--media">
+      <img class="card-image" src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=600&h=300&fit=crop" alt="Cenote">
+      <div class="card-body">
+        <h4>Ruta de Cenotes</h4>
+        <p>3 cenotes + transporte + guía · 6h</p>
+        <strong class="st-text-accent">55€ / persona</strong>
+      </div>
+    </div>
+    <div class="card card--media">
+      <img class="card-image" src="https://images.unsplash.com/photo-1518638150340-f706e86654de?w=600&h=300&fit=crop" alt="Chichen Itza">
+      <div class="card-body">
+        <h4>Chichén Itzá + Valladolid</h4>
+        <p>Visita guiada + almuerzo buffet · 12h</p>
+        <strong class="st-text-accent">72€ / persona</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HIGHLIGHTS -->
+<div class="sg-section">
+  <p class="sg-label">05 · Highlights</p>
+  <h2 style="margin-top:0;">Resumen rápido</h2>
+  <div class="highlights" style="margin-top:16px;">
+    <div class="highlight-item"><span class="highlight-icon">✈️</span> Vuelo directo</div>
+    <div class="highlight-item"><span class="highlight-icon">🏨</span> Hotel 5⭐ Todo Incluido</div>
+    <div class="highlight-item"><span class="highlight-icon">🚐</span> Traslados privados</div>
+    <div class="highlight-item"><span class="highlight-icon">🛡️</span> Seguro incluido</div>
+    <div class="highlight-item"><span class="highlight-icon">📅</span> 7 noches</div>
+  </div>
+</div>
+
+<!-- PRECIO -->
+<div class="sg-section" id="precio">
+  <p class="sg-label">06 · Precio</p>
+  <h2 style="margin-top:0;">Bloque de precio</h2>
+  
+  <div class="precio-bloque" style="margin-top:16px;">
+    <table class="precio-desglose">
+      <thead>
+        <tr><th>Concepto</th><th>Detalle</th><th>Precio</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Vuelos</td><td>MAD → CUN ida y vuelta × 2 adultos + 1 niño</td><td>1.890 €</td></tr>
+        <tr><td>Hotel</td><td>Barceló Maya Palace · 7 noches TI</td><td>2.450 €</td></tr>
+        <tr><td>Traslados</td><td>Privados aeropuerto-hotel ida y vuelta</td><td>120 €</td></tr>
+        <tr><td>Seguro</td><td>Intermundial Totaltravel</td><td>89 €</td></tr>
+        <tr class="precio-fila-total"><td><strong>TOTAL</strong></td><td></td><td><strong>4.549 €</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="precio-total">
+    <div class="precio-label">Precio total del viaje</div>
+    <div class="precio-cifra">4.549 €</div>
+    <div class="precio-nota">2 adultos + 1 niño · Impuestos incluidos</div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="sg-section" id="cta">
+  <p class="sg-label">07 · CTA (Llamadas a la acción)</p>
+  <h2 style="margin-top:0;">Bloque CTA estandarizado</h2>
+
+  <div class="cta-section" style="margin-top:16px;">
+    <h2 style="margin-top:0;">¿Qué te parece esta propuesta?</h2>
+    <div class="cta-buttons">
+      <a href="#" class="cta-btn cta-btn--primary">✅ Me interesa, quiero reservar</a>
+      <a href="#" class="cta-btn cta-btn--secondary">🔄 Quiero ajustar algo</a>
+      <a href="#" class="cta-btn cta-btn--whatsapp">💬 Hablamos por WhatsApp</a>
+      <a href="#" class="cta-btn cta-btn--call">📞 Prefiero llamar</a>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;">Botones individuales</h3>
+  <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px;">
+    <a href="#" class="cta-btn cta-btn--primary">Primary</a>
+    <a href="#" class="cta-btn cta-btn--secondary">Secondary</a>
+    <a href="#" class="cta-btn cta-btn--whatsapp">WhatsApp</a>
+    <a href="#" class="cta-btn cta-btn--call">Call</a>
+  </div>
+</div>
+
+<!-- ACCORDION -->
+<div class="sg-section" id="accordion">
+  <p class="sg-label">08 · Acordeón</p>
+  <h2 style="margin-top:0;">Acordeón colapsable</h2>
+  <div class="accordion" style="margin-top:16px;">
+    <div class="accordion-item">
+      <button class="accordion-toggle" aria-expanded="true">🛡️ Seguro de viaje</button>
+      <div class="accordion-panel" aria-hidden="false">
+        <div class="accordion-panel-inner">
+          <p>Seguro Intermundial Totaltravel con cobertura médica hasta 300.000€, repatriación, cancelación del viaje, pérdida de equipaje y asistencia 24h.</p>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-toggle" aria-expanded="false">🚐 Traslados</button>
+      <div class="accordion-panel" aria-hidden="true">
+        <div class="accordion-panel-inner">
+          <p>Traslado privado aeropuerto-hotel-aeropuerto en vehículo climatizado. Incluye asiento infantil si se solicita.</p>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-toggle" aria-expanded="false">📜 Condiciones generales</button>
+      <div class="accordion-panel" aria-hidden="true">
+        <div class="accordion-panel-inner">
+          <p>Reserva sujeta a disponibilidad. Seña del 30% en el momento de la reserva, resto 21 días antes de la salida. Cancelación gratuita hasta 30 días antes de la salida.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TABLA COMPARATIVA -->
+<div class="sg-section" id="tabla">
+  <p class="sg-label">09 · Tabla comparativa</p>
+  <h2 style="margin-top:0;">Comparación de opciones</h2>
+  <div class="tabla-comparativa-wrapper">
+    <table class="tabla-comparativa" style="margin-top:16px;">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Opción A</th>
+          <th class="th-destacada">⭐ Opción B</th>
+          <th>Opción C</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Hotel</td><td>Barceló Maya Beach</td><td class="td-destacada">Barceló Maya Palace</td><td>Grand Palladium</td></tr>
+        <tr><td>Categoría</td><td>⭐⭐⭐⭐</td><td class="td-destacada">⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+        <tr><td>Régimen</td><td>Todo Incluido</td><td class="td-destacada">Todo Incluido Premium</td><td>Todo Incluido</td></tr>
+        <tr><td>Habitación</td><td>Doble estándar</td><td class="td-destacada">Suite Junior vista mar</td><td>Doble superior</td></tr>
+        <tr><td>Cancelación</td><td>Hasta 15 días gratis</td><td class="td-destacada">Hasta 30 días gratis</td><td>Hasta 21 días gratis</td></tr>
+        <tr><td><strong>Precio total</strong></td><td><strong>3.890 €</strong></td><td class="td-destacada"><strong>4.549 €</strong></td><td><strong>4.120 €</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--success" style="margin-top:16px;">
+    <span>⭐</span>
+    <div><strong>Recomendación:</strong> La Opción B ofrece la mejor relación calidad-precio con suite vista mar, TI Premium y cancelación flexible hasta 30 días.</div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="sg-section" id="timeline">
+  <p class="sg-label">10 · Timeline</p>
+  <h2 style="margin-top:0;">Timeline día a día (Circuito/Crucero)</h2>
+  <div class="timeline" style="margin-top:16px;">
+    <div class="timeline-day">
+      <div class="day-number">Día 1 · 15 Jun</div>
+      <h3>Madrid → Cancún</h3>
+      <p class="day-description">Vuelo directo con Iberia. Llegada al aeropuerto de Cancún y traslado privado al hotel. Tarde libre para disfrutar de la playa y las instalaciones del resort.</p>
+      <div class="day-servicios">
+        <span class="day-servicio-tag">✈️ Vuelo</span>
+        <span class="day-servicio-tag">🚐 Traslado</span>
+        <span class="day-servicio-tag">🏨 Check-in</span>
+      </div>
+    </div>
+    <div class="timeline-day">
+      <div class="day-number">Día 2 · 16 Jun</div>
+      <h3>Día libre en el resort</h3>
+      <p class="day-description">Día completo en el resort. Disfruta de las piscinas, spa, deportes acuáticos y la gastronomía del hotel con régimen Todo Incluido.</p>
+      <div class="day-servicios">
+        <span class="day-servicio-tag">🏨 Hotel TI</span>
+        <span class="day-servicio-tag">🏊‍♂️ Actividades</span>
+      </div>
+    </div>
+    <div class="timeline-day">
+      <div class="day-number">Día 3 · 17 Jun</div>
+      <h3>Excursión a Chichén Itzá</h3>
+      <p class="day-description">Visita guiada a la zona arqueológica de Chichén Itzá, una de las Nuevas Siete Maravillas del Mundo. Parada en Valladolid y cenote. Almuerzo buffet incluido.</p>
+      <div class="day-servicios">
+        <span class="day-servicio-tag">🏛️ Excursión</span>
+        <span class="day-servicio-tag">🍽️ Almuerzo</span>
+        <span class="day-servicio-tag">🚌 Transporte</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXCURSIONES -->
+<div class="sg-section">
+  <p class="sg-label">11 · Excursiones opcionales</p>
+  <h2 style="margin-top:0;">Grid de excursiones</h2>
+  <div class="excursiones-grid" style="margin-top:16px;">
+    <div class="excursion-card">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=200&fit=crop" alt="Isla Mujeres">
+      <div class="excursion-body">
+        <span class="excursion-tag">Opcional</span>
+        <h4>Isla Mujeres en catamarán</h4>
+        <div class="excursion-meta"><span>⏱ 8 horas</span><span>📍 Cancún</span></div>
+        <p style="font-size:0.85rem; color:var(--st-text-light);">Catamarán + snorkel + barra libre + almuerzo en playa</p>
+        <div class="excursion-precio">45 € / persona</div>
+      </div>
+    </div>
+    <div class="excursion-card">
+      <img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=400&h=200&fit=crop" alt="Cenotes">
+      <div class="excursion-body">
+        <span class="excursion-tag">Opcional</span>
+        <h4>Ruta de 3 cenotes</h4>
+        <div class="excursion-meta"><span>⏱ 6 horas</span><span>📍 Tulum</span></div>
+        <p style="font-size:0.85rem; color:var(--st-text-light);">Transporte + guía + equipo de snorkel + refrigerios</p>
+        <div class="excursion-precio">55 € / persona</div>
+      </div>
+    </div>
+    <div class="excursion-card">
+      <img src="https://images.unsplash.com/photo-1518638150340-f706e86654de?w=400&h=200&fit=crop" alt="Chichén Itzá">
+      <div class="excursion-body">
+        <span class="excursion-tag">Opcional</span>
+        <h4>Chichén Itzá + Valladolid</h4>
+        <div class="excursion-meta"><span>⏱ 12 horas</span><span>📍 Yucatán</span></div>
+        <p style="font-size:0.85rem; color:var(--st-text-light);">Visita guiada + cenote + almuerzo buffet</p>
+        <div class="excursion-precio">72 € / persona</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CALLOUTS -->
+<div class="sg-section" id="extras">
+  <p class="sg-label">12 · Callouts y alertas</p>
+  <h2 style="margin-top:0;">Mensajes contextuales</h2>
+  <div class="callout callout--info">
+    <span>ℹ️</span>
+    <div><strong>Información:</strong> El check-in en el hotel es a partir de las 15:00h. Early check-in sujeto a disponibilidad.</div>
+  </div>
+  <div class="callout callout--success">
+    <span>✅</span>
+    <div><strong>¡Incluido!</strong> Seguro de viaje con cobertura médica y cancelación ya incluido en el precio.</div>
+  </div>
+  <div class="callout callout--warning">
+    <span>⚠️</span>
+    <div><strong>Atención:</strong> Precio válido hasta el 30 de mayo de 2026. Sujeto a disponibilidad.</div>
+  </div>
+  <div class="callout callout--danger">
+    <span>❌</span>
+    <div><strong>Cancelación:</strong> A partir de 14 días antes de la salida se aplican gastos de cancelación según condiciones del proveedor.</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="sg-section">
+  <p class="sg-label">13 · Footer</p>
+  <h2 style="margin-top:0;">Pie de propuesta</h2>
+</div>
+</div>
+
+<div class="footer-propuesta">
+  <p><strong>SAFE TOUR</strong> · Tu agencia de viajes de confianza</p>
+  <p>📞 +34 XXX XXX XXX · ✉️ info@safetour.es · 🌐 safetour.es</p>
+  <p style="margin-top:8px; font-size:0.75rem;">Propuesta generada el 23 de mayo de 2026 · Válida 15 días</p>
+</div>
+
+<!-- Accordion JS -->
+<script>
+document.querySelectorAll('.accordion-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', !expanded);
+    const panel = btn.nextElementSibling;
+    panel.setAttribute('aria-hidden', expanded);
+  });
+});
+</script>
+
+</body>
+</html>

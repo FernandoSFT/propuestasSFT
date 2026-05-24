@@ -5,37 +5,158 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Propuesta de Viaje — DESTINO | SAFE TOUR</title>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts — Playfair Display + Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300..1000;1,6..12,300..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-  <!-- CSS compartido desde GitHub Pages -->
-  <link rel="stylesheet" href="https://fernandosft.github.io/propuestasSFT/css/safetour-base.css">
-  <link rel="stylesheet" href="https://fernandosft.github.io/propuestasSFT/css/safetour-components.css">
-  <link rel="stylesheet" href="https://fernandosft.github.io/propuestasSFT/css/safetour-print.css" media="print">
-
-  <!-- FALLBACK INLINE — Estilos críticos -->
+  <!-- v3 Luxury — CSS 100% inline (self-contained) -->
   <style>
-    :root { --st-primary: #1B3A4B; --st-accent: #E8A838; --st-bg: #FAFAF8; --st-text: #2C3E50; --st-radius: 12px; }
-    body { font-family: 'Nunito Sans', system-ui, sans-serif; color: var(--st-text); background: var(--st-bg); margin: 0; }
-    .header-propuesta { background: var(--st-primary); color: #fff; padding: 40px; text-align: center; }
-    .cta-btn { background: var(--st-accent); color: #fff; padding: 14px 28px; border-radius: 999px; font-weight: 800; text-decoration: none; display: inline-block; }
-    .card, .tile { border-radius: var(--st-radius); padding: 20px; border: 1px solid #e0e0e0; }
+    :root {
+      --st-primary: #1B3A4B; --st-primary-light: #2A5468;
+      --st-accent: #E8A838; --st-accent-light: #F2C56B; --st-accent-dark: #C88A1E;
+      --st-bg: #FAFAF8; --st-bg-alt: #F0EFEB; --st-surface: #FFFFFF;
+      --st-text: #2C3E50; --st-text-light: #5D6D7E; --st-text-muted: #95A5A6;
+      --st-radius: 16px; --st-radius-sm: 10px;
+      --st-shadow: 0 4px 24px rgba(0,0,0,.06); --st-shadow-lg: 0 8px 40px rgba(0,0,0,.10);
+      --st-font-heading: 'Playfair Display', Georgia, serif;
+      --st-font-body: 'Inter', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--st-font-body); color: var(--st-text); background: var(--st-bg); line-height: 1.7; font-size: 16px; }
+    img { max-width: 100%; height: auto; }
+    a { color: var(--st-accent-dark); text-decoration: none; transition: color .2s; }
+    a:hover { color: var(--st-accent); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 64px 0; }
+    .section-title { font-family: var(--st-font-heading); font-size: 2rem; font-weight: 600; margin-bottom: 12px; color: var(--st-primary); }
+    .section-intro { font-size: 1.1rem; color: var(--st-text-light); margin-bottom: 32px; line-height: 1.8; }
+
+    /* NAV */
+    .nav-sticky { position: sticky; top: 0; z-index: 100; background: #0A0A0A; border-bottom: 1px solid rgba(232,168,56,.15); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .nav-logo { height: 38px; }
+    .nav-links { list-style: none; display: flex; gap: 24px; align-items: center; }
+    .nav-links a { color: var(--st-accent-light); font-size: .85rem; font-weight: 500; letter-spacing: .3px; }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta { background: var(--st-accent); color: #0A0A0A !important; padding: 8px 22px; border-radius: 999px; font-weight: 700; }
+
+    /* HERO */
+    .hero { position: relative; min-height: 520px; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,.55) 100%); }
+    .hero-content { position: relative; z-index: 2; padding: 60px 24px; max-width: 800px; }
+    .hero-logo { height: 50px; margin-bottom: 24px; }
+    .hero-destination { font-family: var(--st-font-heading); font-size: 3.2rem; font-weight: 700; color: var(--st-accent); margin-bottom: 8px; }
+    .hero-client { font-size: 1.3rem; color: var(--st-accent-light); margin-bottom: 16px; font-weight: 300; }
+    .hero-intro { font-size: 1.05rem; color: rgba(255,255,255,.85); max-width: 600px; margin: 0 auto 24px; line-height: 1.7; }
+    .hero-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; font-size: .95rem; color: var(--st-accent-light); }
+
+    /* GRID */
+    .grid { display: grid; gap: 24px; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    /* CARDS */
+    .card { background: var(--st-surface); border-radius: var(--st-radius); padding: 28px; box-shadow: var(--st-shadow); border: 1px solid rgba(0,0,0,.04); transition: transform .2s, box-shadow .2s; }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--st-shadow-lg); }
+    .card-badge { display: inline-block; font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .8px; color: var(--st-accent-dark); background: rgba(232,168,56,.1); padding: 4px 12px; border-radius: 999px; margin-bottom: 12px; }
+    .card-title { font-family: var(--st-font-heading); font-size: 1.3rem; font-weight: 600; margin-bottom: 6px; color: var(--st-primary); }
+    .card-subtitle { color: var(--st-text-light); font-size: .95rem; margin-bottom: 12px; }
+    .card-list { list-style: none; padding: 0; }
+    .card-list li { padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,.04); font-size: .95rem; }
+    .card-list li:last-child { border-bottom: none; }
+    .card-section { padding: 16px 0; border-top: 1px solid rgba(0,0,0,.06); }
+    .card-section:first-of-type { border-top: none; }
+    .card-section h4 { font-family: var(--st-font-heading); color: var(--st-primary); margin-bottom: 8px; }
+    .card--highlighted { border-left: 4px solid var(--st-accent); }
+    .text-muted { color: var(--st-text-muted); font-size: .9rem; }
+
+    /* TABLA COMPARATIVA */
+    .tabla-comparativa-wrapper { overflow-x: auto; }
+    .tabla-comparativa { width: 100%; border-collapse: collapse; background: var(--st-surface); border-radius: var(--st-radius); overflow: hidden; box-shadow: var(--st-shadow); }
+    .tabla-comparativa th { background: var(--st-primary); color: var(--st-accent-light); padding: 14px 16px; font-size: .9rem; text-transform: uppercase; letter-spacing: .5px; }
+    .tabla-comparativa td { padding: 12px 16px; border-bottom: 1px solid var(--st-bg-alt); font-size: .95rem; }
+    .tabla-comparativa tr:last-child td { border-bottom: none; }
+    .precio-fila-total td { font-weight: 700; background: rgba(232,168,56,.06); }
+
+    /* CALLOUT */
+    .callout { display: flex; gap: 16px; align-items: flex-start; padding: 20px; border-radius: var(--st-radius-sm); }
+    .callout--accent { background: rgba(232,168,56,.08); border: 1px solid rgba(232,168,56,.2); }
+    .callout-icon { font-size: 1.5rem; }
+    .callout-body { flex: 1; }
+
+    /* PRECIO */
+    .precio-bloque { background: var(--st-surface); border-radius: var(--st-radius); padding: 32px; box-shadow: var(--st-shadow); }
+    .precio-desglose { width: 100%; border-collapse: collapse; }
+    .precio-desglose th { text-align: left; padding: 12px 16px; font-size: .85rem; text-transform: uppercase; letter-spacing: .5px; color: var(--st-text-muted); border-bottom: 2px solid var(--st-bg-alt); }
+    .precio-desglose td { padding: 14px 16px; border-bottom: 1px solid var(--st-bg-alt); }
+    .precio-nota { font-size: .9rem; color: var(--st-text-muted); margin-top: 16px; font-style: italic; }
+    .precio-total { font-family: var(--st-font-heading); }
+    .precio-total-amount { font-size: 1.5rem; font-weight: 700; color: var(--st-accent-dark); }
+    .precio-total-nota { font-size: .9rem; color: var(--st-text-muted); }
+
+    /* ACCORDION */
+    .accordion { display: flex; flex-direction: column; gap: 8px; }
+    .accordion details { background: var(--st-surface); border-radius: var(--st-radius-sm); border: 1px solid rgba(0,0,0,.06); overflow: hidden; }
+    .accordion summary { padding: 16px 20px; font-weight: 600; cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; }
+    .accordion summary::after { content: '+'; font-size: 1.3rem; color: var(--st-accent); }
+    .accordion details[open] summary::after { content: '−'; }
+    .accordion details > *:not(summary) { padding: 0 20px 16px; }
+    .accordion ul { padding-left: 20px; }
+
+    /* CTA */
+    .cta-section { background: #0A0A0A; padding: 64px 24px; text-align: center; border-radius: var(--st-radius); margin: 48px 0; }
+    .cta-section h2 { font-family: var(--st-font-heading); color: var(--st-accent); font-size: 2rem; margin-bottom: 12px; }
+    .cta-section p { color: var(--st-accent-light); margin-bottom: 32px; font-size: 1.05rem; }
+    .cta-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 999px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: all .2s; }
+    .cta-btn--whatsapp { background: #25D366; color: #fff; }
+    .cta-btn--whatsapp:hover { background: #1da851; color: #fff; }
+    .cta-btn--call { background: var(--st-accent); color: #0A0A0A; }
+    .cta-btn--call:hover { background: var(--st-accent-light); }
+    .cta-btn--email { background: transparent; color: var(--st-accent-light); border: 2px solid var(--st-accent); }
+    .cta-btn--email:hover { background: var(--st-accent); color: #0A0A0A; }
+
+    /* FOOTER */
+    .footer { background: #0A0A0A; color: var(--st-accent-light); padding: 48px 24px; text-align: center; }
+    .footer-logo { height: 60px; margin-bottom: 20px; }
+    .footer p { margin: 6px 0; font-size: .95rem; }
+    .footer .footer-legal { font-size: .8rem; color: rgba(242,197,107,.5); margin-top: 16px; }
+    .footer a { color: var(--st-accent); }
+
+    @media print {
+      .nav-sticky, .cta-section { display: none; }
+      body { font-size: 12pt; color: #000; background: #fff; }
+      .hero { min-height: auto; color: #000; background: #f5f5f5; }
+      .hero-overlay { display: none; }
+      .hero-destination, .hero-client { color: #1B3A4B; }
+      .card { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
+    }
+    @media (max-width: 768px) {
+      .hero-destination { font-size: 2.2rem; }
+      .hero { min-height: 400px; }
+      .section { padding: 40px 0; }
+      .section-title { font-size: 1.6rem; }
+    }
   </style>
 </head>
 <body>
 
   <!-- ============================================ -->
-  <!-- 🟣 PLANTILLA COMPARATIVA                     -->
-  <!-- Uso: 2-5 alternativas que el cliente debe     -->
-  <!--      comparar y elegir                        -->
+  <!-- 🟣 PLANTILLA COMPARATIVA — v3 Luxury          -->
+  <!-- Uso: 2-5 alternativas para comparar            -->
+  <!-- Versión: 3 (Mayo 2026)                        -->
+  <!-- CSS: 100% inline (self-contained)             -->
   <!-- ============================================ -->
 
-  <!-- NAV STICKY -->
+  <!-- NAV -->
   <nav class="nav-sticky">
     <div class="container nav-inner">
-      <a href="#inicio" class="nav-logo">SAFE TOUR</a>
+      <a href="#inicio">
+        <img src="https://fernandosft.github.io/propuestasSFT/logo%20safetour%20oro.svg" alt="SAFE TOUR" class="nav-logo">
+      </a>
       <ul class="nav-links">
         <li><a href="#resumen">Resumen</a></li>
         <li><a href="#comparativa">Comparar</a></li>
@@ -47,18 +168,22 @@
     </div>
   </nav>
 
-  <!-- HEADER -->
-  <header id="inicio" class="header-propuesta">
-    <img src="https://fernandosft.github.io/propuestasSFT/Logonuevotraveltool.png" alt="SAFE TOUR" class="header-logo" style="max-width:180px; margin-bottom:20px;">
-    <p class="header-subtitulo">Propuesta de viaje personalizada</p>
-    <h1 class="header-destino">DESTINO</h1>
-    <div class="header-meta">
-      <span>📅 FECHA_SALIDA — FECHA_REGRESO</span>
-      <span>🌙 NUM_NOCHES noches</span>
-      <span>👥 NUM_VIAJEROS viajero(s)</span>
-      <span>📋 Ref: REFERENCIA</span>
+  <!-- HERO -->
+  <header id="inicio" class="hero">
+    <div class="hero-bg" style="background-image:url('HERO_IMAGE_URL');"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <img src="https://fernandosft.github.io/propuestasSFT/logo%20safetour%20oro.svg" alt="SAFE TOUR" class="hero-logo">
+      <h1 class="hero-destination">DESTINO</h1>
+      <p class="hero-client">Preparado para <strong>NOMBRE_CLIENTE</strong></p>
+      <p class="hero-intro">TEXTO_INTRO</p>
+      <div class="hero-meta">
+        <span>📅 FECHA_SALIDA — FECHA_REGRESO</span>
+        <span>🌙 NUM_NOCHES noches</span>
+        <span>👥 NUM_VIAJEROS viajero(s)</span>
+        <span>📋 Ref: REFERENCIA</span>
+      </div>
     </div>
-    <p class="header-cliente">Preparado para <strong>NOMBRE_CLIENTE</strong></p>
   </header>
 
   <main class="container">
@@ -66,20 +191,19 @@
     <!-- RESUMEN -->
     <section id="resumen" class="section">
       <h2 class="section-title">Tu viaje en un vistazo</h2>
-      <p class="section-intro">TEXTO_INTRO</p>
       <p class="section-intro">Te presentamos <strong>NUM_OPCIONES opciones</strong> para que elijas la que mejor se adapta a tus preferencias:</p>
     </section>
 
     <!-- TABLA COMPARATIVA -->
     <section id="comparativa" class="section">
       <h2 class="section-title">Comparativa de opciones</h2>
-      <div class="tabla-comparativa-wrapper" style="overflow-x:auto;">
+      <div class="tabla-comparativa-wrapper">
         <table class="tabla-comparativa">
           <thead>
             <tr>
               <th>Característica</th>
               <!-- #OPCIONES -->
-              <th class="OPCION_CSS_CLASS">OPCION_NOMBRE</th>
+              <th>OPCION_NOMBRE</th>
               <!-- /OPCIONES -->
             </tr>
           </thead>
@@ -149,8 +273,6 @@
           </tbody>
         </table>
       </div>
-
-      <!-- RECOMENDACIÓN -->
       <!-- #RECOMENDACION -->
       <div class="callout callout--accent" style="margin-top:2rem;">
         <span class="callout-icon">⭐</span>
@@ -164,12 +286,9 @@
     <!-- DETALLE POR OPCIÓN -->
     <section id="detalle" class="section">
       <h2 class="section-title">Detalle de cada opción</h2>
-
       <!-- #OPCIONES_DETALLE -->
       <div class="card card--highlighted" style="margin-bottom:2rem;" id="opcion-OPCION_ID">
         <h3 class="card-title">OPCION_NOMBRE <!-- #OPCION_DESTACADA --><span class="card-badge" style="background:var(--st-accent);color:#fff;">⭐ Recomendada</span><!-- /OPCION_DESTACADA --></h3>
-
-        <!-- Alojamiento -->
         <div class="card-section">
           <h4>🏨 OPCION_HOTEL_NOMBRE</h4>
           <p>OPCION_HOTEL_CATEGORIA · OPCION_HOTEL_UBICACION</p>
@@ -181,15 +300,11 @@
             <!-- /OPCION_HOTEL_EXTRAS -->
           </ul>
         </div>
-
-        <!-- Vuelos -->
         <div class="card-section">
           <h4>✈️ Vuelos</h4>
           <p><strong>Ida:</strong> OPCION_VUELO_IDA</p>
           <p><strong>Vuelta:</strong> OPCION_VUELO_VUELTA</p>
         </div>
-
-        <!-- Servicios incluidos -->
         <!-- #OPCION_SERVICIOS -->
         <div class="card-section">
           <h4>📋 Servicios incluidos</h4>
@@ -200,20 +315,15 @@
           </ul>
         </div>
         <!-- /OPCION_SERVICIOS -->
-
-        <!-- Precio -->
-        <div class="card-section">
-          <div class="precio-total" style="text-align:right;">
-            <span class="precio-total-label">Total:</span>
-            <span class="precio-total-amount">OPCION_PRECIO_TOTAL €</span>
-            <span class="precio-total-nota">(OPCION_PRECIO_PP €/persona)</span>
-          </div>
+        <div class="card-section" style="text-align:right;">
+          <span class="precio-total-amount">OPCION_PRECIO_TOTAL €</span>
+          <span class="precio-total-nota">(OPCION_PRECIO_PP €/persona)</span>
         </div>
       </div>
       <!-- /OPCIONES_DETALLE -->
     </section>
 
-    <!-- PRECIO COMPARATIVO -->
+    <!-- PRECIOS -->
     <section id="precio" class="section">
       <h2 class="section-title">Resumen de precios</h2>
       <div class="precio-bloque">
@@ -227,7 +337,7 @@
           </thead>
           <tbody>
             <!-- #OPCIONES_PRECIO -->
-            <tr class="OPCION_PRECIO_CSS">
+            <tr>
               <td>OPCION_NOMBRE</td>
               <td><strong>OPCION_PRECIO_TOTAL €</strong></td>
               <td>OPCION_PRECIO_PP €</td>
@@ -290,10 +400,9 @@
       <h2>¿Cuál prefieres?</h2>
       <p>Dinos tu opción favorita y gestionamos todo para tu viaje a <strong>DESTINO</strong></p>
       <div class="cta-buttons">
-        <a href="mailto:info@safetour.es?subject=Reservar%20-%20DESTINO%20-%20REFERENCIA" class="cta-btn cta-btn--primary">✅ Ya sé cuál quiero, reservar</a>
-        <a href="mailto:info@safetour.es?subject=Dudas%20-%20DESTINO%20-%20REFERENCIA" class="cta-btn cta-btn--secondary">🔄 Tengo dudas, ayúdame a elegir</a>
-        <a href="https://wa.me/34WHATSAPP_NUMERO?text=Hola,%20me%20interesa%20la%20propuesta%20de%20DESTINO%20(REFERENCIA)" class="cta-btn cta-btn--whatsapp">💬 Hablamos por WhatsApp</a>
-        <a href="tel:+34TELEFONO" class="cta-btn cta-btn--call">📞 Prefiero llamar</a>
+        <a href="https://wa.me/34717717266?text=Hola,%20me%20interesa%20la%20propuesta%20de%20DESTINO%20(REFERENCIA)" class="cta-btn cta-btn--whatsapp">💬 WhatsApp</a>
+        <a href="tel:+34953890650" class="cta-btn cta-btn--call">📞 Llamar</a>
+        <a href="mailto:info@safetour.es?subject=Propuesta%20DESTINO%20-%20REFERENCIA" class="cta-btn cta-btn--email">✉️ Email</a>
       </div>
     </section>
 
@@ -302,10 +411,13 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <p><strong>SAFE TOUR</strong> — Tu agencia de viajes de confianza</p>
-      <p>📧 info@safetour.es · 📞 +34 TELEFONO · 💬 WhatsApp: +34 WHATSAPP_NUMERO</p>
-      <p class="text-muted">FOOTER_LEGAL</p>
-      <p class="text-muted">Propuesta válida hasta FECHA_VALIDEZ · Ref: REFERENCIA</p>
+      <img src="https://fernandosft.github.io/propuestasSFT/Logo%20SAFE%20TOUR%20elegante.svg" alt="SAFE TOUR" class="footer-logo">
+      <p><strong>SAFE TOUR</strong> · La Experiencia de Viajar</p>
+      <p>📍 Calle Ibáñez Marín, 11 · 23740 Andújar (Jaén)</p>
+      <p>📞 953 890 650 · 💬 717 717 266 · ✉️ info@safetour.es</p>
+      <p><a href="https://www.safetour.es" target="_blank">www.safetour.es</a> · <a href="https://financiacion.safetour.es" target="_blank">financiacion.safetour.es</a></p>
+      <p class="footer-legal">CIAN: 231774/2 · CIF: B23619679</p>
+      <p class="footer-legal">Propuesta válida hasta FECHA_VALIDEZ · Ref: REFERENCIA</p>
     </div>
   </footer>
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Guia de viaje SAFE TOUR - Camino de Santiago (Camino Frances, Sarria-Santiago) 24-30 junio 2026. Itinerario dia a dia, hoteles, bonos y recomendaciones.">
-<title>Camino de Santiago 2026 · Guia de viaje SAFE TOUR</title>
+<meta name="description" content="Guía de viaje SAFE TOUR - Camino de Santiago (Camino Francés, Sarria-Santiago) 24-30 junio 2026. Itinerario día a día, hoteles, bonos y recomendaciones.">
+<title>Camino de Santiago 2026 · Guía de viaje SAFE TOUR</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Montserrat:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
@@ -22,8 +22,6 @@ body{font-family:'Montserrat',system-ui,sans-serif;color:var(--ink);background:v
 h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;color:var(--navy);line-height:1.2}
 a{color:var(--navy);text-decoration:none}
 img{max-width:100%;display:block}
-
-/* HEADER */
 .topbar{position:sticky;top:0;z-index:50;background:rgba(250,249,246,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .topbar-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:12px 20px}
 .brand{display:flex;align-items:center;gap:12px}
@@ -35,14 +33,10 @@ nav.tabs{margin-left:auto;display:flex;flex-wrap:wrap;gap:4px}
 nav.tabs button{font-family:'Poppins',sans-serif;font-weight:600;font-size:.8rem;color:var(--navy);background:transparent;border:0;padding:8px 12px;border-radius:10px;cursor:pointer;transition:.2s}
 nav.tabs button:hover{background:var(--sand)}
 nav.tabs button.active{background:var(--navy);color:#fff}
-
-/* LAYOUT */
 main{max-width:1080px;margin:0 auto;padding:28px 20px 80px}
 section[data-tab]{display:none;animation:fade .4s ease}
 section[data-tab].active{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-
-/* HERO */
 .hero{position:relative;border-radius:var(--radius);overflow:hidden;color:#fff;box-shadow:var(--shadow);margin-bottom:28px}
 .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(27,54,93,.92),rgba(27,54,93,.62)),url('https://images.unsplash.com/photo-1558642891-54be180ea339?auto=format&fit=crop&w=1600&q=80');background-size:cover;background-position:center}
 .hero-content{position:relative;padding:56px 32px}
@@ -51,8 +45,6 @@ section[data-tab].active{display:block}
 .hero p.sub{font-size:1.05rem;max-width:620px;color:#f3ece2}
 .hero .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
 .hero .chip{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);padding:7px 14px;border-radius:999px;font-size:.82rem;font-weight:600;font-family:'Poppins',sans-serif}
-
-/* CARDS / GENERIC */
 .card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:26px;margin-bottom:22px}
 .section-title{display:flex;align-items:center;gap:10px;font-size:1.45rem;margin-bottom:14px}
 .section-title .ico{font-size:1.3rem}
@@ -62,16 +54,12 @@ p{margin:0 0 12px}
 ul,ol{margin:0 0 14px;padding-left:22px}
 li{margin-bottom:7px}
 strong{color:var(--navy)}
-
-/* TABLE */
 table{width:100%;border-collapse:collapse;margin:6px 0 16px;font-size:.9rem;overflow:hidden;border-radius:12px;box-shadow:var(--shadow-sm)}
 th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
 thead th{background:var(--navy);color:#fff;font-family:'Poppins',sans-serif;font-weight:600;font-size:.82rem}
 tbody tr:nth-child(even){background:#faf7f2}
 td.lbl{background:#f1ece3;font-weight:600;color:var(--navy);width:38%;font-family:'Poppins',sans-serif;font-size:.84rem}
 table tr:last-child td{border-bottom:0}
-
-/* CALLOUT */
 .callout{display:flex;gap:13px;border-radius:14px;padding:15px 18px;margin:14px 0;border:1px solid var(--line);background:#fbf8f3;font-size:.92rem}
 .callout .ci{font-size:1.3rem;line-height:1.4}
 .callout.green{background:#eef6ef;border-color:#cfe6d3}
@@ -81,8 +69,6 @@ table tr:last-child td{border-bottom:0}
 .callout.red{background:#fbeceb;border-color:#f1cac6}
 .callout.purple{background:#f3eefb;border-color:#ddcef0}
 .callout.gray{background:#f2f2f3;border-color:#dcdce0}
-
-/* BUTTONS / BONOS */
 .btn-row{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 16px}
 .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-weight:600;font-size:.85rem;padding:11px 16px;border-radius:12px;transition:.2s;cursor:pointer;border:1px solid transparent}
 .btn-gold{background:var(--gold);color:#3a2c12}
@@ -93,33 +79,24 @@ table tr:last-child td{border-bottom:0}
 .btn-ghost:hover{background:var(--navy);color:#fff}
 .link-more{display:inline-flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-weight:600;font-size:.82rem;color:var(--navy);border-bottom:2px solid var(--gold);padding-bottom:1px}
 .link-more:hover{color:var(--gold)}
-
-/* DAY HEADER */
 .day-head{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:6px}
 .day-badge{background:var(--navy);color:#fff;font-family:'Poppins',sans-serif;font-weight:700;border-radius:14px;padding:10px 16px;text-align:center;min-width:78px}
 .day-badge small{display:block;font-weight:500;font-size:.62rem;letter-spacing:2px;color:var(--gold-soft)}
 .day-badge b{font-size:1.5rem;display:block;line-height:1}
 .day-title h2{font-size:1.5rem;margin:0}
 .day-title .date{font-family:'Poppins',sans-serif;color:var(--gold);font-weight:600;font-size:.82rem;letter-spacing:1px;text-transform:uppercase}
-
-/* DOC GRID */
 .doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
 .doc-item{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:8px}
 .doc-item .tag{font-family:'Poppins',sans-serif;font-size:.66rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:700}
 .doc-item h4{font-size:1rem;margin:0}
 .doc-item p{font-size:.82rem;color:#5a5e6b;margin:0}
 .doc-item .btn{margin-top:auto}
-
-/* FOOTER */
 footer{background:var(--navy);color:#dfe6f0;padding:40px 20px;text-align:center;font-size:.84rem}
 footer img{height:46px;margin:0 auto 14px;filter:brightness(0) invert(1);opacity:.92}
 footer .legal{max-width:680px;margin:10px auto 0;color:#aab6c9;font-size:.76rem;line-height:1.6}
 footer a{color:var(--gold-soft)}
-
-/* WHATSAPP FAB */
 .fab{position:fixed;right:18px;bottom:18px;z-index:60;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.7rem;box-shadow:0 10px 26px -8px rgba(0,0,0,.4);transition:.2s}
 .fab:hover{transform:scale(1.08)}
-
 @media(max-width:780px){
  .nav-toggle{display:block}
  nav.tabs{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--alabaster);border-bottom:1px solid var(--line);padding:10px;gap:2px}
@@ -157,7 +134,6 @@ footer a{color:var(--gold-soft)}
 
 <main>
 
-<!-- ============ INICIO ============ -->
 <section data-tab="inicio" class="active">
  <div class="hero">
   <div class="hero-bg"></div>
@@ -180,7 +156,7 @@ footer a{color:var(--gold-soft)}
    <tbody>
     <tr><td>Mié 24</td><td>🚄 Llegada en tren a Sarria</td><td>—</td><td>—</td><td>dp Cristal (Sarria)</td></tr>
     <tr><td>Jue 25</td><td>Sarria → Portomarín</td><td>22</td><td>6h–7h</td><td>Pensión Pérez (Portomarín)</td></tr>
-    <tr><td>Vie 26</td><td>Portomarín → Palas de Rei</td><td>25</td><td>7h–8h</td><td>Casa Bolboreta (Palas de Rei)</td></tr>
+    <tr><td>Vie 26</td><td>Portomarín → Palas de Rei</td><td>25</td><td>7h–8h</td><td>ACUBILLO (Palas de Rei)</td></tr>
     <tr><td>Sáb 27</td><td>Palas de Rei → Arzúa ⚠️ <em>la más larga</em></td><td>29</td><td>8h–9h</td><td>Pensión Carballeira (Arzúa)</td></tr>
     <tr><td>Dom 28</td><td>Arzúa → O Pedrouzo</td><td>19</td><td>5h30–6h30</td><td>Pensión23 (O Pedrouzo)</td></tr>
     <tr><td>Lun 29</td><td>O Pedrouzo → Santiago 🎉</td><td>20</td><td>6h–7h</td><td>Hostal O Patrón (Santiago)</td></tr>
@@ -193,18 +169,15 @@ footer a{color:var(--gold-soft)}
  </div>
 </section>
 
-<!-- ============ DIA 1 ============ -->
 <section data-tab="d1">
  <div class="card">
   <div class="day-head"><div class="day-badge"><small>DÍA</small><b>1</b></div><div class="day-title"><div class="date">Miércoles 24 jun</div><h2>🚄 Llegada a Sarria</h2></div></div>
   <div class="callout blue"><span class="ci">🚂</span><div><strong>Hoy no se camina.</strong> Llegada en tren a Sarria a las <strong>17:32</strong> (ALVIA 04325, loc. MSP64R). Check-in en dp Cristal a partir de las 17:30.</div></div>
-
-  <h3 class="block">🎨 Bonos de tren de hoy</h3>
+  <h3 class="block">🎫 Bonos de tren de hoy</h3>
   <div class="btn-row">
    <a class="btn btn-gold" target="_blank" rel="noopener" href="https://drive.google.com/file/d/14f4Fl35DSfi4Xqd_Ot7QAbFBBp0gMcqj/view?usp=sharing">📄 AVE Córdoba 09:15 → Madrid 11:12 (UV2VBY)</a>
    <a class="btn btn-gold" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1XLsIrt227eOpETj70nw5cWByUwzlAgX2/view?usp=drive_link">📄 ALVIA Madrid 13:20 → Sarria 17:32 (MSP64R)</a>
   </div>
-
   <h3 class="block">🏨 Hotel de esta noche</h3>
   <table><tbody>
    <tr><td class="lbl">Alojamiento</td><td><strong>dp Cristal</strong> · Habitación twin (camas separadas), solo alojamiento</td></tr>
@@ -215,7 +188,6 @@ footer a{color:var(--gold-soft)}
    <tr><td class="lbl">Check-in</td><td>Desde las 17:30</td></tr>
   </tbody></table>
   <div class="btn-row"><a class="btn btn-navy" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1IMcm2rArmm9sMVRIKJLOzHbFP4j6C3a2/view?usp=drive_link">📄 Ver bono dp Cristal</a></div>
-
   <h3 class="block">👀 Qué ver y hacer en Sarria (tarde/noche)</h3>
   <ul>
    <li>🏰 <strong>Castillo de Sarria (Torre da Fortaleza)</strong> — resto del castillo medieval del s. XIII con vistas al pueblo.</li>
@@ -225,7 +197,6 @@ footer a{color:var(--gold-soft)}
    <li>🚶 <strong>Paseo por la Rúa Maior</strong> — calle principal del Camino: tiendas, bares y ambiente peregrino.</li>
    <li>📜 <strong>Conseguir la Credencial del Peregrino</strong> (si no la tenéis): convento de A Madanela, oficina de turismo o el propio alojamiento (~2 €).</li>
   </ul>
-
   <h3 class="block">🍽️ Dónde comer/cenar (propuestas a confirmar in situ)</h3>
   <ul>
    <li><strong>Restaurante Roma</strong> (Rúa Maior) — cocina gallega tradicional, muy peregrina.</li>
@@ -235,13 +206,11 @@ footer a{color:var(--gold-soft)}
   </ul>
   <a class="link-more" target="_blank" rel="noopener" href="https://www.caminodesantiago.gal/es/planifica/las-rutas/camino-frances/etapa-sarria-portomarin">🔗 Ampliar información — Sarria y etapa a Portomarín</a>
   <div class="callout orange" style="margin-top:16px"><span class="ci">🔥</span><div><strong>Eco de la Noche de San Xoán.</strong> La noche del 23 al 24 es la mágica Noite de San Xoán (hogueras, sardinas, queimada). Al llegar la tarde del 24 puede quedar ambiente festivo. Preguntad en el alojamiento si hay hogueras.</div></div>
-
   <h3 class="block">📞 Teléfonos del día</h3>
   <p>Emergencias <strong>112</strong> · Taxi Sarria +34 982 530 260 · Of. Turismo Sarria +34 982 530 099 · dp Cristal +34 669 799 512 · SAFE TOUR +34 953 890 650</p>
  </div>
 </section>
 
-<!-- ============ DIA 2 ============ -->
 <section data-tab="d2">
  <div class="card">
   <div class="day-head"><div class="day-badge"><small>DÍA</small><b>2</b></div><div class="day-title"><div class="date">Jueves 25 jun · Etapa 1</div><h2>🥾 Sarria → Portomarín (22 km)</h2></div></div>
@@ -252,7 +221,6 @@ footer a{color:var(--gold-soft)}
    <tr><td class="lbl">Salida recomendada</td><td>07:30 – 08:00</td></tr>
    <tr><td class="lbl">Dificultad</td><td>Media-alta (subida dura a Barbadelo)</td></tr>
   </tbody></table>
-
   <h3 class="block">🧭 Navegación por tramos</h3>
   <ol>
    <li><strong>Sarria → A Áspera (0–2 km):</strong> desde la Rúa Maior, pasáis Santa Mariña, San Salvador, la torre de la muralla y el convento de A Madanela. <strong>Bajada pronunciada</strong> hasta el puente de A Áspera. Cruzáis y seguís ~1 km paralelos a la vía del tren.</li>
@@ -261,7 +229,6 @@ footer a{color:var(--gold-soft)}
    <li><strong>Morgade → Ferreiros → Mirador del Miño (12–18 km):</strong> subida a Ferreiros (iglesia de Santa María) y descenso largo hacia el río Miño.</li>
    <li><strong>Descenso → Puente → Portomarín (18–22 km):</strong> bajada hacia el embalse de Belesar y cruce del puente sobre el Miño. <strong>Escalinata final</strong> y arco de entrada al pueblo.</li>
   </ol>
-
   <h3 class="block">☕ Paradas sugeridas (ritmo tranquilo)</h3>
   <ul>
    <li><strong>Barbadelo</strong> (km ~4,5) — café tras la subida dura.</li>
@@ -269,7 +236,6 @@ footer a{color:var(--gold-soft)}
    <li><strong>Ferreiros</strong> (km ~14) — última parada de servicios cómoda antes de la bajada.</li>
   </ul>
   <a class="link-more" target="_blank" rel="noopener" href="https://www.caminodesantiago.gal/es/planifica/las-rutas/camino-frances/etapa-sarria-portomarin">🔗 Ampliar información — etapa Sarria–Portomarín</a>
-
   <h3 class="block">👀 Qué ver</h3>
   <ul>
    <li>⛪ <strong>Iglesia de Santiago de Barbadelo</strong> (s. X) — joya del románico, capiteles con figuras fantásticas.</li>
@@ -277,7 +243,6 @@ footer a{color:var(--gold-soft)}
    <li>🌊 <strong>Embalse de Belesar</strong> — vistas en la bajada a Portomarín.</li>
    <li>🌉 <strong>Portomarín:</strong> escalinata y arco del viejo puente, <strong>Iglesia-fortaleza de San Nicolás</strong> (trasladada piedra a piedra en 1963), Pazo del Conde de la Maza.</li>
   </ul>
-
   <h3 class="block">🍽️ Dónde comer (Portomarín — propuestas)</h3>
   <ul>
    <li><strong>Mesón A Casa dos Pulpeiros</strong> — pulpo y cocina gallega.</li>
@@ -286,7 +251,6 @@ footer a{color:var(--gold-soft)}
    <li>🍷 Probad el <strong>aguardiente de Portomarín</strong> (destilería local).</li>
   </ul>
   <a class="link-more" target="_blank" rel="noopener" href="https://www.caminodesantiago.gal/es/planifica/las-rutas/camino-frances/etapa-sarria-portomarin">🔗 Ampliar información — Portomarín</a>
-
   <h3 class="block">🏨 Hotel de esta noche</h3>
   <table><tbody>
    <tr><td class="lbl">Alojamiento</td><td><strong>Pensión Pérez</strong> · Doble con baño privado</td></tr>
@@ -296,13 +260,11 @@ footer a{color:var(--gold-soft)}
    <tr><td class="lbl">Reserva / LOC</td><td>8434877427</td></tr>
   </tbody></table>
   <div class="btn-row"><a class="btn btn-navy" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1IPYFXc4M6nfm5gumcP_JMl7Ts5SS1Fjz/view?usp=sharing">📄 Ver bono Pensión Pérez</a></div>
-
   <h3 class="block">📞 Teléfonos del día</h3>
   <p>Emergencias <strong>112</strong> · Urgencias sanitarias 061 · Pensión Pérez +34 982 545 040 · SAFE TOUR +34 953 890 650</p>
  </div>
 </section>
 
-<!-- ============ DIA 3 ============ -->
 <section data-tab="d3">
  <div class="card">
   <div class="day-head"><div class="day-badge"><small>DÍA</small><b>3</b></div><div class="day-title"><div class="date">Viernes 26 jun · Etapa 2</div><h2>🥾 Portomarín → Palas de Rei (25 km)</h2></div></div>
@@ -314,7 +276,6 @@ footer a{color:var(--gold-soft)}
    <tr><td class="lbl">Dificultad</td><td>Media (subida inicial larga)</td></tr>
   </tbody></table>
   <div class="callout yellow"><span class="ci">💡</span><div><strong>Ojo:</strong> las primeras ~2 h apenas hay bares. Llevad <strong>agua y algo de picar</strong> desde Portomarín.</div></div>
-
   <h3 class="block">🧭 Navegación por tramos</h3>
   <ol>
    <li><strong>Portomarín → Gonzar (0–8 km):</strong> cruzáis el puente sobre el Miño y <strong>subís fuerte</strong> (de ~350 a ~725 m) por pista junto a la carretera. Vistas al embalse. Llegáis a Gonzar.</li>
@@ -322,7 +283,6 @@ footer a{color:var(--gold-soft)}
    <li><strong>Hospital → Ventas de Narón → Ligonde (12–18 km):</strong> llaneo y suaves subidas por aldeas. <strong>Cementerio histórico de Ligonde</strong> con cruces medievales.</li>
    <li><strong>Ligonde → Os Chacotes → Palas de Rei (18–25 km):</strong> capilla de San Marcos, área de Os Chacotes y entrada a Palas de Rei.</li>
   </ol>
-
   <h3 class="block">☕ Paradas sugeridas (ritmo tranquilo)</h3>
   <ul>
    <li><strong>Gonzar</strong> (km ~8) — primer café tras la subida.</li>
@@ -330,7 +290,6 @@ footer a{color:var(--gold-soft)}
    <li><strong>Ventas de Narón / Ligonde</strong> (km ~15–18) — descanso a media etapa.</li>
   </ul>
   <a class="link-more" target="_blank" rel="noopener" href="https://www.caminodesantiago.gal/es/planifica/las-rutas/camino-frances/etapa-portomarin-palas-de-rei">🔗 Ampliar información — etapa Portomarín–Palas de Rei</a>
-
   <h3 class="block">👀 Qué ver</h3>
   <ul>
    <li>⛪ <strong>Iglesia románica de Castromaior</strong> junto al castro.</li>
@@ -339,7 +298,6 @@ footer a{color:var(--gold-soft)}
    <li>🪦 <strong>Cementerio de Ligonde</strong> — medieval, de peregrinos.</li>
    <li>⛪ <strong>Palas de Rei:</strong> Iglesia parroquial de Santiago (Apóstol Peregrino y Matamoros).</li>
   </ul>
-
   <h3 class="block">🍽️ Dónde comer (Palas de Rei — propuestas)</h3>
   <ul>
    <li><strong>A Forna</strong> — cocina gallega de mercado, muy valorada.</li>
@@ -347,24 +305,21 @@ footer a{color:var(--gold-soft)}
    <li><strong>Cantina de Palas / Pulpería Mary</strong> — pulpo y raciones.</li>
   </ul>
   <a class="link-more" target="_blank" rel="noopener" href="https://www.caminodesantiago.gal/es/planifica/las-rutas/camino-frances/etapa-portomarin-palas-de-rei">🔗 Ampliar información — Palas de Rei</a>
-
   <h3 class="block">🏨 Hotel de esta noche</h3>
   <table><tbody>
-   <tr><td class="lbl">Alojamiento</td><td><strong>Hotel Casa Bolboreta</strong> · Doble (camas separadas)</td></tr>
-   <tr><td class="lbl">Dirección</td><td>O Vilar de Remonde 2, Palas de Rei</td></tr>
-   <tr><td class="lbl">Teléfono</td><td><a href="tel:+34971677791">+34 971 67 77 91</a></td></tr>
-   <tr><td class="lbl">Email</td><td><a href="mailto:booking@hotelcasabolboreta.com">booking@hotelcasabolboreta.com</a></td></tr>
-   <tr><td class="lbl">Reserva / LOC</td><td>26052661302 · PIN 285665</td></tr>
+   <tr><td class="lbl">Alojamiento</td><td><strong>ACUBILLO</strong> · Doble con baño privado (2 camas separadas)</td></tr>
+   <tr><td class="lbl">Dirección</td><td>Rúa do Mercado, 27200 Palas de Rei</td></tr>
+   <tr><td class="lbl">Teléfono</td><td><a href="tel:+34621208629">+34 621 20 86 29</a></td></tr>
+   <tr><td class="lbl">Reserva / LOC</td><td>5719.196.650 · PIN 8759</td></tr>
+   <tr><td class="lbl">Entrada / Salida</td><td>Entrada 26 jun 14:00–00:00 · Salida 27 jun 06:00–10:00</td></tr>
   </tbody></table>
-  <div class="btn-row"><a class="btn btn-navy" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1I6STMWpiFQlXAONb0-UKGV7mvPBUcxHe/view?usp=drive_link">📄 Ver bono Casa Bolboreta</a></div>
-  <div class="callout red"><span class="ci">🔔</span><div><strong>Recordatorio de cancelación:</strong> la habitación de Palas de Rei se cancela gratis solo hasta las <strong>12:00 del 24 jun</strong>; después, cargo total.</div></div>
-
+  <div class="btn-row"><a class="btn btn-navy" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1r_qtC_vphJbaT7wPpUznpDVQh3m1QStj/view?usp=drive_link">📄 Ver bono ACUBILLO</a></div>
+  <div class="callout red"><span class="ci">🔔</span><div><strong>Recordatorio de cancelación:</strong> la habitación de Palas de Rei (ACUBILLO) se reembolsa íntegra solo si anuláis antes de las <strong>23:59 del 24 jun</strong>; a partir del 25 jun a las 0:00, no hay reembolso.</div></div>
   <h3 class="block">📞 Teléfonos del día</h3>
-  <p>Emergencias <strong>112</strong> · Casa Bolboreta +34 971 67 77 91 · SAFE TOUR +34 953 890 650</p>
+  <p>Emergencias <strong>112</strong> · ACUBILLO +34 621 20 86 29 · SAFE TOUR +34 953 890 650</p>
  </div>
 </section>
 
-<!-- ============ DIA 4 ============ -->
 <section data-tab="d4">
  <div class="card">
   <div class="day-head"><div class="day-badge"><small>DÍA</small><b>4</b></div><div class="day-title"><div class="date">Sábado 27 jun · Etapa 3</div><h2>🥾 Palas de Rei → Arzúa (29 km) ⚠️</h2></div></div>
@@ -375,7 +330,6 @@ footer a{color:var(--gold-soft)}
    <tr><td class="lbl">Salida recomendada</td><td>06:30 – 07:00</td></tr>
    <tr><td class="lbl">Dificultad</td><td>Media por la longitud (sube y baja constante)</td></tr>
   </tbody></table>
-
   <h3 class="block">🧭 Navegación por tramos</h3>
   <ol>
    <li><strong>Palas de Rei → Casanova (0–6 km):</strong> bajada a San Xulián do Camiño (iglesia románica), Pontecampaña y Casanova. Entráis en la provincia de A Coruña.</li>
@@ -383,7 +337,6 @@ footer a{color:var(--gold-soft)}
    <li><strong>Melide → Boente → Castañeda (14,8–22 km):</strong> salida por el casco histórico, Boente (iglesia de Santiago) y Castañeda.</li>
    <li><strong>Castañeda → Ribadiso → Arzúa (22–29 km):</strong> descenso a <strong>Ribadiso</strong> (puente medieval sobre el río Iso, rincón idílico) y <strong>subida final</strong> a Arzúa.</li>
   </ol>
-
   <h3 class="block">☕ Paradas sugeridas (ritmo tranquilo)</h3>
   <ul>
    <li><strong>Melide</strong> (km ~14,8) — <strong>comida fuerte de pulpo</strong>, es el punto clave del día.</li>
@@ -391,7 +344,6 @@ footer a{color:var(--gold-soft)}
   </ul>
   <a class="link-more" target="_blank" rel="noopener" href="https://www.caminodesantiago.gal/es/planifica/las-rutas/camino-frances/etapa-palas-de-rei-melide">🔗 Ampliar información — etapa Palas de Rei–Melide</a>
   <div class="callout orange" style="margin-top:16px"><span class="ci">🐙</span><div><strong>Parada gastronómica obligatoria: MELIDE</strong>, capital del <strong>pulpo á feira</strong>. Pulperías míticas: <strong>Pulpería Ezequiel</strong> (la más famosa, desde 1960), <strong>Pulpería A Garnacha</strong> (gran relación calidad-precio), <strong>Pulpería Antón</strong> (clásica y siempre llena). Pulpo + pan de maíz + vino Ribeiro = el almuerzo perfecto a mitad de etapa.</div></div>
-
   <h3 class="block">👀 Qué ver</h3>
   <ul>
    <li>⛪ <strong>Iglesia de San Xulián do Camiño</strong> — románica.</li>
@@ -400,7 +352,6 @@ footer a{color:var(--gold-soft)}
    <li>🌊 <strong>Conjunto de Ribadiso</strong> — puente medieval y albergue restaurado.</li>
    <li>🧀 <strong>Arzúa:</strong> Iglesia parroquial de Santiago y el famoso <strong>queso Arzúa-Ulloa D.O.</strong></li>
   </ul>
-
   <h3 class="block">🍽️ Dónde comer/cenar (Arzúa — propuestas)</h3>
   <ul>
    <li><strong>Casa Teodora</strong> — cocina gallega casera.</li>
@@ -408,7 +359,6 @@ footer a{color:var(--gold-soft)}
    <li>🧀 Comprad <strong>queso Arzúa-Ulloa</strong> en una quesería local.</li>
   </ul>
   <a class="link-more" target="_blank" rel="noopener" href="https://www.caminodesantiago.gal/es/planifica/las-rutas/camino-frances/etapa-melide-arzua">🔗 Ampliar información — Melide y Arzúa</a>
-
   <h3 class="block">🏨 Hotel de esta noche</h3>
   <table><tbody>
    <tr><td class="lbl">Alojamiento</td><td><strong>Pensión Carballeira</strong> · Doble 2 camas</td></tr>
@@ -419,13 +369,11 @@ footer a{color:var(--gold-soft)}
   </tbody></table>
   <div class="btn-row"><a class="btn btn-navy" target="_blank" rel="noopener" href="https://drive.google.com/file/d/12HzoSO5Ktp6kyJN4sQAk2_KXzQ05asQB/view?usp=drive_link">📄 Ver bono Pensión Carballeira</a></div>
   <div class="callout purple"><span class="ci">💡</span><div>El <strong>restaurante de la pensión cierra los domingos</strong>. Como hoy es sábado, comprobad horario para la cena. La salida permitida hasta las <strong>09:30</strong> es cómoda para mañana.</div></div>
-
   <h3 class="block">📞 Teléfonos del día</h3>
   <p>Emergencias <strong>112</strong> · Pensión Carballeira +34 981 500 094 · SAFE TOUR +34 953 890 650</p>
  </div>
 </section>
 
-<!-- ============ DIA 5 ============ -->
 <section data-tab="d5">
  <div class="card">
   <div class="day-head"><div class="day-badge"><small>DÍA</small><b>5</b></div><div class="day-title"><div class="date">Domingo 28 jun · Etapa 4</div><h2>🥾 Arzúa → O Pedrouzo (19 km)</h2></div></div>
@@ -436,7 +384,6 @@ footer a{color:var(--gold-soft)}
    <tr><td class="lbl">Salida recomendada</td><td>07:30 – 08:00</td></tr>
    <tr><td class="lbl">Dificultad</td><td>Media-cómoda (descanso tras la “rompepiernas”)</td></tr>
   </tbody></table>
-
   <h3 class="block">🧭 Navegación por tramos</h3>
   <ol>
    <li><strong>Arzúa → Calzada (0–6 km):</strong> pistas forestales y bajada/cruce de los <strong>ríos Vello y Brandeso</strong>. Preguntoño, A Peroxa, Calzada.</li>
@@ -444,7 +391,6 @@ footer a{color:var(--gold-soft)}
    <li><strong>A Salceda → Santa Irene (11–16 km):</strong> A Brea, O Empalme, <strong>Santa Irene</strong> (capilla y fuente del s. XVII).</li>
    <li><strong>Santa Irene → O Pedrouzo (16–19 km):</strong> A Rúa y entrada a O Pedrouzo (Arca).</li>
   </ol>
-
   <h3 class="block">☕ Paradas sugeridas (ritmo tranquilo)</h3>
   <ul>
    <li><strong>A Calzada / A Calle</strong> (km ~6) — desayuno-café en bar del camino.</li>
@@ -452,7 +398,6 @@ footer a{color:var(--gold-soft)}
    <li><strong>Santa Irene</strong> (km ~15) — foto en la <strong>fuente de la eterna juventud</strong>.</li>
   </ul>
   <a class="link-more" target="_blank" rel="noopener" href="https://www.caminodesantiago.gal/es/planifica/las-rutas/camino-frances/etapa-arzua-arca">🔗 Ampliar información — etapa Arzúa–Arca/O Pedrouzo</a>
-
   <h3 class="block">👀 Qué ver</h3>
   <ul>
    <li>🏛️ <strong>Palomar de Curiscada</strong> (a ~3 km de Arzúa) — planta octogonal, único en Galicia.</li>
@@ -460,7 +405,6 @@ footer a{color:var(--gold-soft)}
    <li>⛲ <strong>Capilla y fuente de Santa Irene</strong> — junto a una carballeira; la leyenda dice que rejuvenece a quien bebe. <strong>Foto obligada.</strong></li>
    <li>⛪ <strong>O Pedrouzo:</strong> Iglesia de Santa Eulalia de Arca y casa rectoral. Ambiente tranquilo.</li>
   </ul>
-
   <h3 class="block">🍽️ Dónde comer/cenar (O Pedrouzo — propuestas)</h3>
   <ul>
    <li><strong>Restaurante Regueiro</strong> — cocina gallega, muy peregrino.</li>
@@ -468,7 +412,6 @@ footer a{color:var(--gold-soft)}
    <li>Pizzería/menús en la calle principal para cenar ligero antes de la última etapa.</li>
   </ul>
   <a class="link-more" target="_blank" rel="noopener" href="https://www.caminodesantiago.gal/es/planifica/las-rutas/camino-frances/etapa-arzua-arca">🔗 Ampliar información — O Pedrouzo</a>
-
   <h3 class="block">🏨 Hotel de esta noche</h3>
   <table><tbody>
    <tr><td class="lbl">Alojamiento</td><td><strong>Pensión23 (Vinte e Tres)</strong> · Doble 2 camas, baño privado</td></tr>
@@ -480,13 +423,11 @@ footer a{color:var(--gold-soft)}
   </tbody></table>
   <div class="btn-row"><a class="btn btn-navy" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1vcX5C98p35pZQFkpD3I-qgD1whWuyjiu/view?usp=drive_link">📄 Ver bono Pensión23</a></div>
   <div class="callout green"><span class="ci">🎯</span><div><strong>Estrategia para mañana:</strong> desde O Pedrouzo estáis a 20 km de Santiago. Saliendo a las 06:30–07:00 llegaréis sobre las 11:00–12:00, a tiempo para la <strong>Misa del Peregrino de las 12:00</strong>.</div></div>
-
   <h3 class="block">📞 Teléfonos del día</h3>
   <p>Emergencias <strong>112</strong> · Pensión23 +34 667 570 012 · SAFE TOUR +34 953 890 650</p>
  </div>
 </section>
 
-<!-- ============ DIA 6 ============ -->
 <section data-tab="d6">
  <div class="card">
   <div class="day-head"><div class="day-badge"><small>DÍA</small><b>6</b></div><div class="day-title"><div class="date">Lunes 29 jun · Etapa 5</div><h2>🥾 O Pedrouzo → Santiago (20 km) 🎉</h2></div></div>
@@ -497,7 +438,6 @@ footer a{color:var(--gold-soft)}
    <tr><td class="lbl">Salida recomendada</td><td>06:30 – 07:00</td></tr>
    <tr><td class="lbl">Dificultad</td><td>Media (subida al Monte do Gozo)</td></tr>
   </tbody></table>
-
   <h3 class="block">🧭 Navegación por tramos</h3>
   <ol>
    <li><strong>O Pedrouzo → Amenal (0–4 km):</strong> bosques de eucalipto del Concello de O Pino, San Antón, Amenal.</li>
@@ -505,14 +445,12 @@ footer a{color:var(--gold-soft)}
    <li><strong>Lavacolla → Monte do Gozo (10–15 km):</strong> subida suave hasta <strong>Monte do Gozo</strong> — primera vista de las <strong>torres de la Catedral</strong>. Monumento a los peregrinos.</li>
    <li><strong>Monte do Gozo → Catedral (15–20 km):</strong> bajada, cruce por <strong>San Lázaro</strong>, Avenida do Camiño Francés y entrada al casco histórico hasta la <strong>Plaza del Obradoiro</strong>.</li>
   </ol>
-
   <h3 class="block">☕ Paradas sugeridas (ritmo tranquilo)</h3>
   <ul>
    <li><strong>Lavacolla</strong> (km ~10) — café antes del último empujón.</li>
    <li><strong>Monte do Gozo</strong> (km ~15) — parada emotiva con vistas a la Catedral.</li>
   </ul>
   <a class="link-more" target="_blank" rel="noopener" href="https://www.caminodesantiago.gal/es/planifica/las-rutas/camino-frances/etapa-arca-santiago-de-compostela">🔗 Ampliar información — etapa Arca (O Pino)–Santiago</a>
-
   <h3 class="block">👀 Qué ver y hacer en Santiago</h3>
   <ul>
    <li>⛪ <strong>Catedral de Santiago</strong> — la meta. Sepulcro del Apóstol, abrazo al Apóstol y <strong>Misa del Peregrino (12:00)</strong>.</li>
@@ -523,7 +461,6 @@ footer a{color:var(--gold-soft)}
    <li>🚶 Casco histórico: <strong>Rúa do Franco, do Vilar y Nova</strong> (tabernas y ambiente).</li>
   </ul>
   <div class="callout green"><span class="ci">📜</span><div><strong>LA COMPOSTELA.</strong> Recogedla en la <strong>Oficina del Peregrino</strong> (Rúa Carretas 33) — ¡justo al lado de vuestro hostal! Necesitáis la credencial con al menos 2 sellos por día en los últimos 100 km. Horario: 08:00–20:00.</div></div>
-
   <h3 class="block">🍽️ Dónde comer/cenar (Santiago — propuestas de celebración)</h3>
   <ul>
    <li><strong>Restaurante O Patrón</strong> (vuestro propio hostal) — parrillada gallega.</li>
@@ -532,7 +469,6 @@ footer a{color:var(--gold-soft)}
    <li>🍮 Postre: <strong>Tarta de Santiago</strong> · 🍷 brindis con <strong>Albariño</strong>.</li>
   </ul>
   <a class="link-more" target="_blank" rel="noopener" href="https://www.caminodesantiago.gal/es/planifica/las-rutas/camino-frances/etapa-arca-santiago-de-compostela">🔗 Ampliar información — Santiago de Compostela</a>
-
   <h3 class="block">🏨 Hotel de esta noche</h3>
   <table><tbody>
    <tr><td class="lbl">Alojamiento</td><td><strong>Hostal-Restaurante O Patrón</strong> · Doble 2 camas</td></tr>
@@ -542,18 +478,15 @@ footer a{color:var(--gold-soft)}
    <tr><td class="lbl">Reserva / LOC</td><td>1538901876</td></tr>
   </tbody></table>
   <div class="btn-row"><a class="btn btn-navy" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1N9MAMkb3saz-5U01C74dCDIEBPTSCUrA/view?usp=drive_link">📄 Ver bono Hostal O Patrón</a></div>
-
   <h3 class="block">📞 Teléfonos del día</h3>
   <p>Emergencias <strong>112</strong> · Of. del Peregrino +34 981 568 846 · Of. Turismo Santiago +34 981 555 129 · Hospital Clínico +34 981 950 000 · Radio Taxi Santiago +34 981 569 292 · Hostal O Patrón +34 981 57 64 87 · SAFE TOUR +34 953 890 650</p>
  </div>
 </section>
 
-<!-- ============ DIA 7 ============ -->
 <section data-tab="d7">
  <div class="card">
   <div class="day-head"><div class="day-badge"><small>DÍA</small><b>7</b></div><div class="day-title"><div class="date">Martes 30 jun</div><h2>🚄 Santiago → Madrid → Córdoba</h2></div></div>
   <div class="callout yellow"><span class="ci">⏰</span><div><strong>Horario.</strong> El AVLO sale a las <strong>10:49</strong> de Santiago. Desayunad temprano y salid del hostal con tiempo. La estación está a ~15 min en taxi.</div></div>
-
   <h3 class="block">🧭 Plan del día</h3>
   <ul>
    <li>🌅 Desayuno temprano en el hostal o cafetería cercana.</li>
@@ -562,20 +495,17 @@ footer a{color:var(--gold-soft)}
    <li>🔄 <strong>Cambio Chamartín → Atocha:</strong> ~2h 50min, tiempo cómodo. <strong>Cercanías C3/C4</strong> dirección Atocha (~20 min) o taxi.</li>
    <li>🚄 <strong>AVLO 02176</strong> — Madrid-Atocha <strong>17:05</strong> → Córdoba <strong>19:02</strong> (loc. <strong>UV2VBY</strong>, coche 9, plazas 3B/3A).</li>
   </ul>
-
   <h3 class="block">🎧 Bonos de tren de hoy</h3>
   <div class="btn-row">
    <a class="btn btn-gold" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1d8_75lcDYgiNahK9Rj183O8VSVrxarfz/view?usp=drive_link">📄 AVLO Santiago → Madrid (TUNRPK)</a>
    <a class="btn btn-gold" target="_blank" rel="noopener" href="https://drive.google.com/file/d/14f4Fl35DSfi4Xqd_Ot7QAbFBBp0gMcqj/view?usp=sharing">📄 AVLO Madrid → Córdoba (UV2VBY)</a>
   </div>
   <div class="callout gray"><span class="ci">🎫</span><div>Llevad los <strong>PDF de los billetes</strong> descargados en el móvil (puede no haber cobertura). Los bonos de tren de arriba son los PDF oficiales de Renfe (mismos del expediente).</div></div>
-
   <h3 class="block">📞 Teléfonos del día</h3>
   <p>Emergencias <strong>112</strong> · Renfe +34 912 320 320 · Radio Taxi Santiago +34 981 569 292 · SAFE TOUR +34 953 890 650</p>
  </div>
 </section>
 
-<!-- ============ DOCUMENTOS ============ -->
 <section data-tab="docs">
  <div class="card">
   <h2 class="section-title"><span class="ico">🎫</span> Bonos de tren</h2>
@@ -591,12 +521,12 @@ footer a{color:var(--gold-soft)}
   <div class="doc-grid">
    <div class="doc-item"><span class="tag">Día 1 · Sarria</span><h4>dp Cristal</h4><p>LOC FC-0244</p><a class="btn btn-navy" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1IMcm2rArmm9sMVRIKJLOzHbFP4j6C3a2/view?usp=drive_link">📄 Descargar</a></div>
    <div class="doc-item"><span class="tag">Día 2 · Portomarín</span><h4>Pensión Pérez</h4><p>LOC 8434877427</p><a class="btn btn-navy" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1IPYFXc4M6nfm5gumcP_JMl7Ts5SS1Fjz/view?usp=sharing">📄 Descargar</a></div>
-   <div class="doc-item"><span class="tag">Día 3 · Palas de Rei</span><h4>Casa Bolboreta</h4><p>LOC 26052661302 · PIN 285665</p><a class="btn btn-navy" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1I6STMWpiFQlXAONb0-UKGV7mvPBUcxHe/view?usp=drive_link">📄 Descargar</a></div>
+   <div class="doc-item"><span class="tag">Día 3 · Palas de Rei</span><h4>ACUBILLO</h4><p>LOC 5719.196.650 · PIN 8759</p><a class="btn btn-navy" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1r_qtC_vphJbaT7wPpUznpDVQh3m1QStj/view?usp=drive_link">📄 Descargar</a></div>
    <div class="doc-item"><span class="tag">Día 4 · Arzúa</span><h4>Pensión Carballeira</h4><p>LOC 6394359784 · PIN 2130</p><a class="btn btn-navy" target="_blank" rel="noopener" href="https://drive.google.com/file/d/12HzoSO5Ktp6kyJN4sQAk2_KXzQ05asQB/view?usp=drive_link">📄 Descargar</a></div>
    <div class="doc-item"><span class="tag">Día 5 · O Pedrouzo</span><h4>Pensión23</h4><p>LOC 7824</p><a class="btn btn-navy" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1vcX5C98p35pZQFkpD3I-qgD1whWuyjiu/view?usp=drive_link">📄 Descargar</a></div>
    <div class="doc-item"><span class="tag">Día 6 · Santiago</span><h4>Hostal O Patrón</h4><p>LOC 1538901876</p><a class="btn btn-navy" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1N9MAMkb3saz-5U01C74dCDIEBPTSCUrA/view?usp=drive_link">📄 Descargar</a></div>
   </div>
-  <div class="callout red" style="margin-top:18px"><span class="ci">🔔</span><div><strong>Casa Bolboreta (Palas de Rei):</strong> cancelación gratis solo hasta las <strong>12:00 del 24 jun</strong>; después, cargo total.</div></div>
+  <div class="callout red" style="margin-top:18px"><span class="ci">🔔</span><div><strong>ACUBILLO (Palas de Rei):</strong> reembolso íntegro solo si anuláis antes de las <strong>23:59 del 24 jun</strong>; a partir del 25 jun, sin reembolso.</div></div>
  </div>
 </section>
 

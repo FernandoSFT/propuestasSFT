@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta Menorca · Todo Incluido · SAFE TOUR</title>
+<style>
+  :root{
+    --azul:#0a3d62; --azul2:#1e6091; --oro:#c9a227; --verde:#2e9e5b;
+    --gris:#f4f6f8; --texto:#1c2b36; --linea:#e2e8ee; --blanco:#fff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:var(--texto);background:var(--gris);line-height:1.5;padding-bottom:120px}
+  .wrap{max-width:920px;margin:0 auto;padding:0 16px}
+  header{background:linear-gradient(135deg,var(--azul),var(--azul2));color:#fff;padding:34px 0 28px;text-align:center}
+  header h1{font-size:1.7rem;font-weight:700}
+  header p{opacity:.92;margin-top:6px;font-size:1rem}
+  .badge{display:inline-block;background:var(--oro);color:#1c2b36;font-weight:700;border-radius:20px;padding:4px 14px;font-size:.8rem;margin-top:14px;letter-spacing:.3px}
+  .resumen{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:18px}
+  .resumen span{background:rgba(255,255,255,.14);border-radius:8px;padding:6px 12px;font-size:.85rem}
+  section{background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(20,40,60,.06);margin:18px 0;padding:20px}
+  h2{font-size:1.15rem;color:var(--azul);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+  .sub{color:#6b7a87;font-size:.85rem;margin-bottom:14px}
+  .opt{display:flex;align-items:flex-start;gap:12px;border:1.5px solid var(--linea);border-radius:10px;padding:13px 14px;margin-bottom:10px;cursor:pointer;transition:.15s}
+  .opt:hover{border-color:var(--azul2)}
+  .opt.sel{border-color:var(--azul2);background:#f0f7fc;box-shadow:inset 0 0 0 1px var(--azul2)}
+  .opt input{margin-top:3px;transform:scale(1.2);accent-color:var(--azul2)}
+  .opt .info{flex:1}
+  .opt .t{font-weight:600}
+  .opt .d{font-size:.83rem;color:#6b7a87;margin-top:2px}
+  .opt .price{font-weight:700;color:var(--azul);white-space:nowrap;font-size:.98rem}
+  .opt .price small{display:block;font-weight:500;color:#6b7a87;font-size:.72rem;text-align:right}
+  .nota{background:#fff8e1;border-left:4px solid var(--oro);border-radius:8px;padding:10px 14px;font-size:.83rem;color:#5c4d12;margin-top:6px}
+  .bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--linea);box-shadow:0 -4px 16px rgba(20,40,60,.1);padding:12px 0;z-index:50}
+  .bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .bar .lbl{font-size:.8rem;color:#6b7a87}
+  .bar .tot{font-size:1.7rem;font-weight:800;color:var(--azul);line-height:1}
+  .bar .pp{font-size:.85rem;color:var(--verde);font-weight:600}
+  .bar .desglose{font-size:.78rem;color:#6b7a87;max-width:420px}
+  .cta{background:var(--verde);color:#fff;border:none;border-radius:24px;padding:12px 22px;font-weight:700;font-size:.95rem;cursor:pointer;text-decoration:none;display:inline-block}
+  .cta:hover{filter:brightness(1.05)}
+  footer{text-align:center;color:#90a0ad;font-size:.78rem;padding:18px 0}
+  @media(max-width:560px){.bar .tot{font-size:1.35rem}.bar .desglose{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>🏖️ Tu viaje a Menorca · Todo Incluido</h1>
+    <p>Palladium Hotel Menorca 4★ · 8–14 agosto 2026 (6 noches)</p>
+    <div class="resumen">
+      <span>👥 3 adultos + 1 niño</span>
+      <span>✈️ Vuelos Madrid–Menorca</span>
+      <span>🍹 Régimen Todo Incluido</span>
+    </div>
+    <div class="badge">Propuesta 901 · SAFE TOUR</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <h2>✈️ 1. Elige tu horario de vuelo</h2>
+    <div class="sub">La base son los vuelos de Ryanair a 0 € (ya incluidos). Otros horarios tienen suplemento por persona.</div>
+    <label class="opt" data-group="vuelo">
+      <input type="radio" name="vuelo" value="0" checked>
+      <div class="info"><div class="t">V1 · Ryanair (recomendado)</div><div class="d">Ida 17:00→18:35 (FR3058) · Vuelta 15:30→17:10 (FR3059)</div></div>
+      <div class="price">+0 €<small>incluido</small></div>
+    </label>
+    <label class="opt" data-group="vuelo">
+      <input type="radio" name="vuelo" value="80">
+      <div class="info"><div class="t">V2 · Ryanair</div><div class="d">Ida 10:00→11:35 (FR3056) · Vuelta 23:30→01:10+1 (FR4295)</div></div>
+      <div class="price">+80 €<small>+20 €/persona</small></div>
+    </label>
+    <label class="opt" data-group="vuelo">
+      <input type="radio" name="vuelo" value="120">
+      <div class="info"><div class="t">V3 · Iberia + Ryanair</div><div class="d">Ida 19:45→21:10 (IB1723) · Vuelta 23:30→01:10+1 (FR4295)</div></div>
+      <div class="price">+120 €<small>+30 €/persona</small></div>
+    </label>
+    <label class="opt" data-group="vuelo">
+      <input type="radio" name="vuelo" value="120">
+      <div class="info"><div class="t">V4 · Ryanair</div><div class="d">Ida 10:00→11:35 (FR3056) · Vuelta 15:30→17:10 (FR3059)</div></div>
+      <div class="price">+120 €<small>+30 €/persona</small></div>
+    </label>
+  </section>
+
+  <section>
+    <h2>🛏️ 2. Elige tu alojamiento</h2>
+    <div class="sub">Ambas opciones incluyen vuelos base + hotel en Todo Incluido para 4 personas.</div>
+    <label class="opt" data-group="hotel">
+      <input type="radio" name="hotel" value="6050" checked>
+      <div class="info"><div class="t">Opción B · 2 habitaciones dobles</div><div class="d">Categoría más económica · Todo Incluido</div></div>
+      <div class="price">6.050 €<small>1.513 €/persona</small></div>
+    </label>
+    <label class="opt" data-group="hotel">
+      <input type="radio" name="hotel" value="7170">
+      <div class="info"><div class="t">Opción A · 1 Suite Estándar (Vista Mar)</div><div class="d">Una suite para los 4 · Todo Incluido</div></div>
+      <div class="price">7.170 €<small>1.793 €/persona</small></div>
+    </label>
+    <div class="nota">Tarifa reducida (la más económica): no admite cambios ni cancelación. ¿Quieres flexibilidad? Te pasamos la tarifa estándar.</div>
+  </section>
+
+  <section>
+    <h2>🚗 3. Coche de alquiler <span style="font-weight:400;font-size:.8rem;color:#6b7a87">(opcional · 6 días)</span></h2>
+    <div class="sub">Kilometraje ilimitado y seguro a todo riesgo sin franquicia (según proveedor).</div>
+    <label class="opt" data-group="coche">
+      <input type="radio" name="coche" value="0" checked>
+      <div class="info"><div class="t">Sin coche</div></div>
+      <div class="price">0 €</div>
+    </label>
+    <label class="opt" data-group="coche">
+      <input type="radio" name="coche" value="475">
+      <div class="info"><div class="t">Económico (manual)</div><div class="d">Toyota Yaris o similar</div></div>
+      <div class="price">475 €</div>
+    </label>
+    <label class="opt" data-group="coche">
+      <input type="radio" name="coche" value="565">
+      <div class="info"><div class="t">Compacto SUV (automático)</div><div class="d">Omoda 5 o similar</div></div>
+      <div class="price">565 €</div>
+    </label>
+    <label class="opt" data-group="coche">
+      <input type="radio" name="coche" value="785">
+      <div class="info"><div class="t">Premium (automático)</div><div class="d">Mercedes Clase A o similar</div></div>
+      <div class="price">785 €</div>
+    </label>
+    <label class="opt" data-group="coche">
+      <input type="radio" name="coche" value="915">
+      <div class="info"><div class="t">SUV Elite (automático)</div><div class="d">Volvo XC40 o similar</div></div>
+      <div class="price">915 €</div>
+    </label>
+  </section>
+
+  <section>
+    <h2>🛡️ 4. Seguro de viaje <span style="font-weight:400;font-size:.8rem;color:#6b7a87">(opcional · recomendado)</span></h2>
+    <label class="opt sel" data-group="seguro" id="optSeguro">
+      <input type="checkbox" id="seguro" value="140" checked>
+      <div class="info"><div class="t">Seguro I4T Base (con anulación)</div><div class="d">Asistencia médica 500.000 € · anulación hasta 3.500 € (44 causas) · equipaje · RC</div></div>
+      <div class="price">140 €<small>4 personas</small></div>
+    </label>
+  </section>
+
+  <section>
+    <h2>➕ 5. Extras de vuelo <span style="font-weight:400;font-size:.8rem;color:#6b7a87">(opcionales)</span></h2>
+    <label class="opt" data-group="extra" id="optEquipaje">
+      <input type="checkbox" class="extra" value="50">
+      <div class="info"><div class="t">🧳 Equipaje facturado</div><div class="d">1 maleta de 20 kg · ida y vuelta</div></div>
+      <div class="price">50 €</div>
+    </label>
+    <label class="opt" data-group="extra" id="optAsientos">
+      <input type="checkbox" class="extra" value="45">
+      <div class="info"><div class="t">💺 Selección de asientos</div><div class="d">Asientos juntos · ida y vuelta</div></div>
+      <div class="price">45 €</div>
+    </label>
+    <label class="opt" data-group="extra" id="optPrioritario">
+      <input type="checkbox" class="extra" value="170">
+      <div class="info"><div class="t">🛂 Embarque prioritario</div><div class="d">4 pasajeros · ida y vuelta</div></div>
+      <div class="price">170 €</div>
+    </label>
+  </section>
+
+  <footer>
+    Precios sujetos a disponibilidad en el momento de confirmar · SAFE TOUR · Propuesta 901
+  </footer>
+</div>
+
+<div class="bar">
+  <div class="wrap">
+    <div>
+      <div class="lbl">Precio total del viaje</div>
+      <div class="tot" id="total">0 €</div>
+      <div class="pp" id="pp">— € por persona</div>
+      <div class="desglose" id="desglose"></div>
+    </div>
+    <a class="cta" id="cta" href="https://wa.me/34?text=" target="_blank">✅ Me interesa esta opción</a>
+  </div>
+</div>
+
+<script>
+  var PAX=4;
+  function eur(n){return n.toLocaleString('es-ES')+'\u202f\u20ac';}
+  function val(name){var el=document.querySelector('input[name="'+name+'"]:checked');return el?parseFloat(el.value):0;}
+  function calc(){
+    var hotel=val('hotel');
+    var vuelo=val('vuelo');
+    var coche=val('coche');
+    var seguro=document.getElementById('seguro').checked?140:0;
+    var extras=0,extrasTxt=[];
+    document.querySelectorAll('.extra:checked').forEach(function(e){extras+=parseFloat(e.value);});
+    var total=hotel+vuelo+coche+seguro+extras;
+    document.getElementById('total').textContent=eur(total);
+    document.getElementById('pp').textContent=eur(Math.round(total/PAX))+' por persona (aprox.)';
+    var parts=['Hotel '+eur(hotel)];
+    if(vuelo>0)parts.push('vuelo +'+eur(vuelo));
+    if(coche>0)parts.push('coche '+eur(coche));
+    if(seguro>0)parts.push('seguro '+eur(seguro));
+    if(extras>0)parts.push('extras '+eur(extras));
+    document.getElementById('desglose').textContent=parts.join(' · ');
+    var msg='Hola, me interesa la propuesta 901 de Menorca por '+eur(total)+' ('+parts.join(', ')+').';
+    document.getElementById('cta').href='https://wa.me/34?text='+encodeURIComponent(msg);
+    document.querySelectorAll('.opt').forEach(function(o){
+      var inp=o.querySelector('input');
+      if(!inp)return;
+      if(inp.type==='radio')o.classList.toggle('sel',inp.checked);
+      if(inp.type==='checkbox')o.classList.toggle('sel',inp.checked);
+    });
+  }
+  document.querySelectorAll('input').forEach(function(i){i.addEventListener('change',calc);});
+  calc();
+</script>
+</body>
+</html>

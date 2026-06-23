@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Tu viaje a Menorca · SAFE TOUR</title>
+<style>
+  :root{
+    --azul:#0d5c63; --azul2:#0a4a50; --turq:#13a0a8; --arena:#f4efe6;
+    --coral:#ff6b5e; --tinta:#1f2d2e; --gris:#5d6b6c; --linea:#e3ddd1;
+    --ok:#2e9e6b; --aviso:#d98a00;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--tinta);background:var(--arena);line-height:1.55}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:880px;margin:0 auto;padding:0 18px}
+  /* HERO */
+  header.hero{background:linear-gradient(135deg,var(--azul) 0%,var(--turq) 100%);color:#fff;padding:48px 0 60px;text-align:center;position:relative;overflow:hidden}
+  header.hero .brand{font-size:13px;letter-spacing:3px;text-transform:uppercase;opacity:.85;font-weight:600}
+  header.hero h1{font-size:38px;margin:10px 0 6px;font-weight:800;letter-spacing:-.5px}
+  header.hero .sub{font-size:17px;opacity:.95}
+  header.hero .meta{margin-top:22px;display:inline-flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  header.hero .chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);padding:7px 14px;border-radius:999px;font-size:13.5px;font-weight:600}
+  /* SECTIONS */
+  main{padding:0 0 60px}
+  .panel{background:#fff;border:1px solid var(--linea);border-radius:16px;padding:22px 22px;margin:18px 0;box-shadow:0 2px 10px rgba(13,92,99,.05)}
+  .panel.lift{margin-top:-34px}
+  h2.sec{font-size:14px;letter-spacing:1.5px;text-transform:uppercase;color:var(--turq);margin:30px 4px 6px;font-weight:700}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+  .stat{background:var(--arena);border-radius:12px;padding:14px}
+  .stat .k{font-size:12px;color:var(--gris);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+  .stat .v{font-size:16px;font-weight:700;margin-top:3px}
+  /* SERVICE CARD */
+  .svc{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--linea)}
+  .svc:first-child{border-top:none}
+  .svc .ico{font-size:26px;flex:0 0 44px;height:44px;width:44px;display:flex;align-items:center;justify-content:center;background:var(--arena);border-radius:12px}
+  .svc .body{flex:1;min-width:0}
+  .svc h3{font-size:18px;margin-bottom:2px}
+  .svc .tag{font-size:12.5px;color:var(--turq);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+  .svc dl{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;margin-top:8px;font-size:14.5px}
+  .svc dt{color:var(--gris);font-weight:600}
+  .svc dd{font-weight:600}
+  .btn{display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:var(--azul);color:#fff;padding:10px 18px;border-radius:10px;font-weight:700;font-size:14.5px;transition:.15s}
+  .btn:hover{background:var(--azul2)}
+  .btn.coral{background:var(--coral)}
+  .btn.ghost{background:#fff;color:var(--azul);border:1.5px solid var(--azul)}
+  /* QUICK DOCS */
+  .qdocs{display:flex;flex-wrap:wrap;gap:10px}
+  .qdocs .btn{margin-top:0}
+  /* CHECKLIST */
+  ul.chk{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px 18px;margin-top:6px}
+  ul.chk li{padding-left:26px;position:relative;font-size:14.5px}
+  ul.chk li:before{content:"";position:absolute;left:0;top:3px;width:16px;height:16px;border:2px solid var(--turq);border-radius:5px}
+  .note{background:#fdf6e3;border-left:4px solid var(--aviso);padding:12px 14px;border-radius:8px;font-size:14px;margin-top:10px}
+  .person{background:var(--arena);border-radius:12px;padding:12px 14px;margin-top:10px}
+  .person h4{font-size:15px;margin-bottom:4px}
+  .person .small{font-size:13px;color:var(--gris)}
+  /* WEATHER */
+  .wx{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:10px;margin-top:6px}
+  .wx .d{background:var(--arena);border-radius:12px;text-align:center;padding:12px 6px}
+  .wx .d .day{font-size:12px;color:var(--gris);font-weight:700;text-transform:uppercase}
+  .wx .d .em{font-size:24px;margin:4px 0}
+  .wx .d .t{font-weight:700;font-size:15px}
+  .wx .d .t span{color:var(--gris);font-weight:600}
+  footer{text-align:center;color:var(--gris);font-size:13px;padding:28px 18px 50px}
+  footer .b{color:var(--azul);font-weight:700}
+  @media(max-width:560px){header.hero h1{font-size:30px}.svc dl{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">SAFE TOUR · Tu agencia de viajes</div>
+    <h1>Menorca te espera 🏝️</h1>
+    <div class="sub">Documentación de viaje · Familia Ortega Castejón</div>
+    <div class="meta">
+      <span class="chip">📅 6 – 13 julio 2026</span>
+      <span class="chip">🌙 7 noches</span>
+      <span class="chip">👥 2 adultos + 2 niños</span>
+      <span class="chip">✈️ Madrid ↔ Mahón</span>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+
+  <div class="panel lift">
+    <div class="grid">
+      <div class="stat"><div class="k">Localizador vuelo</div><div class="v">N873R</div></div>
+      <div class="stat"><div class="k">Ref. expediente</div><div class="v">1270053623</div></div>
+      <div class="stat"><div class="k">Viaje pagado</div><div class="v" style="color:var(--ok)">100% ✓</div></div>
+      <div class="stat"><div class="k">Documentación</div><div class="v" style="color:var(--ok)">Lista ✓</div></div>
+    </div>
+  </div>
+
+  <h2 class="sec">Tus documentos</h2>
+  <div class="panel">
+
+    <div class="svc">
+      <div class="ico">✈️</div>
+      <div class="body">
+        <div class="tag">Vuelos · Iberia (op. Iberia Express)</div>
+        <h3>Madrid ↔ Menorca</h3>
+        <dl>
+          <dt>Ida</dt><dd>Lun 6 jul · 17:30 Madrid T4 → 18:55 Mahón · IB1719</dd>
+          <dt>Vuelta</dt><dd>Lun 13 jul · 13:40 Mahón → 15:10 Madrid T4 · IB1716</dd>
+          <dt>Clase</dt><dd>Turista · Tarifa Básica</dd>
+          <dt>Localizador</dt><dd>N873R (apellidos: ORTEGA MOLINA)</dd>
+        </dl>
+        <a class="btn" href="https://drive.google.com/file/d/1mJnHpBrfCaNUxLNrqSOP8MjZpqJ9o3Kb/view" target="_blank">📄 Ver billete de avión</a>
+      </div>
+    </div>
+
+    <div class="svc">
+      <div class="ico">🏨</div>
+      <div class="body">
+        <div class="tag">Alojamiento · 7 noches · Aloj. y desayuno</div>
+        <h3>Aparthotel Seth Isla Paraíso</h3>
+        <dl>
+          <dt>Dirección</dt><dd>Carrer Estrella s/n, 07740 Es Mercadal (Arenal d'en Castell)</dd>
+          <dt>Apartamento</dt><dd>Estándar 2 dormitorios (2+2)</dd>
+          <dt>Entrada / Salida</dt><dd>6 jul (14:00) · 13 jul (12:00)</dd>
+          <dt>Teléfono</dt><dd>+34 971 358 001</dd>
+        </dl>
+        <a class="btn" href="https://drive.google.com/file/d/1QAE8APMdOz1txkaZH8E-uf_ARmUgPRSI/view" target="_blank">📄 Ver bono del hotel</a>
+      </div>
+    </div>
+
+    <div class="svc">
+      <div class="ico">🚗</div>
+      <div class="body">
+        <div class="tag">Coche de alquiler · Flexible Autos (Record)</div>
+        <h3>OMODA 5 o similar · SUV automático</h3>
+        <dl>
+          <dt>Recogida</dt><dd>Aeropuerto de Mahón (MAH) · 6 jul 19:00</dd>
+          <dt>Devolución</dt><dd>Aeropuerto de Mahón (MAH) · 13 jul 11:00</dd>
+          <dt>Incluye</dt><dd>Km ilimitado · Seguro sin franquicia · Conductor adicional gratis</dd>
+          <dt>Referencia</dt><dd>EP867268 · Tel. oficina +34 662 349 987</dd>
+        </dl>
+        <a class="btn" href="https://drive.google.com/file/d/1oIPLp3nyngCNnKk8D253klzYnjZOm7kr/view" target="_blank">📄 Ver bono del coche</a>
+        <a class="btn ghost" href="https://drive.google.com/file/d/1MxYIWKAqOUDlzrABjPe-PxY_B0p3WfPc/view" target="_blank">📑 Condiciones del alquiler</a>
+      </div>
+    </div>
+
+    <div class="svc">
+      <div class="ico">🅿️</div>
+      <div class="body">
+        <div class="tag">Parking en Madrid · AENA Larga Estancia T4</div>
+        <h3>Parking + traslado a terminal</h3>
+        <dl>
+          <dt>Entrada</dt><dd>6 jul · 10:00 · Terminal 4 (Barajas)</dd>
+          <dt>Salida</dt><dd>13 jul · 19:00 · Terminal 4</dd>
+          <dt>Vehículo</dt><dd>Jeep Renegade gris · 6689 LCJ</dd>
+          <dt>Reserva</dt><dd>IC0000419924 · prepago · Tel. 91 321 10 00</dd>
+        </dl>
+        <a class="btn" href="https://drive.google.com/file/d/190I6GFeVVQLWTry6bk_iMo9u3Y1hpV9J/view" target="_blank">📄 Ver bono del parking</a>
+      </div>
+    </div>
+
+    <div class="svc">
+      <div class="ico">🛡️</div>
+      <div class="body">
+        <div class="tag">Seguro de viaje · Travelfine (IRIS Global)</div>
+        <h3>Cobertura para los 4 viajeros</h3>
+        <dl>
+          <dt>Póliza</dt><dd>435291 · Certificado UAG7SO9K6U</dd>
+          <dt>Vigencia</dt><dd>6 → 13 jul 2026</dd>
+          <dt>Incluye</dt><dd>Asistencia médica, equipaje, cancelación y RC</dd>
+          <dt>Asistencia 24h</dt><dd>+34 915 72 43 43</dd>
+        </dl>
+        <a class="btn" href="https://drive.google.com/file/d/1Aor5Vreftgs_n505jXmDqVhXjEHCldj0/view" target="_blank">📄 Ver certificado del seguro</a>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="sec">Documentación rápida</h2>
+  <div class="panel">
+    <p style="font-size:14.5px;margin-bottom:6px">Lo imprescindible para que todo vaya rodado 👇</p>
+    <ul class="chk">
+      <li><b>DNI en vigor</b> de los 4 viajeros (viaje nacional, no hace falta pasaporte)</li>
+      <li><b>Carnet de conducir físico</b> del conductor (+1 año de antigüedad)</li>
+      <li><b>Tarjeta de crédito física</b> a nombre del conductor para el coche</li>
+      <li><b>Tarjetas de embarque</b>: web de Iberia con localizador N873R</li>
+    </ul>
+    <div class="note">🚗 Al recoger el coche revisa el vehículo con el empleado y guarda copia del contrato. Se devuelve con el depósito lleno.</div>
+    <div class="qdocs" style="margin-top:14px">
+      <a class="btn ghost" href="https://drive.google.com/file/d/11nD49vT4rKpio35drCAWeSw1YvRqZMIx/view" target="_blank">💡 Trucos y consejos del viaje</a>
+    </div>
+  </div>
+
+  <h2 class="sec">El tiempo en Menorca (orientativo)</h2>
+  <div class="panel">
+    <p style="font-size:14.5px">Julio en Menorca es cálido y soleado. Previsión <b>orientativa</b> para vuestras fechas — se afinará los días previos a la salida.</p>
+    <div class="wx">
+      <div class="d"><div class="day">Lun 6</div><div class="em">☀️</div><div class="t">30°<span> / 22°</span></div></div>
+      <div class="d"><div class="day">Mar 7</div><div class="em">☀️</div><div class="t">31°<span> / 23°</span></div></div>
+      <div class="d"><div class="day">Mié 8</div><div class="em">🌤️</div><div class="t">30°<span> / 22°</span></div></div>
+      <div class="d"><div class="day">Jue 9</div><div class="em">☀️</div><div class="t">31°<span> / 23°</span></div></div>
+      <div class="d"><div class="day">Vie 10</div><div class="em">☀️</div><div class="t">32°<span> / 24°</span></div></div>
+      <div class="d"><div class="day">Sáb 11</div><div class="em">🌤️</div><div class="t">31°<span> / 23°</span></div></div>
+      <div class="d"><div class="day">Dom 12</div><div class="em">☀️</div><div class="t">30°<span> / 22°</span></div></div>
+    </div>
+  </div>
+
+  <h2 class="sec">Checklist por viajero</h2>
+  <div class="panel">
+    <p style="font-size:14.5px">Maleta pensada para playa, calor y la vida tranquila de la isla 🩴</p>
+    <div class="person">
+      <h4>👨 Francisco Javier <span class="small">· conductor</span></h4>
+      <ul class="chk"><li>DNI + carnet de conducir</li><li>Tarjeta de crédito</li><li>Gafas de sol y gorra</li><li>Bañador y chanclas</li></ul>
+    </div>
+    <div class="person">
+      <h4>👩 María Belén</h4>
+      <ul class="chk"><li>DNI</li><li>Crema solar alta</li><li>Ropa ligera + algo de abrigo noche</li><li>Calzado cómodo (calas)</li></ul>
+    </div>
+    <div class="person">
+      <h4>🧒 Paula <span class="small">· 16 años</span></h4>
+      <ul class="chk"><li>DNI</li><li>Bañador y toalla</li><li>Cargador / auriculares</li><li>Protección solar</li></ul>
+    </div>
+    <div class="person">
+      <h4>🧒 Blanca <span class="small">· 11 años</span></h4>
+      <ul class="chk"><li>DNI</li><li>Manguitos / flotador</li><li>Gorra y crema solar niños</li><li>Juego o libro para el vuelo</li></ul>
+    </div>
+  </div>
+
+</main>
+<footer>
+  <div class="b">SAFE TOUR S.L.</div>
+  Andújar (Jaén) · 953 890 650 · info@safetour.es · www.safetour.es<br>
+  ¡Buen viaje! Estamos aquí para lo que necesites 💙
+</footer>
+</body>
+</html>

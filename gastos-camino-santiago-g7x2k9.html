@@ -34,10 +34,12 @@
   .foto{display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px dashed var(--bord);border-radius:12px;padding:18px;text-align:center;color:var(--mut);font-size:14px;background:#fbfcfb}
   .foto b{color:var(--verde)}
   #fileInput{display:none}
+  #fotoPreview{max-width:100%;max-height:190px;border-radius:10px}
   .ocr{font-size:13px;color:var(--verde);margin-top:8px;text-align:center;min-height:18px}
   .item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--bord)}
   .item:last-child{border-bottom:none}
-  .ic{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;background:#eef5f1;flex-shrink:0}
+  .ic{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;background:#eef5f1;flex-shrink:0;overflow:hidden}
+  .thumb{width:44px;height:44px;object-fit:cover;cursor:pointer}
   .it-info{flex:1;min-width:0}
   .it-info b{font-size:15px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .it-info span{font-size:12px;color:var(--mut)}
@@ -77,6 +79,10 @@
         <div>Toca para <b>hacer una foto</b> o subir el ticket</div>
       </div>
       <input type="file" id="fileInput" accept="image/*" capture="environment">
+      <div id="previewWrap" style="display:none;margin-top:10px;text-align:center">
+        <img id="fotoPreview" alt="ticket">
+        <button class="btn sec" id="removePhoto">Quitar foto</button>
+      </div>
       <div class="ocr" id="ocrMsg"></div>
     </div>
     <div class="card">
@@ -130,6 +136,7 @@
     </div>
     <div class="card">
       <span class="pill">⚙️ Datos</span>
+      <div class="mini" id="storeMsg" style="margin-bottom:6px"></div>
       <button class="btn sec" id="csvBtn">Exportar CSV</button>
       <button class="btn sec" id="jsonBtn">Exportar copia (JSON)</button>
       <button class="btn sec" id="clearBtn" style="color:#c0392b;border-color:#f3d4cf">Borrar todo</button>
@@ -150,11 +157,16 @@
     <button class="btn" id="askOk" style="margin-top:0">Aceptar</button>
   </div>
 </dialog>
+<dialog id="imgDlg" style="padding:0;max-width:92%">
+  <img id="imgBig" style="width:100%;border-radius:16px 16px 0 0;display:block">
+  <button class="btn" id="imgClose" style="margin:0;border-radius:0 0 16px 16px">Cerrar</button>
+</dialog>
 <script>
 const CATS=[['Alojamiento','🛏️'],['Comida','🍽️'],['Bebida','☕'],['Transporte','🚌'],['Equipo','🎒'],['Salud','💊'],['Souvenirs','🎁'],['Otros','🔖']];
 const KEY='camino_gastos_v1';
-let state=JSON.parse(localStorage.getItem(KEY)||'{"items":[],"presu":0}');
-function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+let state={items:[],presu:0};
+try{state=JSON.parse(localStorage.getItem(KEY)||'{"items":[],"presu":0}');}catch(e){state={items:[],presu:0};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));return true;}catch(e){alert('No se pudo guardar: la memoria del navegador está llena. Exporta una copia (JSON) o borra gastos/fotos antiguas.');return false;}}
 const $=s=>document.querySelector(s);
 const eur=n=>n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
 const iconOf=c=>{const f=CATS.find(x=>x[0]===c);return f?f[1]:'🔖'};
@@ -164,7 +176,7 @@ $('#fPresu').value=state.presu||'';
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
-  b.classList.add('on');$('#tab-'+b.dataset.tab).classList.add('on');
+  b.classList.add('on');$('#tab-'+b.dataset.tab).classList.add('on');window.scrollTo(0,0);
 });
 function ask(title,msg,val,type){return new Promise(res=>{
   $('#askTitle').textContent=title;$('#askMsg').textContent=msg||'';
@@ -174,17 +186,28 @@ function ask(title,msg,val,type){return new Promise(res=>{
   $('#askCancel').onclick=()=>{$('#askDlg').close();res(null)};
 })}
 function parseAmount(t){const m=t.match(/(\d+[.,]?\d{0,2})\s*€?/);return m?parseFloat(m[1].replace(',','.')):null}
-async function addFlow(pre){
-  let importe=pre&&pre.importe!=null?pre.importe:null;
-  let concepto=pre&&pre.concepto?pre.concepto:'';
-  if(importe==null||isNaN(importe)){const v=await ask('💶 Importe','¿Cuánto te ha costado? (€)','','number');if(v===null)return;importe=parseFloat(v.replace(',','.'))}
-  if(isNaN(importe)){alert('Importe no válido');return}
-  if(!concepto){const v=await ask('✍️ Concepto','¿Qué ha sido?','');if(v===null)return;concepto=v||'Gasto'}
-  let cat=guessCat(concepto);
-  const item={id:Date.now(),importe,concepto,cat,pago:'Efectivo',fecha:new Date().toISOString().slice(0,10),notas:''};
-  state.items.unshift(item);save();render();
-  goList();flash('Gasto añadido: '+eur(importe));
-}
+// --- FOTO ---
+let pendingPhoto=null;
+function compressImage(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>{const img=new Image();img.onload=()=>{const m=720;let w=img.width,h=img.height;const s=Math.min(1,m/Math.max(w,h));const cw=Math.round(w*s),ch=Math.round(h*s);const c=document.createElement('canvas');c.width=cw;c.height=ch;c.getContext('2d').drawImage(img,0,0,cw,ch);try{res(c.toDataURL('image/jpeg',0.55));}catch(e){rej(e);}};img.onerror=rej;img.src=r.result;};r.onerror=rej;r.readAsDataURL(file);})}
+function showPreview(d){if(d){$('#fotoPreview').src=d;$('#previewWrap').style.display='block';}else{$('#previewWrap').style.display='none';$('#fotoPreview').removeAttribute('src');}}
+function goAdd(){document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));document.querySelector('nav button[data-tab=add]').classList.add('on');$('#tab-add').classList.add('on');}
+async function runOCR(d){if(typeof Tesseract==='undefined')return null;try{const{data}=await Tesseract.recognize(d,'spa+eng');return data.text||'';}catch(e){return null;}}
+$('#dropFoto').onclick=()=>$('#fileInput').click();
+$('#removePhoto').onclick=()=>{pendingPhoto=null;showPreview(null);$('#ocrMsg').textContent='';};
+$('#fileInput').onchange=async e=>{
+  const f=e.target.files[0];if(!f)return;
+  goAdd();$('#ocrMsg').textContent='Procesando foto...';
+  try{pendingPhoto=await compressImage(f);}catch(err){pendingPhoto=null;$('#ocrMsg').textContent='No se pudo procesar la imagen. Usa el texto o el formulario.';e.target.value='';return;}
+  showPreview(pendingPhoto);
+  $('#ocrMsg').textContent='Foto adjunta ✔️ Pon el importe y guarda. (Intentando leer el ticket...)';
+  const txt=await runOCR(pendingPhoto);
+  if(txt){const nums=[...txt.matchAll(/(\d{1,4}[.,]\d{2})/g)].map(m=>parseFloat(m[1].replace(',','.')));if(nums.length&&!$('#fImporte').value)$('#fImporte').value=Math.max(...nums);const line=txt.split('\n').map(s=>s.trim()).filter(s=>s.length>3)[0];if(line&&!$('#fConcepto').value)$('#fConcepto').value=line.slice(0,40);$('#ocrMsg').textContent=nums.length?('Importe sugerido: '+eur(Math.max(...nums))+' · revísalo y guarda'):'Foto adjunta ✔️ No pude leer el importe, ponlo a mano.';}
+  else{$('#ocrMsg').textContent='Foto adjunta ✔️ Pon el importe a mano y guarda.';}
+  e.target.value='';
+};
+// --- AÑADIR RÁPIDO ---
+function goList(){document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));document.querySelector('nav button[data-tab=list]').classList.add('on');$('#tab-list').classList.add('on');window.scrollTo(0,0);}
+function flash(m){const o=$('#ocrMsg');o.textContent=m;setTimeout(()=>{if(o.textContent===m)o.textContent='';},2500)}
 function guessCat(t){t=t.toLowerCase();
   if(/hotel|hostel|albergue|cama|noche|pensi/.test(t))return 'Alojamiento';
   if(/caf|cerveza|vino|copa|bar|agua|refresco/.test(t))return 'Bebida';
@@ -194,36 +217,30 @@ function guessCat(t){t=t.toLowerCase();
   if(/tirita|ibuprofeno|crema|venda|medic/.test(t))return 'Salud';
   if(/imán|recuerdo|regalo|postal|souvenir/.test(t))return 'Souvenirs';
   return 'Otros';}
-function goList(){document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));document.querySelector('nav button[data-tab=list]').classList.add('on');$('#tab-list').classList.add('on')}
-function flash(m){const o=$('#ocrMsg');o.textContent=m;setTimeout(()=>o.textContent='',2500)}
+async function addFlow(pre){
+  let importe=pre&&pre.importe!=null?pre.importe:null;
+  let concepto=pre&&pre.concepto?pre.concepto:'';
+  if(importe==null||isNaN(importe)){const v=await ask('💶 Importe','¿Cuánto te ha costado? (€)','','number');if(v===null)return;importe=parseFloat(v.replace(',','.'))}
+  if(isNaN(importe)){alert('Importe no válido');return}
+  if(!concepto){const v=await ask('✍️ Concepto','¿Qué ha sido?','');if(v===null)return;concepto=v||'Gasto'}
+  const item={id:Date.now(),importe,concepto,cat:guessCat(concepto),pago:'Efectivo',fecha:new Date().toISOString().slice(0,10),notas:'',foto:null};
+  state.items.unshift(item);if(!save()){state.items.shift();return;}render();goList();
+}
 $('#quickBtn').onclick=()=>{const t=$('#quickInput').value.trim();if(!t)return;const a=parseAmount(t);const c=t.replace(/(\d+[.,]?\d{0,2})\s*€?/,'').trim();$('#quickInput').value='';addFlow({importe:a,concepto:c})};
 $('#quickInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('#quickBtn').click()});
 $('#saveBtn').onclick=()=>{
   const importe=parseFloat(($('#fImporte').value||'').replace(',','.'));
   if(isNaN(importe)){alert('Indica un importe');return}
-  const item={id:Date.now(),importe,concepto:$('#fConcepto').value.trim()||'Gasto',cat:$('#fCat').value,pago:$('#fPago').value,fecha:$('#fFecha').value,notas:$('#fNotas').value.trim()};
-  state.items.unshift(item);save();render();
-  $('#fImporte').value='';$('#fConcepto').value='';$('#fNotas').value='';
+  const item={id:Date.now(),importe,concepto:$('#fConcepto').value.trim()||'Gasto',cat:$('#fCat').value,pago:$('#fPago').value,fecha:$('#fFecha').value,notas:$('#fNotas').value.trim(),foto:pendingPhoto||null};
+  state.items.unshift(item);if(!save()){state.items.shift();return;}render();
+  $('#fImporte').value='';$('#fConcepto').value='';$('#fNotas').value='';pendingPhoto=null;showPreview(null);$('#ocrMsg').textContent='';
   goList();
 };
 $('#presuBtn').onclick=()=>{state.presu=parseFloat(($('#fPresu').value||'0').replace(',','.'))||0;save();render();flash('Presupuesto guardado')};
-$('#dropFoto').onclick=()=>$('#fileInput').click();
-$('#fileInput').onchange=async e=>{
-  const f=e.target.files[0];if(!f)return;
-  $('#ocrMsg').textContent='🔍 Leyendo el ticket...';
-  try{
-    const {data}=await Tesseract.recognize(f,'spa+eng');
-    const txt=data.text||'';
-    const nums=[...txt.matchAll(/(\d{1,4}[.,]\d{2})/g)].map(m=>parseFloat(m[1].replace(',','.')));
-    const importe=nums.length?Math.max(...nums):null;
-    let concepto='Ticket';
-    const line=txt.split('\n').map(s=>s.trim()).filter(s=>s.length>3)[0];
-    if(line)concepto=line.slice(0,40);
-    $('#ocrMsg').textContent=importe?('Detectado: '+eur(importe)):'No pude leer el importe, introdúcelo a mano';
-    addFlow({importe,concepto});
-  }catch(err){$('#ocrMsg').textContent='No se pudo leer la imagen. Usa el formulario.';}
-  e.target.value='';
-};
+// --- VER FOTO ---
+window.viewImg=id=>{const it=state.items.find(x=>x.id===id);if(it&&it.foto){$('#imgBig').src=it.foto;$('#imgDlg').showModal();}};
+$('#imgClose').onclick=()=>$('#imgDlg').close();
+// --- EXPORTAR / BORRAR ---
 $('#csvBtn').onclick=()=>{
   const rows=[['Fecha','Concepto','Categoria','Pago','Importe','Notas'],...state.items.map(i=>[i.fecha,i.concepto,i.cat,i.pago,String(i.importe).replace('.',','),i.notas||''])];
   const csv=rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(';')).join('\n');
@@ -233,6 +250,7 @@ $('#jsonBtn').onclick=()=>dl('camino-gastos.json','application/json',JSON.string
 function dl(name,type,content){const b=new Blob([content],{type});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click()}
 $('#clearBtn').onclick=async()=>{const v=await ask('⚠️ Borrar todo','Escribe BORRAR para confirmar','');if(v==='BORRAR'){state={items:[],presu:0};save();render();$('#fPresu').value=''}};
 window.delItem=id=>{if(confirm('¿Borrar este gasto?')){state.items=state.items.filter(i=>i.id!==id);save();render()}};
+// --- RENDER ---
 function render(){
   const tot=state.items.reduce((s,i)=>s+i.importe,0);
   $('#hTotal').textContent=eur(tot);
@@ -240,13 +258,15 @@ function render(){
   if(state.presu>0){const pct=Math.min(100,tot/state.presu*100);$('#hBarra').style.display='block';$('#hBarraIn').style.width=pct+'%';$('#hBarra').classList.toggle('over',tot>state.presu);$('#hSub').textContent+=' · '+(tot>state.presu?('te has pasado '+eur(tot-state.presu)):('quedan '+eur(state.presu-tot)))}else{$('#hBarra').style.display='none'}
   const lc=$('#listCard');
   if(!state.items.length){lc.innerHTML='<div class="empty">Aún no hay gastos. Añade el primero 👆</div>'}
-  else{lc.innerHTML=state.items.map(i=>`<div class="item"><div class="ic">${iconOf(i.cat)}</div><div class="it-info"><b>${esc(i.concepto)}</b><span>${i.fecha} · ${i.cat} · ${i.pago}${i.notas?(' · '+esc(i.notas)):''}</span></div><div style="text-align:right"><div class="it-amt">${eur(i.importe)}</div><button class="del" onclick="delItem(${i.id})">Borrar</button></div></div>`).join('')}
+  else{lc.innerHTML=state.items.map(i=>`<div class="item"><div class="ic">${i.foto?`<img src="${i.foto}" class="thumb" onclick="viewImg(${i.id})">`:iconOf(i.cat)}</div><div class="it-info"><b>${esc(i.concepto)}</b><span>${i.fecha} · ${i.cat} · ${i.pago}${i.notas?(' · '+esc(i.notas)):''}</span></div><div style="text-align:right"><div class="it-amt">${eur(i.importe)}</div><button class="del" onclick="delItem(${i.id})">Borrar</button></div></div>`).join('')}
   const byCat={};state.items.forEach(i=>byCat[i.cat]=(byCat[i.cat]||0)+i.importe);
   const cats=Object.entries(byCat).sort((a,b)=>b[1]-a[1]);
   $('#catBox').innerHTML=cats.length?cats.map(([c,v])=>`<div class="cat-row"><div class="ic">${iconOf(c)}</div><div style="flex:1"><div style="font-size:13px;font-weight:600">${c}</div><div class="cat-bar"><i style="width:${tot?v/tot*100:0}%"></i></div></div><div class="cat-amt">${eur(v)}</div></div>`).join(''):'<div class="empty">Sin datos</div>';
   const byDay={};state.items.forEach(i=>byDay[i.fecha]=(byDay[i.fecha]||0)+i.importe);
   const days=Object.entries(byDay).sort((a,b)=>b[0].localeCompare(a[0]));
   $('#dayBox').innerHTML=days.length?days.map(([d,v])=>`<div class="item" style="padding:8px 0"><div class="it-info"><b>${d}</b></div><div class="it-amt">${eur(v)}</div></div>`).join(''):'<div class="empty">Sin datos</div>';
+  const conFoto=state.items.filter(i=>i.foto).length;
+  $('#storeMsg').textContent=state.items.length?(state.items.length+' gastos guardados en este dispositivo · '+conFoto+' con foto'):'';
 }
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 render();

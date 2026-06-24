@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#1f6f54">
+<title>Gastos · Camino de Santiago</title>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<style>
+  :root{--verde:#1f6f54;--verde2:#2a8e6b;--bg:#f4f6f5;--card:#fff;--txt:#1d2b27;--mut:#6b7a75;--bord:#e3e9e6;--amarillo:#e8b500;}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);padding-bottom:80px}
+  header{background:linear-gradient(135deg,var(--verde),var(--verde2));color:#fff;padding:22px 18px 26px;position:sticky;top:0;z-index:10;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+  header h1{font-size:16px;font-weight:600;opacity:.9;display:flex;align-items:center;gap:6px}
+  .total{font-size:38px;font-weight:800;margin-top:6px;letter-spacing:-1px}
+  .sub{font-size:13px;opacity:.85;margin-top:2px}
+  .barra{height:8px;background:rgba(255,255,255,.25);border-radius:8px;margin-top:12px;overflow:hidden}
+  .barra > i{display:block;height:100%;background:#fff;border-radius:8px;transition:width .4s}
+  .barra.over > i{background:var(--amarillo)}
+  main{padding:14px}
+  .card{background:var(--card);border:1px solid var(--bord);border-radius:14px;padding:14px;margin-bottom:12px}
+  label{display:block;font-size:12px;font-weight:600;color:var(--mut);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.4px}
+  input,select,textarea{width:100%;padding:12px;border:1px solid var(--bord);border-radius:10px;font-size:16px;background:#fbfcfb;color:var(--txt)}
+  textarea{resize:vertical;min-height:48px}
+  .row{display:flex;gap:10px}
+  .row > div{flex:1}
+  button{cursor:pointer;border:none;font-family:inherit}
+  .btn{background:var(--verde);color:#fff;width:100%;padding:14px;border-radius:12px;font-size:16px;font-weight:700;margin-top:14px}
+  .btn.sec{background:#eef2f0;color:var(--verde);border:1px solid var(--bord)}
+  .btn:active{transform:scale(.99)}
+  .quick{display:flex;gap:8px}
+  .quick input{flex:1}
+  .quick button{background:var(--verde);color:#fff;border-radius:10px;padding:0 16px;font-weight:700}
+  .foto{display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px dashed var(--bord);border-radius:12px;padding:18px;text-align:center;color:var(--mut);font-size:14px;background:#fbfcfb}
+  .foto b{color:var(--verde)}
+  #fileInput{display:none}
+  .ocr{font-size:13px;color:var(--verde);margin-top:8px;text-align:center;min-height:18px}
+  .item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--bord)}
+  .item:last-child{border-bottom:none}
+  .ic{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;background:#eef5f1;flex-shrink:0}
+  .it-info{flex:1;min-width:0}
+  .it-info b{font-size:15px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .it-info span{font-size:12px;color:var(--mut)}
+  .it-amt{font-weight:800;font-size:16px;white-space:nowrap}
+  .del{background:none;color:#c0392b;font-size:13px;padding:4px 8px;font-weight:600}
+  .empty{text-align:center;color:var(--mut);padding:30px 10px;font-size:14px}
+  .cat-row{display:flex;align-items:center;gap:10px;margin:8px 0}
+  .cat-row .ic{width:34px;height:34px;font-size:16px}
+  .cat-bar{flex:1;height:8px;background:#eef2f0;border-radius:6px;overflow:hidden}
+  .cat-bar > i{display:block;height:100%;background:var(--verde);border-radius:6px}
+  .cat-amt{font-weight:700;font-size:14px;white-space:nowrap;width:78px;text-align:right}
+  nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--bord);display:flex;z-index:20}
+  nav button{flex:1;background:none;padding:10px 0 14px;color:var(--mut);font-size:11px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:3px}
+  nav button.on{color:var(--verde)}
+  nav button .e{font-size:21px}
+  .tab{display:none}
+  .tab.on{display:block}
+  .pill{display:inline-block;background:#eef5f1;color:var(--verde);font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:6px}
+  .mini{font-size:12px;color:var(--mut);text-align:center;margin-top:8px}
+  dialog{border:none;border-radius:16px;padding:18px;width:90%;max-width:380px}
+  dialog::backdrop{background:rgba(0,0,0,.4)}
+</style>
+</head>
+<body>
+<header>
+  <h1>🏞️ Camino de Santiago</h1>
+  <div class="total" id="hTotal">0,00 €</div>
+  <div class="sub" id="hSub">Sin gastos todavía</div>
+  <div class="barra" id="hBarra" style="display:none"><i id="hBarraIn"></i></div>
+</header>
+<main>
+  <section class="tab on" id="tab-add">
+    <div class="card">
+      <span class="pill">📸 Foto del ticket</span>
+      <div class="foto" id="dropFoto">
+        <div style="font-size:30px">🧾</div>
+        <div>Toca para <b>hacer una foto</b> o subir el ticket</div>
+      </div>
+      <input type="file" id="fileInput" accept="image/*" capture="environment">
+      <div class="ocr" id="ocrMsg"></div>
+    </div>
+    <div class="card">
+      <span class="pill">✍️ Texto rápido</span>
+      <div class="quick">
+        <input type="text" id="quickInput" placeholder="Ej: cena 14,50">
+        <button id="quickBtn">Añadir</button>
+      </div>
+      <div class="mini">Escribe el concepto y el importe. Te pediré lo que falte.</div>
+    </div>
+    <div class="card">
+      <span class="pill">📝 Formulario</span>
+      <label>Importe (€)</label>
+      <input type="number" id="fImporte" inputmode="decimal" step="0.01" placeholder="0,00">
+      <label>Concepto</label>
+      <input type="text" id="fConcepto" placeholder="Ej: Menú del peregrino">
+      <div class="row">
+        <div>
+          <label>Categoría</label>
+          <select id="fCat"></select>
+        </div>
+        <div>
+          <label>Pago</label>
+          <select id="fPago"><option>Efectivo</option><option>Tarjeta</option></select>
+        </div>
+      </div>
+      <label>Fecha</label>
+      <input type="date" id="fFecha">
+      <label>Notas (opcional)</label>
+      <textarea id="fNotas" placeholder="Etapa, lugar, con quién..."></textarea>
+      <button class="btn" id="saveBtn">Guardar gasto</button>
+    </div>
+  </section>
+  <section class="tab" id="tab-list">
+    <div class="card" id="listCard"><div class="empty">Aún no hay gastos. Añade el primero 👆</div></div>
+  </section>
+  <section class="tab" id="tab-sum">
+    <div class="card">
+      <span class="pill">🎯 Presupuesto</span>
+      <label>Presupuesto total del viaje (€)</label>
+      <input type="number" id="fPresu" inputmode="decimal" placeholder="Ej: 600">
+      <button class="btn sec" id="presuBtn">Guardar presupuesto</button>
+    </div>
+    <div class="card">
+      <span class="pill">📊 Por categoría</span>
+      <div id="catBox"><div class="empty">Sin datos</div></div>
+    </div>
+    <div class="card">
+      <span class="pill">📅 Por día</span>
+      <div id="dayBox"><div class="empty">Sin datos</div></div>
+    </div>
+    <div class="card">
+      <span class="pill">⚙️ Datos</span>
+      <button class="btn sec" id="csvBtn">Exportar CSV</button>
+      <button class="btn sec" id="jsonBtn">Exportar copia (JSON)</button>
+      <button class="btn sec" id="clearBtn" style="color:#c0392b;border-color:#f3d4cf">Borrar todo</button>
+    </div>
+  </section>
+</main>
+<nav>
+  <button class="on" data-tab="add"><span class="e">➕</span>Añadir</button>
+  <button data-tab="list"><span class="e">🧾</span>Gastos</button>
+  <button data-tab="sum"><span class="e">📊</span>Resumen</button>
+</nav>
+<dialog id="askDlg">
+  <h3 style="margin-bottom:6px" id="askTitle">Falta un dato</h3>
+  <p style="color:#6b7a75;font-size:14px;margin-bottom:10px" id="askMsg"></p>
+  <input type="text" id="askInput" style="margin-bottom:12px">
+  <div class="row">
+    <button class="btn sec" id="askCancel" style="margin-top:0">Cancelar</button>
+    <button class="btn" id="askOk" style="margin-top:0">Aceptar</button>
+  </div>
+</dialog>
+<script>
+const CATS=[['Alojamiento','🛏️'],['Comida','🍽️'],['Bebida','☕'],['Transporte','🚌'],['Equipo','🎒'],['Salud','💊'],['Souvenirs','🎁'],['Otros','🔖']];
+const KEY='camino_gastos_v1';
+let state=JSON.parse(localStorage.getItem(KEY)||'{"items":[],"presu":0}');
+function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+const $=s=>document.querySelector(s);
+const eur=n=>n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+const iconOf=c=>{const f=CATS.find(x=>x[0]===c);return f?f[1]:'🔖'};
+CATS.forEach(c=>{const o=document.createElement('option');o.textContent=c[0];$('#fCat').appendChild(o)});
+$('#fFecha').value=new Date().toISOString().slice(0,10);
+$('#fPresu').value=state.presu||'';
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');$('#tab-'+b.dataset.tab).classList.add('on');
+});
+function ask(title,msg,val,type){return new Promise(res=>{
+  $('#askTitle').textContent=title;$('#askMsg').textContent=msg||'';
+  const i=$('#askInput');i.value=val||'';i.type=type||'text';if(type==='number')i.inputMode='decimal';
+  $('#askDlg').showModal();i.focus();
+  $('#askOk').onclick=()=>{$('#askDlg').close();res(i.value.trim())};
+  $('#askCancel').onclick=()=>{$('#askDlg').close();res(null)};
+})}
+function parseAmount(t){const m=t.match(/(\d+[.,]?\d{0,2})\s*€?/);return m?parseFloat(m[1].replace(',','.')):null}
+async function addFlow(pre){
+  let importe=pre&&pre.importe!=null?pre.importe:null;
+  let concepto=pre&&pre.concepto?pre.concepto:'';
+  if(importe==null||isNaN(importe)){const v=await ask('💶 Importe','¿Cuánto te ha costado? (€)','','number');if(v===null)return;importe=parseFloat(v.replace(',','.'))}
+  if(isNaN(importe)){alert('Importe no válido');return}
+  if(!concepto){const v=await ask('✍️ Concepto','¿Qué ha sido?','');if(v===null)return;concepto=v||'Gasto'}
+  let cat=guessCat(concepto);
+  const item={id:Date.now(),importe,concepto,cat,pago:'Efectivo',fecha:new Date().toISOString().slice(0,10),notas:''};
+  state.items.unshift(item);save();render();
+  goList();flash('Gasto añadido: '+eur(importe));
+}
+function guessCat(t){t=t.toLowerCase();
+  if(/hotel|hostel|albergue|cama|noche|pensi/.test(t))return 'Alojamiento';
+  if(/caf|cerveza|vino|copa|bar|agua|refresco/.test(t))return 'Bebida';
+  if(/men|comida|cena|desayuno|restaurante|tapa|bocadillo|supermercado/.test(t))return 'Comida';
+  if(/bus|tren|taxi|metro|gasolina|parking|billete/.test(t))return 'Transporte';
+  if(/bota|mochila|bastón|calcet|ropa|farmacia/.test(t))return 'Equipo';
+  if(/tirita|ibuprofeno|crema|venda|medic/.test(t))return 'Salud';
+  if(/imán|recuerdo|regalo|postal|souvenir/.test(t))return 'Souvenirs';
+  return 'Otros';}
+function goList(){document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));document.querySelector('nav button[data-tab=list]').classList.add('on');$('#tab-list').classList.add('on')}
+function flash(m){const o=$('#ocrMsg');o.textContent=m;setTimeout(()=>o.textContent='',2500)}
+$('#quickBtn').onclick=()=>{const t=$('#quickInput').value.trim();if(!t)return;const a=parseAmount(t);const c=t.replace(/(\d+[.,]?\d{0,2})\s*€?/,'').trim();$('#quickInput').value='';addFlow({importe:a,concepto:c})};
+$('#quickInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('#quickBtn').click()});
+$('#saveBtn').onclick=()=>{
+  const importe=parseFloat(($('#fImporte').value||'').replace(',','.'));
+  if(isNaN(importe)){alert('Indica un importe');return}
+  const item={id:Date.now(),importe,concepto:$('#fConcepto').value.trim()||'Gasto',cat:$('#fCat').value,pago:$('#fPago').value,fecha:$('#fFecha').value,notas:$('#fNotas').value.trim()};
+  state.items.unshift(item);save();render();
+  $('#fImporte').value='';$('#fConcepto').value='';$('#fNotas').value='';
+  goList();
+};
+$('#presuBtn').onclick=()=>{state.presu=parseFloat(($('#fPresu').value||'0').replace(',','.'))||0;save();render();flash('Presupuesto guardado')};
+$('#dropFoto').onclick=()=>$('#fileInput').click();
+$('#fileInput').onchange=async e=>{
+  const f=e.target.files[0];if(!f)return;
+  $('#ocrMsg').textContent='🔍 Leyendo el ticket...';
+  try{
+    const {data}=await Tesseract.recognize(f,'spa+eng');
+    const txt=data.text||'';
+    const nums=[...txt.matchAll(/(\d{1,4}[.,]\d{2})/g)].map(m=>parseFloat(m[1].replace(',','.')));
+    const importe=nums.length?Math.max(...nums):null;
+    let concepto='Ticket';
+    const line=txt.split('\n').map(s=>s.trim()).filter(s=>s.length>3)[0];
+    if(line)concepto=line.slice(0,40);
+    $('#ocrMsg').textContent=importe?('Detectado: '+eur(importe)):'No pude leer el importe, introdúcelo a mano';
+    addFlow({importe,concepto});
+  }catch(err){$('#ocrMsg').textContent='No se pudo leer la imagen. Usa el formulario.';}
+  e.target.value='';
+};
+$('#csvBtn').onclick=()=>{
+  const rows=[['Fecha','Concepto','Categoria','Pago','Importe','Notas'],...state.items.map(i=>[i.fecha,i.concepto,i.cat,i.pago,String(i.importe).replace('.',','),i.notas||''])];
+  const csv=rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(';')).join('\n');
+  dl('camino-gastos.csv','text/csv;charset=utf-8',csv);
+};
+$('#jsonBtn').onclick=()=>dl('camino-gastos.json','application/json',JSON.stringify(state,null,2));
+function dl(name,type,content){const b=new Blob([content],{type});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click()}
+$('#clearBtn').onclick=async()=>{const v=await ask('⚠️ Borrar todo','Escribe BORRAR para confirmar','');if(v==='BORRAR'){state={items:[],presu:0};save();render();$('#fPresu').value=''}};
+window.delItem=id=>{if(confirm('¿Borrar este gasto?')){state.items=state.items.filter(i=>i.id!==id);save();render()}};
+function render(){
+  const tot=state.items.reduce((s,i)=>s+i.importe,0);
+  $('#hTotal').textContent=eur(tot);
+  $('#hSub').textContent=state.items.length?(state.items.length+' gastos'+(state.presu?(' · Presupuesto '+eur(state.presu)):'')):'Sin gastos todavía';
+  if(state.presu>0){const pct=Math.min(100,tot/state.presu*100);$('#hBarra').style.display='block';$('#hBarraIn').style.width=pct+'%';$('#hBarra').classList.toggle('over',tot>state.presu);$('#hSub').textContent+=' · '+(tot>state.presu?('te has pasado '+eur(tot-state.presu)):('quedan '+eur(state.presu-tot)))}else{$('#hBarra').style.display='none'}
+  const lc=$('#listCard');
+  if(!state.items.length){lc.innerHTML='<div class="empty">Aún no hay gastos. Añade el primero 👆</div>'}
+  else{lc.innerHTML=state.items.map(i=>`<div class="item"><div class="ic">${iconOf(i.cat)}</div><div class="it-info"><b>${esc(i.concepto)}</b><span>${i.fecha} · ${i.cat} · ${i.pago}${i.notas?(' · '+esc(i.notas)):''}</span></div><div style="text-align:right"><div class="it-amt">${eur(i.importe)}</div><button class="del" onclick="delItem(${i.id})">Borrar</button></div></div>`).join('')}
+  const byCat={};state.items.forEach(i=>byCat[i.cat]=(byCat[i.cat]||0)+i.importe);
+  const cats=Object.entries(byCat).sort((a,b)=>b[1]-a[1]);
+  $('#catBox').innerHTML=cats.length?cats.map(([c,v])=>`<div class="cat-row"><div class="ic">${iconOf(c)}</div><div style="flex:1"><div style="font-size:13px;font-weight:600">${c}</div><div class="cat-bar"><i style="width:${tot?v/tot*100:0}%"></i></div></div><div class="cat-amt">${eur(v)}</div></div>`).join(''):'<div class="empty">Sin datos</div>';
+  const byDay={};state.items.forEach(i=>byDay[i.fecha]=(byDay[i.fecha]||0)+i.importe);
+  const days=Object.entries(byDay).sort((a,b)=>b[0].localeCompare(a[0]));
+  $('#dayBox').innerHTML=days.length?days.map(([d,v])=>`<div class="item" style="padding:8px 0"><div class="it-info"><b>${d}</b></div><div class="it-amt">${eur(v)}</div></div>`).join(''):'<div class="empty">Sin datos</div>';
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+render();
+</script>
+</body>
+</html>
